@@ -1,22 +1,20 @@
-# .NET
-bin/
-obj/
+# .NET (везде, включая вложенные проекты MMS)
+**/bin/
+**/obj/
 *.user
-appsettings.*.local.json
+**/appsettings.*.local.json
 
-# Локальные секреты разработки (реальные пароли БД и ключи)
-api/src/Kontur.Api/appsettings.Development.json
+# Секреты разработки — не коммитим
 .env
+**/appsettings.Development.local.json
 
-# Node
+# Node / frontend
 node_modules/
 dist/
 .vite/
-
-# Секреты
-.env
-*.pem
-*.key
+.yarn/
+playwright-report/
+test-results/
 
 # Python
 __pycache__/
@@ -24,5 +22,6 @@ __pycache__/
 # IDE/OS
 .vscode/
 .idea/
+.vs/
 .DS_Store
 Thumbs.db

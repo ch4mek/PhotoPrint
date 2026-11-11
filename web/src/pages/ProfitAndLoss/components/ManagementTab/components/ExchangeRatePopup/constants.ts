@@ -1,0 +1,9 @@
+export const EXCHANGE_RATE_POPUP_TITLE = 'Exchange rate';
+
+export const EXCHANGE_RATE_POPUP_MAX_WIDTH = 480;
+export const EXCHANGE_RATE_POPUP_MAX_HEIGHT = 690;
+
+export const HORIZONTAL_LINE_WIDTH = 10;
+export const CURRENCY_ITEM_MAX_HEIGHT = 48;
+
+export const EXCHANGE_RATE_FRACTION_DIGITS = 4;

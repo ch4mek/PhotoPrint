@@ -1,0 +1,57 @@
+---
+
+version: "3.8"
+
+services:
+  api:
+    image: ${DOCKER_REGISTRY-}modsenportalapi
+    container_name: mms-api
+    build:
+      context: .
+      dockerfile: src/Modsen.Portal.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - API_CacheStore=Redis
+      - API_ConnectionStrings__TrackDb=Host=postgres;Port=5432;Database=TrackDb;User Id=postgres;Password=postgres;
+      - API_ConnectionStrings__HangfireStorage=Host=postgres;Port=5432;Database=TrackDb;User Id=postgres;Password=postgres;
+      - API_ConnectionStrings__Redis=redis:6379
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  postgres:
+    image: postgres:15-alpine3.17
+    pull_policy: if_not_present
+    container_name: mms-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: TrackDb
+    healthcheck:
+      test: [ "CMD-SHELL", "psql -U postgres -d TrackDb -c SELECT 1;" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "8090:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data:rw
+
+  redis:
+    container_name: mms-redis
+    image: redis:7.2-alpine
+    pull_policy: if_not_present
+    environment:
+      - REDIS_PORT=6379
+  
+volumes:
+  postgres_data:

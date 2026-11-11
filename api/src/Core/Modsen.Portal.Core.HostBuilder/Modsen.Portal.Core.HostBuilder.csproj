@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.Console.Extensions.Serilog" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />
+    <PackageReference Include="Microsoft.ApplicationInsights.PerfCounterCollector" />
+    <PackageReference Include="Microsoft.Identity.Web" />
+    <PackageReference Include="NSwag.AspNetCore" />
+    <PackageReference Include="Scalar.AspNetCore" />
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" />
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" />
+    <PackageReference Include="AspNetCore.HealthChecks.Redis" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modsen.Portal.Core.Api\Modsen.Portal.Core.Api.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.Context\Modsen.Portal.Core.Context.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.Database\Modsen.Portal.Core.Database.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.UseCases\Modsen.Portal.Core.UseCases.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+  </ItemGroup>
+  
+</Project>

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: modsen-management-system
+description: Modsen Management System API Application Helm Chart for Kubernetes
+type: application
+version: 1.0.0
+appVersion: "1.0.0"

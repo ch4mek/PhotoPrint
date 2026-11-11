@@ -1,0 +1,72 @@
+{
+	"title": "Панель мониторинга",
+	"quickFilters": "Быстрые фильтры",
+	"todaysInterviews": {
+		"title": "Сегодняшние интервью",
+		"specialization": "Специализация",
+		"user": "Пользователь",
+		"time": "Время"
+	},
+	"requests": {
+		"title": "Запросы",
+		"user": "Пользователь",
+		"requestType": "Тип запроса",
+		"dateFrom": "Дата"
+	},
+	"contractExpiration": {
+		"title": "Срок действия контракта",
+		"user": "Пользователь",
+		"dates": "Дата"
+	},
+	"events": {
+		"title": "События",
+		"user": "Пользователь",
+		"type": "Тип",
+		"date": "Дата"
+	},
+	"performanceReview": {
+		"title": "Оценка эффективности",
+		"user": "Пользователь",
+		"date": "Дата"
+	},
+	"todaysAbsences": {
+		"title": "Сегодняшние отсутствия",
+		"user": "Пользователь",
+		"absence": "Отсутствие"
+	},
+	"probation": {
+		"title": "Испытательный срок завершается",
+		"user": "Пользователь",
+		"date": "Дата"
+	},
+	"kpi": {
+		"title": "Показатели KPI",
+		"totalFte": "Суммарный FTE (факт)",
+		"totalUsers": "Всего сотрудников",
+		"users": "Сотр."
+	},
+	"interview": {
+		"tagNames": {
+			"waitingForInterview": "Белый",
+			"waitingForResult": "Желтый",
+			"failed": "Красный",
+			"success": "Синий",
+			"started": "Зелёный",
+			"notStarted": "Темно-красный",
+			"canceled": "Серый",
+			"noFeedback": "Серый",
+			"noNextStepScheduled": "Серый"
+		},
+		"tagDescriptions": {
+			"waitingForInterview": "В ожидании интервью",
+			"waitingForResult": "В ожидании результата",
+			"failed": "Не пройден",
+			"success": "Пройден",
+			"started": "Начато",
+			"notStarted": "Не начато",
+			"canceled": "Отменено",
+			"noFeedback": "Нет обратной связи",
+			"noNextStepScheduled": "Нет следующего шага"
+		}
+	}
+}

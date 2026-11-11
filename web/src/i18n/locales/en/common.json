@@ -1,0 +1,124 @@
+{
+	"errors": {
+		"noResultsFound": "No results found"
+	},
+	"controlButtons": {
+		"reset": "Reset",
+		"apply": "Apply",
+		"cancel": "Cancel",
+		"copy": "Copy",
+		"download": "Download",
+		"edit": "Edit",
+		"clear": "Clear",
+		"yes": "Yes",
+		"no": "No",
+		"view": "View",
+		"request": "Request",
+		"approve": "Approve",
+		"done": "Done",
+		"reject": "Reject",
+		"add": "Add"
+	},
+	"modals": {
+		"fromToPriceModal": {
+			"from": "From, $",
+			"to": "To, $"
+		},
+		"selectAll": "Select all",
+		"warningTitle": "Warning",
+		"controls": {
+			"yes": "Yes",
+			"no": "No"
+		}
+	},
+	"placeholders": {
+		"search": "Search",
+		"from": "From",
+		"to": "To",
+		"for": "For"
+	},
+	"time": {
+		"hours": "h",
+		"minutes": "min"
+	},
+	"dateFormats": {
+		"DD_MM_YYYY": "DD.MM.YYYY"
+	},
+	"activityStatus": {
+		"Active": "Active",
+		"Inactive": "Inactive",
+		"Deleted": "Deleted"
+	},
+	"messages": {
+		"confirmationMessage": "Are you sure you want to continue?"
+	},
+	"requestFor": "request for",
+	"willBe": "will be",
+	"absence": {
+		"approved": "approved",
+		"approving": "approving",
+		"rejected": "rejected",
+		"rejecting": "rejecting",
+		"approvedBy": "approved by",
+		"rejectedBy": "rejected by"
+	},
+	"absenceRequests": {
+		"days_one": "{{count}} day",
+		"days_other": "{{count}} days",
+		"hours_one": "{{count}} hour",
+		"hours_other": "{{count}} hours"
+	},
+	"allYears": "All years",
+	"allAbsences": "All absences",
+	"allDay": "All day",
+	"columns": {
+		"total": "Total"
+	},
+	"labels": {
+		"task": "Task",
+		"project": "Project"
+	},
+	"projectTypes": {
+		"public": "Public",
+		"private": "Private"
+	},
+	"tooltips": {
+		"projectIsInactive": "Inactive project",
+		"selectProject": "Select Project",
+		"projectFirst": "Project first",
+		"firstNeedTrackHours": "First you need to track some hours for the last task",
+		"forbiddenToEdit": "Editing is forbidden",
+		"noAccess": "No access",
+		"inactiveProject": "Inactive project"
+	},
+	"seeAll": "See all",
+	"notPlanned": "Not planned",
+	"developmentPlanStatus": {
+		"None": "None",
+		"UnderReview": "Under review",
+		"Approved": "Approved",
+		"Rejected": "Rejected"
+	},
+	"interviewStatus": {
+		"waitingForInterview": "Waiting for interview",
+		"waitingForResult": "Waiting for result",
+		"failed": "Failed",
+		"success": "Success",
+		"started": "Started",
+		"notStarted": "Not started",
+		"canceled": "Canceled"
+	},
+	"periodWeekDays": {
+		"monday": "Monday",
+		"tuesday": "Tuesday",
+		"wednesday": "Wednesday",
+		"thursday": "Thursday",
+		"friday": "Friday",
+		"saturday": "Saturday",
+		"sunday": "Sunday"
+	},
+	"recurrentOn": "on {{weekday}}",
+	"validationErrors": {
+		"enterValidField": "Please enter a valid {{fieldName}}"
+	}
+}

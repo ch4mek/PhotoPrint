@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.Equipment.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.Equipment.Controllers</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core\Modsen.Portal.Core.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Context\Modsen.Portal.Core.Context.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Exceptions\Modsen.Portal.Core.Exceptions.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Export\Modsen.Portal.Core.Export.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.OData\Modsen.Portal.Core.OData.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Services\Modsen.Portal.Core.Services.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.UseCases\Modsen.Portal.Core.UseCases.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+    <ProjectReference Include="..\..\Identity\Modsen.Portal.Identity.Contract\Modsen.Portal.Identity.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Equipment.Contract\Modsen.Portal.Equipment.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Equipment.DataAccess.Npgsql\Modsen.Portal.Equipment.DataAccess.Npgsql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modsen.Portal.Equipment.DataAccess.Npgsql\Modsen.Portal.Equipment.DataAccess.Npgsql.csproj" />
+  </ItemGroup>
+
+</Project>

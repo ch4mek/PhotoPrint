@@ -1,0 +1,88 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 320m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "15"
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-buffers: "32 32k"
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "256k"
+    nginx.ingress.kubernetes.io/client-header-buffer-size: "32k"
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+    nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+    nginx.ingress.kubernetes.io/session-cookie-name: stickounet
+    nginx.ingress.kubernetes.io/session-cookie-expires: "7200"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "7200"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+  labels:
+    {{- include "this.labels" . | nindent 4 }}
+  name: {{ .Values.app }}-ingress
+  namespace: {{ .Release.Namespace }}
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: {{ .Values.ingress.ingressDomain }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ .Values.app }}-svc
+            port:
+              number: {{ .Values.service.servicePort.http }}
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+      - {{ .Values.ingress.ingressDomain }}
+    secretName: {{ .Values.ingress.secretName }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 8m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "15"
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-buffers: "32 32k"
+    nginx.ingress.kubernetes.io/proxy-busy-buffers-size: "256k"
+    nginx.ingress.kubernetes.io/client-header-buffer-size: "32k"
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+    nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+    nginx.ingress.kubernetes.io/session-cookie-name: stickounet
+    nginx.ingress.kubernetes.io/session-cookie-expires: "7200"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "7200"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "91.239.148.9/32,5.45.83.84/32,38.180.68.88/32,5.61.37.218/32,38.180.110.213/32,38.180.217.58/32,38.180.217.175/32,77.83.196.85/32,94.75.64.40/32,193.42.36.50/32,217.21.54.219/32,178.124.193.89/32,91.149.184.73/32,178.124.220.229/32,172.30.0.1/32,172.18.0.1/32,172.30.11.106/32,85.158.109.149/32,172.30.4.232/22,172.30.11.160/24,77.83.196.78/32"
+  labels:
+    {{- include "this.labels" . | nindent 4 }}
+  name: {{ .Values.app }}-swagger-ingress
+  namespace: {{ .Release.Namespace }}
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: {{ .Values.ingress.ingressDomain }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ .Values.app }}-svc
+            port:
+              number: {{ .Values.service.servicePort.http }}
+        path: /swagger
+        pathType: Prefix
+  tls:
+  - hosts:
+      - {{ .Values.ingress.ingressDomain }}
+    secretName: {{ .Values.ingress.secretName }}

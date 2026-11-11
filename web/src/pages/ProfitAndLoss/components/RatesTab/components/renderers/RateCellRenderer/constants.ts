@@ -1,0 +1,8 @@
+export const RATE_CHILD_CELL_VALUE_GAP = 2;
+
+export const RATE_PARENT_VALUE_LINE_HEIGHT = '18px';
+export const RATE_CHILD_CURRENCY_LINE_HEIGHT = '13px';
+export const RATE_BYN_PARENT_CURRENCY_FONT_SIZE = '14px';
+export const RATE_BYN_CHILD_CURRENCY_FONT_SIZE = '12px';
+
+export const HOURLY_RATE_FRACTION_DIGITS = 2;

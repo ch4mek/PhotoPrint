@@ -1,0 +1,2 @@
+export const NUMBER_OF_CARDS_FOR_FULL_VIEW = 2;
+export const WIDGET_MAX_HEIGHT_FOR_MOBILE = 316;

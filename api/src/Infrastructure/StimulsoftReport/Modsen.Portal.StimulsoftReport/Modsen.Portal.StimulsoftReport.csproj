@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\client_template.mrt" />
+    <EmbeddedResource Include="Templates\employee_template.mrt" />
+    <EmbeddedResource Include="Templates\discount_template.mrt" />
+    <EmbeddedResource Include="Templates\article_template.mrt" />
+    <EmbeddedResource Include="Templates\project_template.mrt" />
+    <EmbeddedResource Include="Templates\total_template.mrt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <PackageReference Include="Stimulsoft.Reports.Engine.NetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.StimulsoftReport.Contract\Modsen.Portal.StimulsoftReport.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,62 @@
+import { spaces } from '@mms/mms-ui-library/theme';
+
+import {
+	GAP_BETWEEN_GRIDS,
+	MIN_CERTIFICATE_GRID_HEIGHT,
+	MIN_EDUCATION_GRID_HEIGHT,
+	MIN_JIRA_SETTINGS_GRID_HEIGHT,
+} from '@/components/UserProfile/constansts';
+import { UserProfileTabsId } from '@/components/UserProfile/types';
+import {
+	MIN_ABSENCE_CARDS_HEIGHT,
+	MIN_ABSENCE_HISTORY_HEIGHT,
+	MIN_ABSENCE_REQUESTS_HEIGHT,
+	MOBILE_MIN_ABSENCE_HISTORY_HEIGHT,
+} from '@/constants/absence';
+import {
+	MIN_PAYSLIPS_GRID_HEIGHT,
+	MIN_SALARY_GRID_HEIGHT,
+} from '@/pages/TeamBoardUser/constants';
+
+const TABS_HEIGHT = 40;
+const MIN_EDUCATION_TAB_HEIGHT =
+	spaces.m * 2 +
+	MIN_CERTIFICATE_GRID_HEIGHT +
+	MIN_EDUCATION_GRID_HEIGHT +
+	GAP_BETWEEN_GRIDS +
+	TABS_HEIGHT;
+
+const DEFAULT_MIN_ABSENCES_TAB_HEIGHT =
+	spaces.m * 2 +
+	MIN_ABSENCE_CARDS_HEIGHT +
+	MIN_ABSENCE_REQUESTS_HEIGHT +
+	TABS_HEIGHT +
+	spaces.m +
+	spaces.l +
+	spaces.xs / 2;
+
+const MIN_SALARY_TAB_HEIGHT =
+	spaces.m * 2 +
+	MIN_SALARY_GRID_HEIGHT +
+	MIN_PAYSLIPS_GRID_HEIGHT +
+	spaces.m +
+	TABS_HEIGHT;
+
+const MIN_JIRA_SETTINGS_TAB_HEIGHT =
+	spaces.m * 2 + MIN_JIRA_SETTINGS_GRID_HEIGHT + TABS_HEIGHT;
+
+const DESKTOP_MIN_ABSENCES_TAB_HEIGHT =
+	MIN_ABSENCE_HISTORY_HEIGHT + DEFAULT_MIN_ABSENCES_TAB_HEIGHT;
+const MOBILE_MIN_ABSENCES_TAB_HEIGHT =
+	MOBILE_MIN_ABSENCE_HISTORY_HEIGHT + DEFAULT_MIN_ABSENCES_TAB_HEIGHT;
+
+export const minHeightTabRestriction = (
+	isMobileRestrict: boolean
+): Partial<Record<UserProfileTabsId, number>> => ({
+	[UserProfileTabsId.EDUCATION]: MIN_EDUCATION_TAB_HEIGHT,
+	[UserProfileTabsId.SALARY]: MIN_SALARY_TAB_HEIGHT,
+	[UserProfileTabsId.JIRA_SETTINGS]: MIN_JIRA_SETTINGS_TAB_HEIGHT,
+	[UserProfileTabsId.ABSENCES]: isMobileRestrict
+		? MOBILE_MIN_ABSENCES_TAB_HEIGHT
+		: DESKTOP_MIN_ABSENCES_TAB_HEIGHT,
+});

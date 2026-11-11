@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modsen.Portal.Core.Communication\Modsen.Portal.Core.Communication.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.Context\Modsen.Portal.Core.Context.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.Database\Modsen.Portal.Core.Database.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.Services\Modsen.Portal.Core.Services.csproj" />
+  </ItemGroup>
+
+</Project>

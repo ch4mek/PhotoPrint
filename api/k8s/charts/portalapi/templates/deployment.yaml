@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "this.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      {{- include "this.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "this.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- if or (eq .Values.env "dev") (eq .Values.env "qa") (eq .Values.env "staging") }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-group
+                operator: In
+                values:
+                - development
+      {{- end }}
+      containers:
+        - name: {{ .Values.app }}-container
+          image: {{ .Values.deployment.image }}{{ ":" }}{{ .Values.deployment.tag }}
+          imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+          resources:
+            requests:
+              memory: {{ .Values.deployment.resources.requests.memory }}
+              cpu: {{ .Values.deployment.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.deployment.resources.limits.memory }}
+              cpu: {{ .Values.deployment.resources.limits.cpu }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.app }}-secrets
+          env:
+            - name: API_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: API_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: API_MEM_LIMIT
+              valueFrom:
+                resourceFieldRef:
+                  containerName: {{ .Values.app }}-container
+                  resource: limits.memory
+          ports:
+            - containerPort: {{ .Values.deployment.containerPort.http }}
+          startupProbe:
+            httpGet:
+              path: /health/live
+              port: {{ .Values.deployment.containerPort.http }}
+            failureThreshold: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: {{ .Values.deployment.containerPort.http }}
+            initialDelaySeconds: {{ .Values.deployment.probe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.deployment.probe.periodSeconds }}
+            timeoutSeconds: {{ .Values.deployment.probe.timeoutSeconds }}
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: {{ .Values.deployment.containerPort.http }}
+            initialDelaySeconds: {{ .Values.deployment.probe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.deployment.probe.periodSeconds }}
+      imagePullSecrets:
+        - name: {{ .Values.deployment.imagePullSecrets }}

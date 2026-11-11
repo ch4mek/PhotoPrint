@@ -1,0 +1,27 @@
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
+
+import { getArticleByIdEndpoint } from '@/constants/queryPaths';
+import { handleRequestError } from '@/helpers/requestErrorHandler';
+import { ServerResponseError } from '@/queries/types';
+import { KnowledgeGroupItem } from '@/queries/wiki/types';
+
+export const useDeleteArticle = (
+	options?: UseMutationOptions<
+		KnowledgeGroupItem,
+		AxiosError<ServerResponseError>,
+		number | string
+	>
+) =>
+	useMutation({
+		mutationFn: async (id: number | string) => {
+			try {
+				const response = await axios.delete(getArticleByIdEndpoint(id));
+
+				return response.data;
+			} catch (error) {
+				return handleRequestError(error);
+			}
+		},
+		...options,
+	});

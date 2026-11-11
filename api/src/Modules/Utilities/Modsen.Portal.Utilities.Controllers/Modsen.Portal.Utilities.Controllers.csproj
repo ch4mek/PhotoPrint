@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" />
+    <PackageReference Include="DocumentFormat.OpenXml.Framework" />
+    <PackageReference Include="SixLabors.Fonts" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Api\Modsen.Portal.Core.Api.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Authentication\Modsen.Portal.Core.Authentication.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Agent\Modsen.Portal.Agent.Contract\Modsen.Portal.Agent.Contract.csproj" />
+    <ProjectReference Include="..\..\Booking\Modsen.Portal.Booking.Contract\Modsen.Portal.Booking.Contract.csproj" />
+    <ProjectReference Include="..\..\Equipment\Modsen.Portal.Equipment.Contract\Modsen.Portal.Equipment.Contract.csproj" />
+    <ProjectReference Include="..\..\Identity\Modsen.Portal.Identity.Contract\Modsen.Portal.Identity.Contract.csproj" />
+    <ProjectReference Include="..\..\Merch\Modsen.Portal.Merch.Contract\Modsen.Portal.Merch.Contract.csproj" />
+    <ProjectReference Include="..\..\Storage\Modsen.Portal.Storage.Contract\Modsen.Portal.Storage.Contract.csproj" />
+    <ProjectReference Include="..\..\TeamBoard\Modsen.Portal.TeamBoard.Contract\Modsen.Portal.TeamBoard.Contract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Controllers\Congratulations\DOB.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Controllers\Congratulations\helvetica_bold.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Controllers\Congratulations\ProbationEnd.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Controllers\Congratulations\WorkAnniversary.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

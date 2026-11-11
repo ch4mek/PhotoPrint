@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Authentication\Modsen.Portal.Core.Authentication.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

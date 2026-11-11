@@ -1,0 +1,325 @@
+default:
+  tags:
+    - internal
+    - onprem
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+
+include:
+  - project: 'mms/frontend/sonar-templates'
+    file: 'ci/versioning/common.yaml'
+  - project: 'mms/frontend/sonar-templates'
+    file: 'ci/versioning/node.yaml'
+  - project: 'mms/frontend/sonar-templates'
+    file: 'ci/sonar-js.yaml'
+
+.setup_env: &setup_env |
+  echo "VITE_API_URL=${API_URL}" > .env
+  echo "VITE_ENV=${ENV}" >> .env
+  echo "VITE_PUBLIC_PATH=${PUBLIC_PATH}" >> .env
+  cat .env
+
+.yarn_before_script: &yarn_before_script
+  - corepack enable
+  - corepack prepare yarn@4.13.0 --activate
+
+variables:
+  KUBE_CONTEXT: mms/common:k8s-development-mms-agent
+  SONAR_PROJECT_KEY: 'mms_frontend_mms-fe_71dfbe43-e63c-4e77-83ce-18a89601b019'
+  TSCONFIG_PATH: 'tsconfig.json'
+  TEST_COVERAGE_PATH: 'coverage/lcov.info'
+  SONAR_TESTS_EXCLUSIONS: '*/*.test.*,**/*.spec.*,**/__tests__/**,**/__mocks__/**,**/*.stories.*,**/setupTests.*,**/generated/**,**/*.d.ts, **/styles.ts, **/styled.ts'
+  TRIVY_IMAGE_PATH: "$CI_REGISTRY/mms/frontend/mms-fe/static"
+  RELEASE_BRANCH: "master"
+  VERSION_FILE: "package.json"
+  TRIVY_IMAGE_REPOSITORY: "$CI_REGISTRY/mms/frontend/mms-fe/static"
+  DEPENDENCY_TRACK_TAGS: "frontend"
+
+stages:
+  - version
+  - setup
+  - test
+  - build
+  - security
+  - release
+  - deploy
+  - sonarqube
+
+PrepareVersion:
+  extends: .prepare_version_node
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+
+InstallDeps:
+  stage: setup
+  image: mirror.gcr.io/node:24.11.0
+  cache:
+    key:
+      files:
+        - yarn.lock
+        - package.json
+    paths:
+      - node_modules/
+    policy: pull-push
+    when: on_success
+  before_script:
+    - *yarn_before_script
+  script:
+    - yarn install --immutable
+  artifacts:
+    paths:
+      - yarn.lock
+    expire_in: 2 hours
+    when: always
+  rules:
+    - when: on_success
+
+TestFrontImage:
+  stage: test
+  image: mirror.gcr.io/node:24.11.0
+  needs:
+    - job: InstallDeps
+      artifacts: true
+  cache:
+    key:
+      files:
+        - yarn.lock
+        - package.json
+    paths:
+      - node_modules/
+    policy: pull
+  before_script:
+    - *setup_env
+    - *yarn_before_script
+  script:
+    - yarn typecheck:soft
+    - yarn lint
+    - yarn test --ci
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "qa"'
+      when: never
+    - when: on_success
+  artifacts:
+    when: always
+    paths:
+      - .nyc_output/jest-junit.xml
+    reports:
+      junit: .nyc_output/jest-junit.xml
+    expire_in: 7 days
+
+E2ETests:
+  stage: test
+  image: mcr.microsoft.com/playwright:v1.58.2-noble
+  needs:
+    - job: InstallDeps
+      artifacts: true
+  cache:
+    key:
+      files:
+        - yarn.lock
+        - package.json
+    paths:
+      - node_modules/
+    policy: pull
+  variables:
+    API_URL: $DEV_API_URL
+    ENV: $DEV_ENV
+  before_script:
+    - *setup_env
+    - *yarn_before_script
+  script:
+    - echo "Running e2e tests with coverage against API=$API_URL CI=$CI"
+    - yarn coverage:soft
+  allow_failure: true
+  when: manual
+  coverage: /Statements\s*:\s*(\d+\.\d+)%/
+  artifacts:
+    when: always
+    expire_in: 7 days
+    paths:
+      - .nyc_output/e2e-junit.xml
+      - coverage/
+    reports:
+      junit: .nyc_output/e2e-junit.xml
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "staging"'
+      variables:
+        API_URL: $STAGING_API_URL
+        ENV: $STAGING_ENV
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+      when: manual
+      variables:
+        API_URL: $DEV_API_URL
+        ENV: $DEV_ENV
+    - if: '$CI_COMMIT_BRANCH == "qa"'
+      when: manual
+      variables:
+        API_URL: $QA_API_URL
+        ENV: $QA_ENV
+    - when: manual
+      variables:
+        API_URL: $DEV_API_URL
+        ENV: $DEV_ENV
+
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+BuildFrontImage:
+  stage: build
+  image: mirror.gcr.io/docker:27.3.1
+  resource_group: mms-fe-static-image
+  dependencies:
+    - PrepareVersion
+  variables:
+    DOCKER_BUILDKIT: '1'
+    API_URL: $DEV_API_URL
+    ENV: $DEV_ENV
+    PUBLIC_PATH: ''
+  before_script:
+    - echo "$CI_JOB_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - |
+      BUILDER_NAME="ci-builder-${CI_PROJECT_ID}-${CI_PIPELINE_ID}-${CI_JOB_ID}"
+      echo "$BUILDER_NAME" > .buildx-builder-name
+      docker buildx create \
+        --name "$BUILDER_NAME" \
+        --driver docker-container \
+        --use
+      docker buildx inspect --bootstrap
+  script:
+    - *setup_env
+    - |
+      set -eu
+      : "${APP_VERSION:?APP_VERSION is required}"
+      : "${IMAGE_TAG:?IMAGE_TAG is required}"
+      : "${BUILD_TIMESTAMP:?BUILD_TIMESTAMP is required}"
+      BUILDER_NAME="$(cat .buildx-builder-name)"
+      REPO="$CI_REGISTRY/mms/frontend/mms-fe/static"
+      TAG="${REPO}:${IMAGE_TAG}"
+      LATESTTAG="${REPO}:latest"
+      TAG_ARGS="-t $TAG"
+      if [ "$CI_COMMIT_REF_NAME" = "$RELEASE_BRANCH" ]; then
+        TAG_ARGS="$TAG_ARGS -t $LATESTTAG"
+      fi
+      echo "Building image: $TAG"
+      docker buildx build \
+        --builder "$BUILDER_NAME" \
+        --no-cache \
+        --build-arg "VERSION=$APP_VERSION" \
+        --build-arg "BUILD_TIMESTAMP=$BUILD_TIMESTAMP" \
+        --build-arg "ENV=$ENV" \
+        --secret id=npm_token,env=MMS_UI_LIBRARY_TOKEN \
+        --platform linux/amd64 \
+        $TAG_ARGS \
+        --push \
+        .
+  after_script:
+    - |
+      BUILDER_NAME="$(cat .buildx-builder-name 2>/dev/null || true)"
+      if [ -n "$BUILDER_NAME" ]; then
+        docker buildx rm "$BUILDER_NAME" >/dev/null 2>&1 || true
+      fi
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == "pf-migration"'
+      variables:
+        API_URL: $PF_MIGRATION_API_URL
+        ENV: $PF_MIGRATION_ENV
+    - if: '$CI_COMMIT_BRANCH == "qa"'
+      variables:
+        API_URL: $QA_API_URL
+        ENV: $QA_ENV
+    - if: '$CI_COMMIT_BRANCH == "staging"'
+      variables:
+        API_URL: $STAGING_API_URL
+        ENV: $STAGING_ENV
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      variables:
+        API_URL: $PROD_API_URL
+        ENV: $PROD_ENV
+    - when: always
+
+TrivyFilesystemScan:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+
+TrivyImageScan:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+
+UploadSBOMToDepTrack:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+
+CreateGitTag:
+  extends: .create_git_tag
+
+.CommonDeploy:
+  stage: deploy
+  image:
+    name: mirror.gcr.io/chatwork/helmfile:0.166.0-3.15.3
+    entrypoint: ['']
+  dependencies:
+    - PrepareVersion
+  before_script:
+    - if [ -n "$KUBE_CONTEXT" ]; then kubectl config use-context "$KUBE_CONTEXT"; fi
+    - ENV="$DEPLOY_ENV"
+    # We need it untill chatwork/helmfile docker image will introduce helm diff plugin v3.9.4 or above inside it. We need dry-run=server functionality
+    - helm plugin update diff
+  script:
+    - cd k8s
+    - echo "helmfile apply -e $ENV command will be perfomed"
+    - |
+      helmfile apply \
+        -e "$ENV" \
+        --diff-args \
+        --dry-run=server \
+        --set deployment.tag="$IMAGE_TAG"
+
+DevDeploy:
+  extends: .CommonDeploy
+  variables:
+    DEPLOY_ENV: 'dev'
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+
+QaDeploy:
+  extends: .CommonDeploy
+  variables:
+    DEPLOY_ENV: 'qa'
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "qa"'
+
+StageDeploy:
+  extends: .CommonDeploy
+  variables:
+    DEPLOY_ENV: 'stage'
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "staging"'
+
+ProdDeploy:
+  extends: .CommonDeploy
+  variables:
+    DEPLOY_ENV: 'prod'
+    KUBE_CONTEXT: 'mms/common:eks-production-mms-agent'
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: manual
+
+SonarScan:
+  allow_failure: true

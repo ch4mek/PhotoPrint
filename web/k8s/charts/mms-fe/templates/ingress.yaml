@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 512m
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "15"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+  labels:
+    {{- include "this.labels" . | nindent 4 }}
+  name: {{ .Values.app }}-ingress
+  namespace: {{ .Release.Namespace }}
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: {{ .Values.ingress.ingressDomain }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: {{ .Values.app }}-svc
+            port:
+              number: {{ .Values.service.servicePort.http }}
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+      - {{ .Values.ingress.ingressDomain }}
+    secretName: {{ .Values.ingress.secretName }}

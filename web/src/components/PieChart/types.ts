@@ -1,0 +1,23 @@
+export type PieChartSize =
+	| 'extraSmall'
+	| 'small'
+	| 'medium'
+	| 'large'
+	| 'extraLarge';
+
+export interface CustomPieChartProps {
+	activeIndex?: number;
+	onPieEnter?: (index?: number) => void;
+	data: {
+		name: string | null | undefined;
+		value: number;
+		color: string;
+	}[];
+	size?: PieChartSize;
+	innerRadius?: string | number;
+	outerRadius?: string | number;
+	showAdditionalInfo?: boolean;
+	tooltipPosition?: PieChartTooltipPosition;
+}
+
+export type PieChartTooltipPosition = 'top' | 'right';

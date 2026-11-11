@@ -1,0 +1,41 @@
+app_env: {{ .Values.app_env }}
+
+postgresqlBackupDevRecruitment:
+  secret:
+    secretName: {{ .Values | get "apps.postgresqlBackupDevRecruitment.secret.secretName" }}
+    hostKey: {{ .Values | get "apps.postgresqlBackupDevRecruitment.secret.hostKey" "DB_Host" }}
+    portKey: {{ .Values | get "apps.postgresqlBackupDevRecruitment.secret.portKey" "DB_Port" }}
+    databaseKey: {{ .Values | get "apps.postgresqlBackupDevRecruitment.secret.databaseKey" "DB_Name" }}
+    usernameKey: {{ .Values | get "apps.postgresqlBackupDevRecruitment.secret.usernameKey" "DB_User" }}
+    passwordKey: {{ .Values | get "apps.postgresqlBackupDevRecruitment.secret.passwordKey" "DB_Password" }}
+    schemaKey: {{ .Values | get "apps.postgresqlBackupDevRecruitment.secret.schemaKey" "DB_Schema" }}
+
+  backup:
+    schedule: "0 20 * * 2,5"
+    retention: "2"    # number of backups to keep
+    prefix: "backup"
+
+  ceph:
+    bucketName: {{ .Values | get "apps.postgresqlBackupDevRecruitment.ceph.bucketName" "development-mes-backup-claim" }}
+    namespace: {{ .Values | get "apps.postgresqlBackupDevRecruitment.ceph.namespace" "development-mes-stage" }}
+    storageClassName: {{ .Values | get "apps.postgresqlBackupDevRecruitment.ceph.storageClassName" "ceph-bucket" }}
+    path: {{ .Values | get "apps.postgresqlBackupDevRecruitment.ceph.path" "postgres/" }}
+
+  job:
+    backoffLimit: 2
+    activeDeadlineSeconds: 10800
+
+  pod:
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+    initImage: "alpine:3.18"
+
+  image:
+    repository: "postgres"
+    tag: "17-alpine"
+    pullPolicy: "IfNotPresent"

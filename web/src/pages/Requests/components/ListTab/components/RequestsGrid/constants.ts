@@ -1,0 +1,1 @@
+export const RESET_FILTER_COLUMN_INDEX = 13;

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Api\Modsen.Portal.Core.Api.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.HostBuilder\Modsen.Portal.Core.HostBuilder.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Finance.Requests\Modsen.Portal.Finance.Requests.csproj" />
+  </ItemGroup>
+
+</Project>

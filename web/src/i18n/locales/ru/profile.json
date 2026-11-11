@@ -1,0 +1,166 @@
+{
+	"userProfileTitle": "Профиль пользователя",
+	"reviewTitle": "Предстоящая оценка эффективности работы",
+	"shortReviewTitle": "Предстоящая оценка",
+	"notPlanned": "Не запланировано",
+	"personalData": {
+		"title": "Личные данные",
+		"fullNameEnglish": "Полное имя (английский)",
+		"fullNameRussian": "Полное имя (русский)",
+		"emailCorporate": "Email (корпоративный)",
+		"emailPersonal": "Email (личный)",
+		"phone": "Телефон",
+		"hardSkills": "Технические навыки",
+		"englishLevel": "Уровень английского",
+		"softSkills": "Социальные навыки",
+		"department": "Отдел",
+		"location": "Местоположение",
+		"dateOfBirth": "Дата рождения",
+		"currentLocation": "Текущее местоположение",
+		"registeredLocation": "Зарегистрированное местоположение",
+		"telegram": "Telegram",
+		"militaryServiceStatus": "Военный статус",
+		"graduateJobPlacement": "Место работы после выпуска",
+		"linkedIn": "LinkedIn",
+		"popup": {
+			"formName": "Форма редактирования личных данных",
+			"title": "Редактирование личных данных",
+			"inputLabel": "Местоположение"
+		}
+	},
+	"employmentHistory": {
+		"title": "История трудоустройства",
+		"professionalActivityStartDate": "Дата начала профессиональной деятельности",
+		"firstProjectStartDate": "Дата начала первого проекта",
+		"hireDate": "Дата трудоустройства",
+		"contractEndDate": "Дата окончания контракта"
+	},
+	"projects": {
+		"sectionHeader": "Проекты",
+		"projectName": "Название проекта",
+		"clientName": "Клиент",
+		"billability": "Платежеспособность",
+		"startDate": "Дата начала",
+		"endDate": "Дата окончания",
+		"status": "Статус"
+	},
+	"absence": {
+		"availableDays": "доступные дни",
+		"availableHours": "доступные часы",
+		"balanceDays": "баланс дней",
+		"balanceHours": "баланс часов",
+		"inquiryTemplateName": "Тип запроса",
+		"dateFrom": "Дата начала",
+		"dateTo": "Дата окончания",
+		"quantity": "Количество",
+		"status": "Статус",
+		"date": "Дата",
+		"requestType": "Тип запроса",
+		"description": "Описание",
+		"used": "Использовано",
+		"accrued": "Начислено",
+		"remainder": "Остаток (Баланс)",
+		"documents": "Документы",
+		"proportionalAccrual": "Пропорциональное начисление",
+		"request": "Запрос",
+		"resetAnnualBalance": "Сброс годового баланса",
+		"correction": "Корректировка",
+		"history": "История"
+	},
+	"skills": {
+		"name": "Название",
+		"seniority": "Уровень"
+	},
+	"developmentPlan": {
+		"sectionHeader": "Планирование развития",
+		"status": "Статус",
+		"deadlineDate": "Дата окончания",
+		"summary": "Описание"
+	},
+	"equipmentTab": {
+		"equipmentName": "Название оборудования",
+		"type": "Тип",
+		"serialNumber": "Серийный номер",
+		"inventoryNumber": "Инвентарный номер",
+		"issueDate": "Дата выдачи",
+		"returnDate": "Дата возврата",
+		"status": "Статус",
+		"assigned": "Выдан",
+		"returned": "Возвращен"
+	},
+	"educationTab": {
+		"educationLevel": "Уровень образования",
+		"educationalInstitution": "Образовательное учреждение",
+		"faculty": "Факультет",
+		"specialization": "Специальность",
+		"studyForm": "Форма обучения",
+		"graduationYear": "Год выпуска",
+		"certificates": {
+			"technology": "Специальность",
+			"certificateId": "ID сертификата",
+			"stack": "Стек",
+			"receiptDate": "Дата"
+		}
+	},
+	"salaryTab": {
+		"payslips": "Расчетные листы",
+		"viewPayslipDescription": "Описание расчетного листа",
+		"reportDate": "Дата",
+		"fileName": "Расчетный лист",
+		"salary": "Зарплата",
+		"salaryFrom": "Зарплата с"
+	},
+	"hardSkillsTab": {
+		"specialization": "Специальность"
+	},
+	"softSkillsTab": {
+		"softSkill": "Социальный навык"
+	},
+	"developmentPlanTab": {
+		"startDate": "Дата начала",
+		"endDate": "Дата подтверждения",
+		"summary": "Описание",
+		"status": "Статус",
+		"deadlineDate": "Дата дедлайна"
+	},
+	"performanceReviewTab": {
+		"performanceReviewDate": "Дата",
+		"agreements": "Соглашения",
+		"documents": "Документы",
+		"docLinks": "Ссылки на документы"
+	},
+	"dateTag": {
+		"tagNames": {
+			"future": "Белый",
+			"upcoming": "Желтый",
+			"imminent": "Оранжевый",
+			"overdueMoreThanNDays": "Красный",
+			"passed": "Зелёный"
+		},
+		"tagDescriptions": {
+			"future": "> 7 дней",
+			"upcoming": "< 3 дней и ≤ 7 дней",
+			"imminent": "≤ 3 дней или просрочено ≤ 7 дней",
+			"overdueMoreThanNDays": "просрочено > 7 дней",
+			"passed": "пройдены"
+		}
+	},
+	"contractTab": {
+		"startDate": "Дата начала",
+		"endDate": "Дата окончания"
+	},
+	"tabs": {
+		"summary": "Сводка",
+		"absences": "Отсутствия",
+		"equipment": "Оборудование",
+		"education": "Образование",
+		"salary": "Зарплата",
+		"projects": "Проекты",
+		"hardSkills": "Тех. навыки",
+		"softSkills": "Соц. навыки",
+		"developmentPlan": "План развития",
+		"performanceReview": "Оценка эфф.",
+		"contracts": "Контракты",
+		"signature": "Подпись"
+	}
+}

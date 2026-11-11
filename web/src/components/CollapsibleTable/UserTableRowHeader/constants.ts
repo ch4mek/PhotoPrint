@@ -1,0 +1,1 @@
+export const EMPLOYEE_NAME_LEFT_INDENTATION = 13;

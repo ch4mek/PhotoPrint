@@ -1,0 +1,3 @@
+﻿namespace Modsen.Portal.TimeTrack.DataAccess.Abstractions.Projects.GetProjectsCountAndAnyPublicProjectsByIds;
+
+internal record GetNonExistingAndPublicProjectsByIdsDbQueryResponse(List<int> NonExistingProjectsIds, List<int> PublicProjectsIds);

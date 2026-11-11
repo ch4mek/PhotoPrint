@@ -1,0 +1,183 @@
+include:
+  - project: 'mms/ci-templates'
+    ref: 'dependency-track'
+    file:
+      - 'ci/versioning/common.yaml'
+      - 'ci/versioning/dotnet.yaml'
+      - 'ci/sonar-dnet.yaml'
+
+default:
+  tags:
+    - internal
+    - onprem
+
+variables:
+  NUGET_PACKAGES_DIRECTORY: /app-packages/nuget
+  SERVICE_DOCKERFILE_PATH: ./src/Modsen.Portal.Api/Dockerfile
+  SERVICE_IMAGE: mms-api
+  KUBE_CONTEXT: mms/common:k8s-development-mms-agent
+  GIT_DEPTH: "0"
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "true"
+  DOTNET_NOLOGO: "true"
+  RELEASE_BRANCH: "master"
+  VERSION_FILE: "src/Modsen.Portal.Api/Modsen.Portal.Api.csproj"
+  DEPENDENCY_TRACK_TAGS: "backend"
+  TRIVY_IMAGE_REPOSITORY: "$CI_REGISTRY/$CI_PROJECT_PATH/$SERVICE_IMAGE"
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+
+stages:
+  - version
+  - quality
+  - build
+  - security
+  - release
+  - deploy
+
+cache:
+  key: "$CI_JOB_STAGE-$CI_COMMIT_REF_SLUG"
+  paths:
+    - "$NUGET_PACKAGES_DIRECTORY"
+  policy: pull-push
+
+PrepareVersion:
+  extends: .prepare_version_dotnet
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH'
+
+CreateGitTag:
+  extends: .create_git_tag
+
+.dotnet-base:
+  image: mcr.microsoft.com/dotnet/sdk:9.0
+  before_script:
+    - mkdir -p "$NUGET_PACKAGES_DIRECTORY"
+    - dotnet restore ./Modsen.Portal.sln --packages "$NUGET_PACKAGES_DIRECTORY"
+  services:
+    - name: mirror.gcr.io/docker:29.0.4-dind
+      alias: docker
+
+Tests:
+  extends: .dotnet-base
+  stage: quality
+  needs: []
+  script:
+    - dotnet build ./Modsen.Portal.sln --no-restore --packages "$NUGET_PACKAGES_DIRECTORY" --nologo -v q --property WarningLevel=0 /clp:ErrorsOnly
+    - dotnet test ./Modsen.Portal.sln --no-build --logger:"console;verbosity=minimal"
+
+BuildAndPublishApi:
+  stage: build
+  image: mirror.gcr.io/docker:29.0.4
+  needs:
+    - job: PrepareVersion
+      artifacts: true
+    - Tests
+  variables:
+    DOCKER_BUILDKIT: "1"
+  before_script:
+    - echo "$CI_JOB_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - docker buildx create --name "ci-builder-$CI_JOB_ID" --driver docker-container --use
+    - docker buildx inspect --bootstrap
+  script:
+    - |
+      set -eu
+      : "${APP_VERSION:?APP_VERSION is required}"
+      : "${IMAGE_TAG:?IMAGE_TAG is required}"
+      REPO="$CI_REGISTRY/$CI_PROJECT_PATH/$SERVICE_IMAGE"
+      VERSION_TAG="$REPO:$IMAGE_TAG"
+      SHA_TAG="$REPO:$CI_COMMIT_SHORT_SHA"
+      MASTER_TAG="$REPO:master-${CI_PIPELINE_IID}-${CI_COMMIT_SHORT_SHA}"
+      DEVELOP_TAG="$REPO:develop-${CI_PIPELINE_IID}-${CI_COMMIT_SHORT_SHA}"
+      LATEST_TAG="$REPO:latest"
+      TAG_ARGS="-t $VERSION_TAG -t $SHA_TAG"
+      if [ "$CI_COMMIT_REF_NAME" = "develop" ]; then
+        TAG_ARGS="$TAG_ARGS -t $DEVELOP_TAG"
+      fi
+      if [ "$CI_COMMIT_REF_NAME" = "$RELEASE_BRANCH" ]; then
+        TAG_ARGS="$TAG_ARGS -t $MASTER_TAG -t $LATEST_TAG"
+      fi
+      echo "Application version: $APP_VERSION"
+      echo "Versioned image:     $VERSION_TAG"
+      echo "SHA alias:           $SHA_TAG"
+      docker buildx build \
+        --build-arg "COMMIT_REF_NAME=$CI_COMMIT_REF_SLUG" \
+        --build-arg "COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA" \
+        --build-arg "COMMIT_TIMESTAMP=$CI_COMMIT_TIMESTAMP" \
+        --build-arg "INFORMATIONAL_VERSION=$IMAGE_TAG" \
+        $TAG_ARGS \
+        --file "$SERVICE_DOCKERFILE_PATH" \
+        --cache-from "type=registry,ref=$REPO/cache:$CI_COMMIT_REF_SLUG" \
+        --cache-to "type=registry,ref=$REPO/cache:$CI_COMMIT_REF_SLUG,mode=min" \
+        --push \
+        .
+  after_script:
+    - docker buildx rm -f "ci-builder-$CI_JOB_ID" || true
+    - docker buildx prune --filter 'until=24h' -f || true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_REF_NAME == "develop" ||
+           $CI_COMMIT_REF_NAME == "development/people-force" ||
+           $CI_COMMIT_REF_NAME == "qa" ||
+           $CI_COMMIT_REF_NAME == "staging" ||
+           $CI_COMMIT_REF_NAME == "master"'
+
+.CommonDeploy:
+  stage: deploy
+  image:
+    name: mirror.gcr.io/chatwork/helmfile:0.166.0-3.15.3
+    entrypoint: [""]
+  needs:
+    - job: PrepareVersion
+      artifacts: true
+    - BuildAndPublishApi
+  before_script:
+    - if [ -n "${KUBE_CONTEXT:-}" ]; then kubectl config use-context "$KUBE_CONTEXT"; fi
+    - helm plugin update diff
+  script:
+    - |
+      set -eu
+      : "${IMAGE_TAG:?IMAGE_TAG is required}"
+      cd k8s
+      echo "helmfile apply -e $DEPLOY_ENV with image tag $IMAGE_TAG"
+      helmfile apply \
+        -e "$DEPLOY_ENV" \
+        --diff-args \
+        --dry-run=server \
+        --set deployment.image="$CI_REGISTRY/$CI_PROJECT_PATH/$SERVICE_IMAGE" \
+        --set deployment.tag="$IMAGE_TAG"
+
+DevDeploy:
+  extends: .CommonDeploy
+  variables:
+    DEPLOY_ENV: "dev"
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "develop"'
+
+QaDeploy:
+  extends: .CommonDeploy
+  variables:
+    DEPLOY_ENV: "qa"
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "qa"'
+
+StageDeploy:
+  extends: .CommonDeploy
+  variables:
+    DEPLOY_ENV: "stage"
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "staging"'
+
+ProdDeploy:
+  extends: .CommonDeploy
+  variables:
+    DEPLOY_ENV: "prod"
+    KUBE_CONTEXT: mms/common:eks-production-mms-agent
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: manual

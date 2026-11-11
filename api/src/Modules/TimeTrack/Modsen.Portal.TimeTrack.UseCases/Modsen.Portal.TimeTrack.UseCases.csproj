@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.ArchitectureTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.IntegrationTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.TimeTrack.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.TimeTrack.Controllers</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Context\Modsen.Portal.Core.Context.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Exceptions\Modsen.Portal.Core.Exceptions.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Export\Modsen.Portal.Core.Export.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.OData\Modsen.Portal.Core.OData.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.UseCases\Modsen.Portal.Core.UseCases.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Jira\Modsen.Portal.Jira.Contract\Modsen.Portal.Jira.Contract.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\StimulsoftReport\Modsen.Portal.StimulsoftReport.Contract\Modsen.Portal.StimulsoftReport.Contract.csproj" />
+    <ProjectReference Include="..\..\Notification\Modsen.Portal.Notification.Contract\Modsen.Portal.Notification.Contract.csproj" />
+    <ProjectReference Include="..\..\Storage\Modsen.Portal.Storage.Contract\Modsen.Portal.Storage.Contract.csproj" />
+    <ProjectReference Include="..\..\TeamBoard\Modsen.Portal.TeamBoard.Contract\Modsen.Portal.TeamBoard.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.TimeTrack.Contract\Modsen.Portal.TimeTrack.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.TimeTrack.DataAccess.Abstractions\Modsen.Portal.TimeTrack.DataAccess.Abstractions.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.TimeTrack.DataAccess.Npgsql\Modsen.Portal.TimeTrack.DataAccess.Npgsql.csproj" />
+  </ItemGroup>
+
+</Project>

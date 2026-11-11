@@ -1,0 +1,128 @@
+{
+	"errors": {
+		"noResultsFound": "Нет результатов"
+	},
+	"controlButtons": {
+		"reset": "Сбросить",
+		"apply": "Применить",
+		"cancel": "Отменить",
+		"copy": "Копировать",
+		"download": "Скачать",
+		"edit": "Редактировать",
+		"clear": "Очистить",
+		"yes": "Да",
+		"no": "Нет",
+		"view": "Просмотр",
+		"request": "Запросить",
+		"approve": "Подтвердить",
+		"done": "Готово",
+		"reject": "Отклонить",
+		"add": "Добавить"
+	},
+	"modals": {
+		"fromToPriceModal": {
+			"from": "От, $",
+			"to": "До, $"
+		},
+		"selectAll": "Выбрать все",
+		"warningTitle": "Предупреждение",
+		"controls": {
+			"yes": "Да",
+			"no": "Нет"
+		}
+	},
+	"placeholders": {
+		"search": "Поиск",
+		"from": "От",
+		"to": "До",
+		"for": "Для"
+	},
+	"time": {
+		"hours": "ч",
+		"minutes": "мин"
+	},
+	"dateFormats": {
+		"DD_MM_YYYY": "ДД.ММ.ГГГГ"
+	},
+	"activityStatus": {
+		"Active": "Активный",
+		"Inactive": "Неактивный",
+		"Deleted": "Удаленный"
+	},
+	"messages": {
+		"confirmationMessage": "Вы уверены, что хотите продолжить?"
+	},
+	"requestFor": "запрос для",
+	"willBe": "будет",
+	"absence": {
+		"approved": "подтвержден",
+		"approving": "подтверждается",
+		"rejected": "отклонен",
+		"rejecting": "отклоняется",
+		"approvedBy": "подтвержден пользователем",
+		"rejectedBy": "отклонен пользователем"
+	},
+	"absenceRequests": {
+		"days_one": "{{count}} день",
+		"days_few": "{{count}} дня",
+		"days_many": "{{count}} дней",
+		"days_other": "{{count}} дней",
+		"hours_one": "{{count}} час",
+		"hours_few": "{{count}} часа",
+		"hours_many": "{{count}} часов",
+		"hours_other": "{{count}} часов"
+	},
+	"allYears": "Все года",
+	"allAbsences": "Все отсутствия",
+	"allDay": "Весь день",
+	"columns": {
+		"total": "Всего"
+	},
+	"labels": {
+		"task": "Задача",
+		"project": "Проект"
+	},
+	"projectTypes": {
+		"public": "Публичный",
+		"private": "Приватный"
+	},
+	"tooltips": {
+		"projectIsInactive": "Неактивный проект",
+		"selectProject": "Выберите проект",
+		"projectFirst": "Проект первый",
+		"firstNeedTrackHours": "Сначала нужно отметить некоторое количество часов для последней задачи",
+		"forbiddenToEdit": "Редактирование запрещено",
+		"noAccess": "Нет доступа",
+		"inactiveProject": "Неактивный проект"
+	},
+	"seeAll": "Посмотреть все",
+	"notPlanned": "Не запланировано",
+	"developmentPlanStatus": {
+		"None": "Нет статуса",
+		"UnderReview": "На рассмотрении",
+		"Approved": "Одобрен",
+		"Rejected": "Отклонен"
+	},
+	"interviewStatus": {
+		"waitingForInterview": "Ожидание интервью",
+		"waitingForResult": "Ожидание результата",
+		"failed": "Не прошел",
+		"success": "Успешно",
+		"started": "Начато",
+		"notStarted": "Не начато",
+		"canceled": "Отменено"
+	},
+	"periodWeekDays": {
+		"monday": "понедельникам",
+		"tuesday": "вторникам",
+		"wednesday": "средам",
+		"thursday": "четвергам",
+		"friday": "пятницам",
+		"saturday": "субботам",
+		"sunday": "воскресеньям"
+	},
+	"recurrentOn": "по {{weekday}}",
+	"validationErrors": {
+		"enterValidField": "Пожалуйста, введите корректное значение для {{fieldName}"
+	}
+}

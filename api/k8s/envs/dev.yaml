@@ -1,0 +1,237 @@
+app_env: "dev"
+infrastructure_env: "development"
+
+apps:
+  portalapi:
+    installed: true
+    deployment:
+      tag: ""
+      resources:
+        requests:
+          memory: "512Mi"
+          cpu: "150m"
+        limits:
+          memory: "800Mi"
+          cpu: "750m"
+    ingress:
+      ingressDomain: "mms-api.development.modsen.app"
+      secretName: "mms-api-development-modsen-app"
+    routes:
+      - name: mms-api-httproute 
+        enabled: true        
+        namespace: development-mms-dev
+        serviceName: development-mms-dev-svc
+        gateway: onprem-gateway
+        gatewayNamespace: envoy-gateway-system
+        sectionName: https-mms-api-development
+        hostnames:
+          - mms-api.development.modsen.app
+        rules:
+          - name: rule-0-prefix-root
+            matches:
+              - path:
+                  type: PathPrefix
+                  value: /
+            backendRefs:
+              - name: development-mms-dev-svc
+                port: 8082
+                group: ''
+                kind: Service
+                weight: 1
+        backendTrafficPolicy:
+          enabled: true
+          name: mms-api-dev
+          namespace: development-mms-dev
+          timeout:
+            tcp:
+              connectTimeout: 15s
+            http:
+              requestTimeout: 3600s
+          loadBalancer:
+            type: ConsistentHash
+            consistentHash:
+              type: Cookie
+              cookie:
+                name: stickounet
+                ttl: 7200s
+      - name: mms-api-swagger-httproute
+        enabled: true        
+        namespace: development-mms-dev
+        serviceName: development-mms-dev-svc
+        gateway: onprem-gateway
+        gatewayNamespace: envoy-gateway-system
+        sectionName: https-mms-api-development
+        hostnames:
+          - mms-api.development.modsen.app
+        rules:
+          - name: rule-0-prefix-swagger
+            matches:
+              - path:
+                  type: PathPrefix
+                  value: /swagger
+            backendRefs:
+              - name: development-mms-dev-svc
+                port: 8082
+                group: ''
+                kind: Service
+                weight: 1
+        backendTrafficPolicy:
+          enabled: true
+          name: mms-api-swagger-dev
+          namespace: development-mms-dev
+          timeout:
+            tcp:
+              connectTimeout: 15s
+            http:
+              requestTimeout: 3600s
+          loadBalancer:
+            type: ConsistentHash
+            consistentHash:
+              type: Cookie
+              cookie:
+                name: stickounet
+                ttl: 7200s
+        securityPolicy:
+          enabled: true
+          name: mms-api-swagger-dev
+          namespace: development-mms-dev
+          authorization:
+            defaultAction: Deny
+            rules:
+            - action: Allow
+              principal:
+                clientCIDRs:
+                - 172.18.0.1/32
+                - 172.30.0.1/32
+                - 172.30.11.106/32
+                - 172.30.11.160/24
+                - 172.30.4.232/22
+                - 178.124.193.89/32
+                - 178.124.220.229/32
+                - 193.42.36.50/32
+                - 217.21.54.219/32
+                - 38.180.110.213/32
+                - 38.180.217.175/32
+                - 38.180.217.58/32
+                - 38.180.68.88/32
+                - 5.45.83.84/32
+                - 5.61.37.218/32
+                - 77.83.196.78/32
+                - 77.83.196.85/32
+                - 85.158.109.149/32
+                - 91.149.184.73/32
+                - 91.239.148.9/32
+                - 94.75.64.40/32
+      - name: rabbitmq-httproute
+        enabled: true        
+        namespace: development-mms-dev
+        serviceName: development-mms-rabbitmq
+        gateway: onprem-gateway
+        gatewayNamespace: envoy-gateway-system
+        sectionName: rabbitmq-development
+        hostnames:
+          - rabbitmq.development.modsen.app
+        rules:
+          - name: rule-0-prefix-root
+            matches:
+              - path:
+                  type: PathPrefix
+                  value: /
+            backendRefs:
+              - name: development-mms-rabbitmq
+                port: 15672
+                group: ''
+                kind: Service
+                weight: 1
+  redis:
+    installed: true
+    auth:
+      enabled: false
+    replicaCount: 0
+    replica:
+    nodeAffinityPreset:
+      type: hard
+      key: node-group
+      values:
+        - development
+    resources:
+      requests:
+        cpu: "50m"
+        memory: 64Mi
+      limits:
+        cpu: "200m"
+        memory: 128Mi
+  postgresql:
+    installed: false
+    resources:
+      requests:
+        cpu: "150m"
+        memory: 256Mi
+      limits:
+        cpu: "600m"
+        memory: 1024Mi
+    auth:
+      database: "TrackDb_dev"
+      username: "dbuser"
+      existingSecret: "mms-dev-postgresql-secrets"
+    persistence:
+      size: "20Gi"
+    primary:
+    nodeAffinityPreset:
+      type: hard
+      key: node-group
+      values:
+        - development
+  rabbitmq:
+    installed: true
+    ingress:
+      enabled: true
+      hostname: rabbitmq.development.modsen.app
+      tls: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: "letsencrypt"
+    persistence:
+      size: 8Gi
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "300m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+    replicaCount: 1
+    nodeAffinityPreset:
+      type: hard
+      key: node-group
+      values:
+        - development
+    loadDefinition:
+      enabled: true
+      existingSecret: rabbitmq-load-definition
+      existingSecretKey: load_definition.json
+  postgresqlBackupDev:
+    installed: true
+    secret:
+      secretName: "development-mms-dev-secrets"
+      trackDBKey: "API_ConnectionStrings__TrackDb"
+    ceph:
+      bucketName: postgresql-backup-dev-bucket-claim
+      namespace: development-mms-dev
+      storageClassName: ceph-bucket
+      path: "postgres/"
+  postgresqlBackupDevRecruitment:
+    installed: true
+    secret:
+      secretName: "development-mms-recruitment-dev-secrets"
+      hostKey: "DB_HOST"
+      portKey: "DB_PORT"
+      databaseKey: "DB_NAME"
+      usernameKey: "DB_USER"
+      passwordKey: "DB_PASSWORD"
+      schemaKey: "DB_SCHEMA"
+    ceph:
+      bucketName: postgresql-backup-dev-recruitment-bucket-claim
+      namespace: development-mms-dev
+      storageClassName: ceph-bucket
+      path: "postgres/"

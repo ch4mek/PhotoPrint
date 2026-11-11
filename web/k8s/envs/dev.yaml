@@ -1,0 +1,42 @@
+app_env: dev
+infrastructure_env: development
+
+apps:
+  mms:
+    installed: true
+    deployment:
+      tag: ""
+    ingress:
+      ingressDomain: "mms-fe.development.modsen.app"
+      secretName: cert-mms-fe-development-modsen-app
+    route:
+      enabled: true
+      name: mms-fe-httproute
+      namespace: development-mms-fe-dev
+      serviceName: development-mms-fe-dev-svc
+      gateway: onprem-gateway
+      gatewayNamespace: envoy-gateway-system
+      sectionName: https-mms-fe-development
+      hostnames:
+        - mms-fe.development.modsen.app
+      rules:
+        - name: rule-0-prefix-root
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
+          backendRefs:
+            - name: development-mms-fe-dev-svc
+              port: 80
+              group: ''
+              kind: Service
+              weight: 1
+      backendTrafficPolicy:
+        enabled: true
+        name: mms-fe-dev
+        namespace: development-mms-fe-dev
+        timeout:
+          tcp:
+            connectTimeout: 15s
+          http:
+            requestTimeout: 900s

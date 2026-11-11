@@ -1,0 +1,43 @@
+{
+	"compilerOptions": {
+		"target": "es2022",
+		"module": "esnext",
+		"jsx": "react-jsx",
+		"moduleResolution": "node",
+		"baseUrl": "./src",
+		"allowJs": true, // only for migration from js
+		"checkJs": true,
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"paths": {
+			"@/*": ["./src/*"],
+			"@/components/*": ["./components/*"],
+			"@/forms/*": ["./forms/*"],
+			"@/fields/*": ["./fields/*"],
+			"@/pages/*": ["./pages/*"],
+			"@/theme": ["./theme/index.js"],
+			"@/constants/*": ["./constants/*"],
+			"@/context/*": ["./context/*"],
+			"@/layouts/*": ["./layouts/*"],
+			"@/helpers/*": ["./helpers/*"],
+			"@/hooks/*": ["./hooks/*"],
+			"@/assets/*": ["./assets/*"],
+			"@/queries/*": ["./queries/*"],
+			"@/routes/*": ["./routes/*"],
+			"@/types/*": ["./types/*"],
+			"@/services/*": ["./services/*"],
+			"@/plugins/*": ["./plugins/*"],
+			"@/lib/*": ["./lib/*"],
+			"@/stores/*": ["./stores/*"],
+			"@/i18n": ["./i18n/index.ts"],
+			"@/i18n/*": ["./i18n/*"]
+		}
+	},
+	"include": ["src", "e2e"],
+	"exclude": ["node_modules", "build", "dist"],
+	"typeRoots": ["src/global.d.ts"]
+}

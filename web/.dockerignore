@@ -1,0 +1,8 @@
+.git
+node_modules
+build
+.nyc_output
+coverage
+playwright-report
+test-results
+.yarn/install-state.gz

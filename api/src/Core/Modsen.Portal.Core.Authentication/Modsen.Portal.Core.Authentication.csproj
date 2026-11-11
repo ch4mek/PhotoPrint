@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.Identity.Web" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modsen.Portal.Core\Modsen.Portal.Core.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.Context\Modsen.Portal.Core.Context.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.Services\Modsen.Portal.Core.Services.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.Core.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+</Project>

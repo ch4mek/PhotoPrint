@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Communication\Modsen.Portal.Core.Communication.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Context\Modsen.Portal.Core.Context.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.TimeTrack.DataAccess.Abstractions\Modsen.Portal.TimeTrack.DataAccess.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

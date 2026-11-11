@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="NetArchTest.eNhancedEdition" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core\Modsen.Portal.Core.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Authentication\Modsen.Portal.Core.Authentication.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Communication\Modsen.Portal.Core.Communication.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Context\Modsen.Portal.Core.Context.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Database\Modsen.Portal.Core.Database.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Exceptions\Modsen.Portal.Core.Exceptions.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Export\Modsen.Portal.Core.Export.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.HostBuilder\Modsen.Portal.Core.HostBuilder.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.OData\Modsen.Portal.Core.OData.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Outbox\Modsen.Portal.Core.Outbox.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Services\Modsen.Portal.Core.Services.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.UseCases\Modsen.Portal.Core.UseCases.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Agent\Modsen.Portal.Agent.Contract\Modsen.Portal.Agent.Contract.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Agent\Modsen.Portal.Agent\Modsen.Portal.Agent.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Csv\Modsen.Portal.Csv\Modsen.Portal.Csv.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Excel\Modsen.Portal.Excel\Modsen.Portal.Excel.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Migrator\Modsen.Portal.Migrator.DataAccess\Modsen.Portal.Migrator.DataAccess.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Migrator\Modsen.Portal.Migrator\Modsen.Portal.Migrator.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Modsen.Portal.Authentication.Microsoft\Modsen.Portal.Authentication.Microsoft.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Modsen.Portal.BackgroundJob.Hangfire\Modsen.Portal.BackgroundJob.Hangfire.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Modsen.Portal.CloudStorage.AwsS3\Modsen.Portal.CloudStorage.AwsS3.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Modsen.Portal.PowerAutomate\Modsen.Portal.PowerAutomate.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ModsenApi\Modsen.Portal.ModsenApi.Adapter\Modsen.Portal.ModsenApi.Adapter.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ModsenApi\Modsen.Portal.ModsenApi.Contract\Modsen.Portal.ModsenApi.Contract.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\StimulsoftReport\Modsen.Portal.StimulsoftReport.Contract\Modsen.Portal.StimulsoftReport.Contract.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\StimulsoftReport\Modsen.Portal.StimulsoftReport\Modsen.Portal.StimulsoftReport.csproj" />
+    <ProjectReference Include="..\..\Modsen.Portal.Api\Modsen.Portal.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Booking\Modsen.Portal.Booking.Contract\Modsen.Portal.Booking.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\Booking\Modsen.Portal.Booking.Controllers\Modsen.Portal.Booking.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Booking\Modsen.Portal.Booking.DataAccess.Npgsql\Modsen.Portal.Booking.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\Booking\Modsen.Portal.Booking.Requests\Modsen.Portal.Booking.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\Certificate\Modsen.Portal.Certificate.Controllers\Modsen.Portal.Certificate.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Certificate\Modsen.Portal.Certificate.UseCases\Modsen.Portal.Certificate.UseCases.csproj" />
+    <ProjectReference Include="..\..\Modules\Cv\Modsen.Portal.Cv.Controllers\Modsen.Portal.Cv.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Cv\Modsen.Portal.Cv.DataAccess.Npgsql\Modsen.Portal.Cv.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\Cv\Modsen.Portal.Cv.Requests\Modsen.Portal.Cv.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\Equipment\Modsen.Portal.Equipment.Contract\Modsen.Portal.Equipment.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\Equipment\Modsen.Portal.Equipment.Controllers\Modsen.Portal.Equipment.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Equipment\Modsen.Portal.Equipment.DataAccess.Npgsql\Modsen.Portal.Equipment.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\Equipment\Modsen.Portal.Equipment.Requests\Modsen.Portal.Equipment.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\Finance\Modsen.Portal.Finance.Contract\Modsen.Portal.Finance.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\Finance\Modsen.Portal.Finance.Controllers\Modsen.Portal.Finance.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Finance\Modsen.Portal.Finance.DataAccess.Npgsql\Modsen.Portal.Finance.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\Finance\Modsen.Portal.Finance.Requests\Modsen.Portal.Finance.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Modsen.Portal.Identity.Contract\Modsen.Portal.Identity.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Modsen.Portal.Identity.Controllers\Modsen.Portal.Identity.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Modsen.Portal.Identity.DataAccess.Npgsql\Modsen.Portal.Identity.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Modsen.Portal.Identity.Requests\Modsen.Portal.Identity.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\Inquiries\Modsen.Portal.Inquiries.Contract\Modsen.Portal.Inquiries.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\Inquiries\Modsen.Portal.Inquiries.Controllers\Modsen.Portal.Inquiries.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Inquiries\Modsen.Portal.Inquiries.DataAccess.Npgsql\Modsen.Portal.Inquiries.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\Inquiries\Modsen.Portal.Inquiries.Requests\Modsen.Portal.Inquiries.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\KnowledgeBase\Modsen.Portal.KnowledgeBase.Controllers\Modsen.Portal.KnowledgeBase.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\KnowledgeBase\Modsen.Portal.KnowledgeBase.DataAccess.Npgsql\Modsen.Portal.KnowledgeBase.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\KnowledgeBase\Modsen.Portal.KnowledgeBase.Requests\Modsen.Portal.KnowledgeBase.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\Merch\Modsen.Portal.Merch.Contract\Modsen.Portal.Merch.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\Merch\Modsen.Portal.Merch.Controllers\Modsen.Portal.Merch.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Merch\Modsen.Portal.Merch.DataAccess.Npgsql\Modsen.Portal.Merch.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\Merch\Modsen.Portal.Merch.Requests\Modsen.Portal.Merch.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\Notification\Modsen.Portal.Notification.Contract\Modsen.Portal.Notification.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\Notification\Modsen.Portal.Notification.Controllers\Modsen.Portal.Notification.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Notification\Modsen.Portal.Notification.DataAccess.Npgsql\Modsen.Portal.Notification.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\Notification\Modsen.Portal.Notification.UseCases\Modsen.Portal.Notification.UseCases.csproj" />
+    <ProjectReference Include="..\..\Modules\Storage\Modsen.Portal.Storage.Contract\Modsen.Portal.Storage.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\Storage\Modsen.Portal.Storage.Controllers\Modsen.Portal.Storage.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\Storage\Modsen.Portal.Storage.DataAccess.Npgsql\Modsen.Portal.Storage.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\Storage\Modsen.Portal.Storage.Requests\Modsen.Portal.Storage.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\TeamBoard\Modsen.Portal.TeamBoard.Contract\Modsen.Portal.TeamBoard.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\TeamBoard\Modsen.Portal.TeamBoard.Controllers\Modsen.Portal.TeamBoard.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\TeamBoard\Modsen.Portal.TeamBoard.DataAccess.Npgsql\Modsen.Portal.TeamBoard.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\TeamBoard\Modsen.Portal.TeamBoard.Requests\Modsen.Portal.TeamBoard.Requests.csproj" />
+    <ProjectReference Include="..\..\Modules\TeamWork\Modsen.Portal.TeamWork.Controllers\Modsen.Portal.TeamWork.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\TeamWork\Modsen.Portal.TeamWork.UseCases\Modsen.Portal.TeamWork.UseCases.csproj" />
+    <ProjectReference Include="..\..\Modules\TimeTrack\Modsen.Portal.TimeTrack.Contract\Modsen.Portal.TimeTrack.Contract.csproj" />
+    <ProjectReference Include="..\..\Modules\TimeTrack\Modsen.Portal.TimeTrack.Controllers\Modsen.Portal.TimeTrack.Controllers.csproj" />
+    <ProjectReference Include="..\..\Modules\TimeTrack\Modsen.Portal.TimeTrack.DataAccess.Abstractions\Modsen.Portal.TimeTrack.DataAccess.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Modules\TimeTrack\Modsen.Portal.TimeTrack.DataAccess.Npgsql\Modsen.Portal.TimeTrack.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Modules\TimeTrack\Modsen.Portal.TimeTrack.Domain\Modsen.Portal.TimeTrack.Domain.csproj" />
+    <ProjectReference Include="..\..\Modules\TimeTrack\Modsen.Portal.TimeTrack.UseCases\Modsen.Portal.TimeTrack.UseCases.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="AwesomeAssertions" />
+    <PackageReference Include="Bogus" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" />
+    <PackageReference Include="MockQueryable.Moq" />
+    <PackageReference Include="Moq" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+  </ItemGroup>
+
+</Project>

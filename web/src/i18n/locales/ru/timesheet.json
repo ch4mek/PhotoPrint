@@ -1,0 +1,31 @@
+{
+	"title": "Учет времени",
+	"name": "Имя",
+	"status": {
+		"underReview": "На рассмотрении",
+		"approved": "Подтвержден",
+		"rejected": "Отклонен"
+	},
+	"period": {
+		"thisWeek": "Эта неделя",
+		"thisMonth": "Этот месяц"
+	},
+	"sendToReview": "Отправить на рассмотрение",
+	"formatPlaceholder": "Формат: TASK_ID - TASK_TITLE",
+	"taskNameAlreadyUsed": "Имя задачи уже используется",
+	"filters": {
+		"allClients": "Все клиенты",
+		"allProjects": "Все проекты",
+		"allUsers": "Все пользователи",
+		"allGroups": "Все группы"
+	},
+	"modes": {
+		"departmentMode": "Режим отдела",
+		"projectsMode": "Режим проектов",
+		"personalMode": "Личный режим",
+		"groupMode": "Режим группы"
+	},
+	"notifications": {
+		"taskNameAlreadyExists": "Пожалуйста, измените имя задачи в течение периода учета времени"
+	}
+}

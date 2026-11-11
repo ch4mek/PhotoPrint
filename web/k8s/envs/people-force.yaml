@@ -1,0 +1,11 @@
+app_env: dev-pp
+infrastructure_env: development
+
+apps:
+  mms:
+    installed: false
+    deployment:
+      tag: ""
+    ingress:
+      ingressDomain: "mms-pp-fe.development.modsen.app"
+      secretName: cert-mms-pp-fe-development-modsen-app

@@ -1,0 +1,135 @@
+{
+	"title": "Бронирования",
+	"pageTabs": {
+		"bookings": "Бронирования",
+		"spaces": "Пространства"
+	},
+	"blockTabs": {
+		"details": "Детали",
+		"bookings": "Бронирования"
+	},
+	"offices": {
+		"warsaw": "Офис W",
+		"minsk": "Офис M"
+	},
+	"form": {
+		"dateLabel": "Дата",
+		"timeLabel": "Время",
+		"guestNameLabel": "Имя гостя",
+		"modes": {
+			"guest": "Гости",
+			"employee": "Сотрудники"
+		},
+		"types": {
+			"booking": "Бронирование",
+			"blocking": "Закрепление"
+		},
+		"repetitive": {
+			"repeatBookingLabel": "Повтор бронирования",
+			"allDayLabel": "Весь день",
+			"repeatEvery_one": "Повторять каждую",
+			"repeatEvery_few": "Повторять каждые",
+			"repeatEvery_many": "Повторять каждые",
+			"week_one": "неделю",
+			"week_few": "недели",
+			"week_many": "недель"
+		},
+		"roomAvailability": {
+			"available": "Доступно",
+			"unavailable": "Недоступно"
+		}
+	},
+	"labels": {
+		"desk": "Стол",
+		"room": "Комната",
+		"guest": "Гость",
+		"meetingRoom": "Комната для переговоров",
+		"deskAccusative": "стол",
+		"roomAccusative": "комнату"
+	},
+	"actions": {
+		"book": "Забронировать {{resource}}",
+		"blockDesk": "Закрепить стол",
+		"viewMap": "Посмотреть схему"
+	},
+	"deskStatus": {
+		"available": "Доступно",
+		"blocked": "Закреплено",
+		"booked": "Забронировано",
+		"guest": "Гость",
+		"selected": "Ваш стол"
+	},
+	"timeline": {
+		"today": "Сегодня",
+		"workingHours": "Рабочее время",
+		"timezone": "Временная зона"
+	},
+	"map": {
+		"officeMap": "Схема офиса",
+		"floors": {
+			"fourth": "4-й этаж"
+		}
+	},
+	"spaces": {
+		"meetingRooms": "Комнаты для переговоров",
+		"rooms": "Комнаты"
+	},
+	"equipment": {
+		"seats": "Мест",
+		"board": "Доска",
+		"camera": "Камера",
+		"laptop": "Ноутбук",
+		"screen": "Экран",
+		"speakerphone": "Микрофон",
+		"usbHub": "USB-хаб"
+	},
+	"tooltips": {
+		"bookedBy": "забронировано {{name}}",
+		"deskBlockedBy": "Стол закреплен за",
+		"deskBookedBy": "Стол забронирован",
+		"bookingNotAllowed": "Вы не можете забронировать стол в этом пространстве"
+	},
+	"toasts": {
+		"deskBooked": "Стол успешно забронирован",
+		"meetingRoomBooked": "Комната для переговоров успешно забронирована",
+		"deskUnblocked": "Стол успешно разблокирован",
+		"bookingCanceled": "Бронирование отменено",
+		"successBookingCanceled": "Ваше бронирование успешно отменено",
+		"alreadyHaveBooking": "У вас уже есть бронирование на выбранный промежуток времени. Пожалуйста, отмените бронирование или выберите другое время",
+		"notificationMarkedAsRead": "Ваше уведомление отмечено как прочитанное"
+	},
+	"dialogs": {
+		"cancel": {
+			"header": "Отмена бронирования",
+			"confirmOwn": "Вы уверены, что хотите отменить своё бронирование?",
+			"confirmOtherBefore": "Вы уверены, что хотите отменить",
+			"confirmOtherAfter": "бронирование?"
+		},
+		"unblock": {
+			"header": "Разблокировка стола",
+			"confirm": "Вы уверены, что хотите разблокировать стол?"
+		},
+		"blockDesk": {
+			"header": "Закрепление стола",
+			"confirm": "Вы уверены, что хотите закрепить стол?"
+		}
+	},
+	"warnings": {
+		"cannotBookPrefix": "Вы не можете забронировать, так как рабочее место",
+		"isBlocked": "закреплено",
+		"isBookedForPeriod": "забронировано на следующий период: {{period}}",
+		"meetingRoomCollision": "Вы не можете забронировать, так как {{room}} забронирована на следующий период: {{period}}"
+	},
+	"errors": {
+		"inputValidGuestName": "Пожалуйста, введите корректное имя гостя",
+		"selectDesk": "Пожалуйста, выберите стол",
+		"selectRoom": "Пожалуйста, выберите комнату",
+		"selectDate": "Пожалуйста, выберите дату",
+		"alreadyHaveBooking": "У вас уже есть бронирование на выбранный период. Пожалуйста, отмените бронирование или выберите другую дату(ы)",
+		"selectedDeskBooked": "Выбранный стол уже забронирован. Вы можете выбрать другой доступный стол",
+		"guestAlreadyBooked": "Гость с этим именем уже имеет бронирование на выбранный период. Пожалуйста, отмените бронирование или выберите другую дату(ы)",
+		"meetingRoomAlreadyBooked": "Комната для переговоров на выбранный период уже забронирована. Вы можете выбрать другой доступный период.",
+		"cantBookMeetingRoomInPast": "Вы не можете забронировать комнату для переговоров в прошлом",
+		"generic": "Что-то пошло не так"
+	}
+}

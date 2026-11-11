@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" />
+    <PackageReference Include="OpenAI" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Authentication\Modsen.Portal.Core.Authentication.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Identity\Modsen.Portal.Identity.Contract\Modsen.Portal.Identity.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Agent.Contract\Modsen.Portal.Agent.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

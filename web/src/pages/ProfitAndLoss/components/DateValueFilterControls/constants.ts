@@ -1,0 +1,1 @@
+export const DATE_VALUE_FILTER_WIDTH = 200;

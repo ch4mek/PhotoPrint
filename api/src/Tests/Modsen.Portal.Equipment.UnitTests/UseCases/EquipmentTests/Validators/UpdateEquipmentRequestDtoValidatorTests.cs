@@ -1,0 +1,326 @@
+﻿using Modsen.Portal.Core;
+using Modsen.Portal.Core.Equipment;
+using Modsen.Portal.Equipment.Requests.Equipment.Requests.RequestDto;
+
+namespace Modsen.Portal.Equipment.UnitTests.UseCases.EquipmentTests.Validators;
+
+public class UpdateEquipmentRequestDtoValidatorTests
+{
+    private readonly UpdateEquipmentRequestDto.Validator _validator = new();
+    private readonly UpdateEquipmentRequestDto _validCommand = new()
+    {
+        Id = 1,
+        Name = "Valid Name",
+        EquipmentTypeId = "Laptop",
+        Location = EquipmentLocationType.Belarus,
+        BrokenStatus = EquipmentBrokenStatus.Broken,
+        SerialNumber = "Valid SerialNumber",
+        InventoryNumber = "Valid InventoryNumber",
+        PurchasePrice = 5999.99m,
+        PurchaseCurrency = MoneyCurrencyType.Byn,
+        PurchasePriceUsd = 1999.99m,
+        PurchaseDate = new DateTime(2023, 05, 22, 0, 0, 0, DateTimeKind.Utc),
+        PurchasePlace = "Valid PurchasePlace",
+        GuaranteeDate = new DateTime(2026, 05, 22, 0, 0, 0, DateTimeKind.Utc),
+        Characteristics = "Valid Characteristics",
+        Comment = "Valid Comment",
+        InvoiceNumber = "DSAMVAS123ASKD123",
+        Storage = LocationType.Vitebsk,
+        RepairPlace = null,
+        ApproverId = 1,
+        JiraTask = "qwe"
+    };
+
+    [Fact]
+    public void ValidateWhenIdIsNotValidShouldReturnInvalidResult()
+    {
+        // Arrange
+        var command = _validCommand with { Id = -1 };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    [InlineData(-22)]
+    public void ValidateWhenApproverIdIsNotValidShouldReturnInvalidResult(int approverId)
+    {
+        // Arrange
+        var command = _validCommand with { ApproverId = approverId };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Fact]
+    public void ValidateWhenCharacteristicsIsNotValidShouldReturnInvalidResult()
+    {
+        // Arrange
+        var command = _validCommand with { Characteristics = string.Empty };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Theory]
+    [MemberData(nameof(GetInvalidComments))]
+    public void ValidateWhenCommentIsNotValidShouldReturnInvalidResult(string? comment)
+    {
+        // Arrange
+        var command = _validCommand with { Comment = comment };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Theory]
+    [MemberData(nameof(GetInvalidGuaranteeDates))]
+    public void ValidateWhenGuaranteeDateIsNotValidShouldReturnInvalidResult(DateTime guaranteeDate)
+    {
+        // Arrange
+        var command = _validCommand with { GuaranteeDate = guaranteeDate };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Theory]
+    [MemberData(nameof(GetValidInvoiceNumber))]
+    public void ValidateWhenInvoiceNumberIsValidShouldReturnValidResult(string invoiceNumber)
+    {
+        // Arrange
+        var command = _validCommand with { InvoiceNumber = invoiceNumber };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeTrue();
+    }
+
+    [Theory]
+    [MemberData(nameof(GetInvalidInvoiceNumber))]
+    public void ValidateWhenInvoiceNumberIsNotValidShouldReturnInvalidResult(string invoiceNumber)
+    {
+        // Arrange
+        var command = _validCommand with { InvoiceNumber = invoiceNumber };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Theory]
+    [InlineData((EquipmentLocationType)(-1))]
+    [InlineData((EquipmentLocationType)3)]
+    [InlineData((EquipmentLocationType)4)]
+    public void ValidateWhenLocationIsNotValidShouldReturnInvalidResult(EquipmentLocationType locationType)
+    {
+        // Arrange
+        var command = _validCommand with { Location = locationType };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Theory]
+    [MemberData(nameof(GetInvalidNames))]
+    public void ValidateWhenNameIsNotValidShouldReturnInvalidResult(string name)
+    {
+        // Arrange
+        var command = _validCommand with { Name = name };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Theory]
+    [MemberData(nameof(GetInvalidPurchaseDates))]
+    public void ValidateWhenPurchaseDateIsNotValidShouldReturnInvalidResult(DateTime purchaseDate)
+    {
+        // Arrange
+        var command = _validCommand with { PurchaseDate = purchaseDate };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Theory]
+    [MemberData(nameof(GetInvalidPurchasePlaces))]
+    public void ValidateWhenPurchasePlaceIsNotValidShouldReturnInvalidResult(string purchasePlace)
+    {
+        // Arrange
+        var command = _validCommand with { PurchasePlace = purchasePlace };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Theory]
+    [InlineData(-55.99)]
+    [InlineData(-0.01)]
+    [InlineData(0.001)]
+    [InlineData(0.000064)]
+    [InlineData(1E-13)]
+    [InlineData(1E+10)]
+    [InlineData(15E-3)]
+    public void ValidateWhenPurchasePriceIsNotValidShouldReturnInvalidResult(decimal purchasePrice)
+    {
+        // Arrange
+        var command = _validCommand with { PurchasePrice = purchasePrice };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+
+    }
+
+    [Theory]
+    [InlineData(-55.99)]
+    [InlineData(-0.01)]
+    [InlineData(0.001)]
+    [InlineData(0.000064)]
+    [InlineData(1E-13)]
+    [InlineData(1E+10)]
+    [InlineData(15E-3)]
+    public void ValidateWhenPurchasePriceUsdIsNotValidShouldReturnInvalidResult(decimal purchasePriceUsd)
+    {
+        // Arrange
+        var command = _validCommand with { PurchasePriceUsd = purchasePriceUsd };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+
+    }
+
+    [Theory]
+    [MemberData(nameof(GetInvalidSerialNumbers))]
+    public void ValidateWhenSerialNumberIsNotValidShouldReturnInvalidResult(string serialNumber)
+    {
+        // Arrange
+        var command = _validCommand with { SerialNumber = serialNumber };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    [Fact]
+    public void ValidateWhenCommandIsValidShouldReturnValidResult()
+    {
+        // Arrange
+        var command = _validCommand;
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeTrue();
+    }
+
+    [Theory]
+    [MemberData(nameof(GetInvalidRepairPlaces))]
+    public void ValidateWhenRepairPlaceIsNotValidShouldReturnInvalidResult(string repairPlace)
+    {
+        // Arrange
+        var command = _validCommand with { RepairPlace = repairPlace };
+
+        // Act
+        var result = _validator.Validate(command);
+
+        // Assert
+        result.IsValid.Should().BeFalse();
+    }
+
+    public static IEnumerable<object[]> GetInvalidComments()
+    {
+        yield return [new string('a', 1001)];
+    }
+
+    public static IEnumerable<object[]> GetInvalidInvoiceNumber()
+    {
+        yield return [new string('x', 251)];
+        yield return [new string('b', 1)];
+        yield return [new string("   ***---")];
+    }
+
+    public static IEnumerable<object[]> GetValidInvoiceNumber()
+    {
+        yield return [new string('b', 2)];
+        yield return [new string('s', 250)];
+    }
+
+    public static IEnumerable<object[]> GetInvalidGuaranteeDates()
+    {
+        yield return [new DateTime(2026, 07, 07, 11, 29, 55, DateTimeKind.Utc)];
+        yield return [new DateTime(2026, 07, 07, 0, 0, 1, DateTimeKind.Utc)];
+    }
+
+    public static IEnumerable<object[]> GetInvalidNames()
+    {
+        yield return [string.Empty];
+        yield return [new string('a', 251)];
+    }
+
+    public static IEnumerable<object[]> GetInvalidPurchaseDates()
+    {
+        yield return [new DateTime(2022, 12, 16, 11, 29, 55, DateTimeKind.Utc)];
+        yield return [new DateTime(2022, 6, 22, 0, 0, 1, DateTimeKind.Utc)];
+    }
+
+    public static IEnumerable<object[]> GetInvalidPurchasePlaces()
+    {
+        yield return [string.Empty];
+        yield return [new string('Y', 251)];
+    }
+
+    public static IEnumerable<object[]> GetInvalidSerialNumbers()
+    {
+        yield return [string.Empty];
+        yield return [new string('u', 251)];
+    }
+
+    public static IEnumerable<object[]> GetInvalidRepairPlaces()
+    {
+        yield return [string.Empty];
+        yield return [new string('Y', 251)];
+    }
+}

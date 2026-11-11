@@ -1,0 +1,6 @@
+﻿namespace Modsen.Portal.IntegrationTests.FunctionalScenarios.Teamboard.CollectionDefinition;
+
+[CollectionDefinition("EmployeeTeamboardFuncScenarioCollection")]
+public class EmployeeTeamboardFuncScenarioCollectionDefinition: ICollectionFixture<FunctionalTestFactory>
+{
+}

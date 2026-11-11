@@ -1,0 +1,72 @@
+{
+	"title": "Dashboard",
+	"quickFilters": "Quick filters",
+	"todaysInterviews": {
+		"title": "Today's interviews",
+		"specialization": "Specialization",
+		"user": "User",
+		"time": "Time"
+	},
+	"requests": {
+		"title": "Requests",
+		"user": "User",
+		"requestType": "Request type",
+		"dateFrom": "Date from"
+	},
+	"contractExpiration": {
+		"title": "Contract expiration",
+		"user": "User",
+		"dates": "Dates"
+	},
+	"events": {
+		"title": "Events",
+		"user": "User",
+		"type": "Type",
+		"date": "Date"
+	},
+	"performanceReview": {
+		"title": "Performance review",
+		"user": "User",
+		"date": "Date"
+	},
+	"todaysAbsences": {
+		"title": "Today's absences",
+		"user": "User",
+		"absence": "Absence"
+	},
+	"probation": {
+		"title": "Probation period ends",
+		"user": "User",
+		"date": "Dates"
+	},
+	"kpi": {
+		"title": "KPI",
+		"totalFte": "Total FTE: Fact",
+		"totalUsers": "Total users",
+		"users": "Users"
+	},
+	"interview": {
+		"tagNames": {
+			"waitingForInterview": "White",
+			"waitingForResult": "Yellow",
+			"failed": "Red",
+			"success": "Blue",
+			"started": "Green",
+			"notStarted": "Dark red",
+			"canceled": "Gray",
+			"noFeedback": "Gray",
+			"noNextStepScheduled": "Gray"
+		},
+		"tagDescriptions": {
+			"waitingForInterview": "Waiting for interview",
+			"waitingForResult": "Waiting for result",
+			"failed": "Failed",
+			"success": "Success",
+			"started": "Started",
+			"notStarted": "Not started",
+			"canceled": "Canceled",
+			"noFeedback": "No feedback",
+			"noNextStepScheduled": "No next step scheduled"
+		}
+	}
+}

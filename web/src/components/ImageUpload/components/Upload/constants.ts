@@ -1,0 +1,1 @@
+export const UPLOAD_HINT_BREAKPOINT = 620;

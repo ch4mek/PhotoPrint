@@ -1,0 +1,1 @@
+export const CONVERSATION_VIEW_POPUP_WIDTH = 640;

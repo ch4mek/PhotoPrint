@@ -1,0 +1,98 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "this.name" . }}
+spec:
+  schedule: {{ .Values.postgresqlBackupDevRecruitment.backup.schedule | quote }}
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: {{ .Values.postgresqlBackupDevRecruitment.job.backoffLimit | default 0 }}
+      ttlSecondsAfterFinished: {{ .Values.postgresqlBackupDevRecruitment.ttlSecondsAfterFinished | default 1800 }}
+      activeDeadlineSeconds: {{ .Values.postgresqlBackupDevRecruitment.job.activeDeadlineSeconds | default 2700 }}
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: backup
+            image: "{{ .Values.postgresqlBackupDevRecruitment.image.repository }}:{{ .Values.postgresqlBackupDevRecruitment.image.tag }}"
+            imagePullPolicy: {{ .Values.postgresqlBackupDevRecruitment.image.pullPolicy }}
+            command: ["/bin/bash", "/scripts/backup.sh"]
+            volumeMounts:
+            - name: backup-script
+              mountPath: /scripts
+            env:
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.secret.secretName }}
+                  key: {{ .Values.postgresqlBackupDevRecruitment.secret.hostKey }}
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.secret.secretName }}
+                  key: {{ .Values.postgresqlBackupDevRecruitment.secret.portKey }}
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.secret.secretName }}
+                  key: {{ .Values.postgresqlBackupDevRecruitment.secret.databaseKey }}
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.secret.secretName }}
+                  key: {{ .Values.postgresqlBackupDevRecruitment.secret.usernameKey }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.secret.secretName }}
+                  key: {{ .Values.postgresqlBackupDevRecruitment.secret.passwordKey }}
+            - name: POSTGRES_SCHEMA
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.secret.secretName }}
+                  key: {{ .Values.postgresqlBackupDevRecruitment.secret.schemaKey }}
+            - name: DEVELOPMENT_ENV
+              value: {{ .Values.app_env | quote }}
+            - name: RETENTION_COUNT
+              value: {{ .Values.postgresqlBackupDevRecruitment.backup.retention | quote }}
+            - name: S3_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.ceph.bucketName }}
+                  key: BUCKET_HOST
+            - name: S3_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.ceph.bucketName }}
+                  key: BUCKET_NAME
+            - name: S3_BUCKET_PORT 
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.ceph.bucketName }}
+                  key: BUCKET_PORT
+            - name: S3_PREFIX
+              value: {{ .Values.postgresqlBackupDevRecruitment.ceph.path | quote }}
+            - name: S3_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.ceph.bucketName }}
+                  key: AWS_ACCESS_KEY_ID
+            - name: S3_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresqlBackupDevRecruitment.ceph.bucketName }}
+                  key: AWS_SECRET_ACCESS_KEY
+            resources:
+              {{- toYaml .Values.postgresqlBackupDevRecruitment.pod.resources | nindent 14 }}
+
+          volumes:
+          - name: shared-tools
+            emptyDir: {}
+
+          - name: backup-script
+            configMap:
+              name: {{ include "this.fullname" . }}-script
+              defaultMode: 0755

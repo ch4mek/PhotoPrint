@@ -1,0 +1,17 @@
+<Project ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>13.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);1591;CA1848;CA2254;CA1812;CA1056;CA1311;CA1304</NoWarn>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <GenerateRuntimeConfigDevFile>true</GenerateRuntimeConfigDevFile>
+  </PropertyGroup>
+
+</Project>

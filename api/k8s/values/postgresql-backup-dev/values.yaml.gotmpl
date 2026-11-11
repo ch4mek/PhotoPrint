@@ -1,0 +1,38 @@
+app_env: {{ .Values.app_env }}
+
+postgresqlBackupDev:
+  secret:
+    secretName: {{ .Values | get "apps.postgresqlBackupDev.secret.secretName" }}
+    trackDBKey: {{ .Values | get "apps.postgresqlBackupDev.secret.trackDBKey" }}
+
+  backup:
+    schedule: "0 20 * * 2,5"
+    retention: "2"    # number of backups to keep
+    prefix: "backup"
+    excludeSchemas:
+      - recruitment
+
+  ceph:
+    bucketName: {{ .Values | get "apps.postgresqlBackupDev.ceph.bucketName" "development-mes-backup-claim" }}
+    namespace: {{ .Values | get "apps.postgresqlBackupDev.ceph.namespace" "development-mes-stage" }}
+    storageClassName: {{ .Values | get "apps.postgresqlBackupDev.ceph.storageClassName" "ceph-bucket" }}
+    path: {{ .Values | get "apps.postgresqlBackupDev.ceph.path" "postgres/" }}
+
+  job:
+    backoffLimit: 2
+    activeDeadlineSeconds: 10800
+
+  pod:
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+    initImage: "alpine:3.18"
+
+  image:
+    repository: "postgres"
+    tag: "17-alpine"
+    pullPolicy: "IfNotPresent"

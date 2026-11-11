@@ -1,0 +1,76 @@
+app: {{ .Release.Name }}
+env: {{ .Values | get "app_env" "dev" }}
+
+deployment:
+  image: {{ .Values | get "apps.mms.deployment.image" "registry.modsen.app/mms/frontend/mms-fe/static" }}
+  tag: {{ .Values | get "apps.mms.deployment.tag" "" }}
+  replicas: {{ .Values | get "apps.mms.deployment.replicas" "1" }}
+  imagePullPolicy: {{ .Values | get "apps.mms.deployment.imagePullPolicy" "Always" }}
+  imagePullSecrets: {{ .Values | get "apps.mms.deployment.imagePullSecrets" "gitlab-pull-secret" }}
+  containerPort:
+    http: {{ .Values | get "apps.mms.deployment.containerPort.http" "80" }}
+    
+  {{- if hasKey .Values.apps.mms.deployment "resources" }}
+  resources: 
+  {{- toYaml .Values.apps.mms.deployment.resources | nindent 4 }}
+  {{- end }}
+
+  {{- if hasKey .Values.apps.mms.deployment "probes" }}
+  probes: 
+  {{- toYaml .Values.apps.mms.deployment.probes | nindent 4 }}
+  {{- end }}
+
+service:
+  type: {{ .Values | get "apps.mms.service.type" "ClusterIP" }}
+  servicePort:
+    http: {{ .Values | get "apps.mms.service.servicePort.http" "80" }}
+
+ingress:
+  ingressDomain: {{ .Values | get "apps.mms.ingress.ingressDomain" "" }}
+  secretName: {{ .Values | get "apps.mms.ingress.secretName" "" }}
+
+route:
+  enabled: {{ .Values | get "apps.mms.route.enabled" "" }}
+  name: {{ .Values | get "apps.mms.route.name" "" }}
+  namespace: {{ .Values | get "apps.mms.route.namespace" "" }}
+  serviceName: {{ .Values | get "apps.mms.route.serviceName" "" }}
+  gateway: {{ .Values | get "apps.mms.route.gateway" "" }}
+  gatewayNamespace: {{ .Values | get "apps.mms.route.gatewayNamespace" "" }}
+  sectionName: {{ .Values | get "apps.mms.route.sectionName" "" }}
+  hostnames:
+    {{ toYaml ( .Values | get "apps.mms.route.hostnames" list ) | nindent 4 }}
+  rules:
+    {{ toYaml ( .Values | get "apps.mms.route.rules" list ) | nindent 4 }}
+
+backendTrafficPolicy:
+  enabled: {{ .Values | get "apps.mms.route.backendTrafficPolicy.enabled" false }}
+  name: {{ .Values | get "apps.mms.route.backendTrafficPolicy.name" "" }}
+  namespace: {{ .Values | get "apps.mms.route.backendTrafficPolicy.namespace" "" }}
+  requestBuffer:
+    {{- toYaml ( .Values | get "apps.mms.route.backendTrafficPolicy.requestBuffer" dict ) | nindent 4 }}
+  timeout:
+    {{- toYaml ( .Values | get "apps.mms.route.backendTrafficPolicy.timeout" dict ) | nindent 4 }}
+  loadBalancer:
+    {{- toYaml ( .Values | get "apps.mms.route.backendTrafficPolicy.loadBalancer" dict ) | nindent 4 }}
+  circuitBreaker:
+    {{- toYaml ( .Values | get "apps.mms.route.backendTrafficPolicy.circuitBreaker" dict ) | nindent 4 }}
+
+securityPolicy:
+  enabled: {{ .Values | get "apps.mms.route.securityPolicy.enabled" false }}
+  name: {{ .Values | get "apps.mms.route.securityPolicy.name" "" }}
+  namespace: {{ .Values | get "apps.mms.route.securityPolicy.namespace" "" }}
+  authorization:
+    {{- toYaml ( .Values | get "apps.mms.route.securityPolicy.authorization" dict ) | nindent 4 }}
+  cors:
+    {{- toYaml ( .Values | get "apps.mms.route.securityPolicy.cors" dict ) | nindent 4 }}
+  authentication:
+    {{- toYaml ( .Values | get "apps.mms.route.securityPolicy.authentication" dict ) | nindent 4 }}
+  rateLimit:
+    {{- toYaml ( .Values | get "apps.mms.route.securityPolicy.rateLimit" dict ) | nindent 4 }}
+
+autoscaling:
+  replicas:
+    min: {{ .Values | get "apps.mms.autoscaling.replicas.min" "1" }}
+    max: {{ .Values | get "apps.mms.autoscaling.replicas.max" "1" }}
+  cpuAverageUtilization: {{ .Values | get "apps.mms.autoscaling.cpuAverageUtilization" "70" }}
+  memoryAverageUtilization: {{ .Values | get "apps.mms.autoscaling.memoryAverageUtilization" "80" }}

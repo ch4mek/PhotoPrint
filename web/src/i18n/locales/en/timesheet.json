@@ -1,0 +1,31 @@
+{
+	"title": "Timesheet",
+	"name": "Name",
+	"status": {
+		"underReview": "Under Review",
+		"approved": "Approved",
+		"rejected": "Rejected"
+	},
+	"period": {
+		"thisWeek": "This Week",
+		"thisMonth": "This Month"
+	},
+	"sendToReview": "Send to Review",
+	"formatPlaceholder": "Format: TASK_ID - TASK_TITLE",
+	"taskNameAlreadyUsed": "Task name is already used",
+	"filters": {
+		"allClients": "All Clients",
+		"allProjects": "All Projects",
+		"allUsers": "All Users",
+		"allGroups": "All Groups"
+	},
+	"modes": {
+		"departmentMode": "Department mode",
+		"projectsMode": "Projects mode",
+		"personalMode": "Personal mode",
+		"groupMode": "Group mode"
+	},
+	"notifications": {
+		"taskNameAlreadyExists": "Please change the task name within the timesheet period"
+	}
+}

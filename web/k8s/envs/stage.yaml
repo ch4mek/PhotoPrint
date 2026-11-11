@@ -1,0 +1,42 @@
+app_env: staging
+infrastructure_env: development
+
+apps:
+  mms:
+    installed: true
+    deployment:
+      tag: ""
+    ingress:
+      ingressDomain: "mms-fe.staging.modsen.app"
+      secretName: cert-mms-fe-staging-modsen-app
+    route:
+      enabled: true
+      name: mms-fe-staging-httproute
+      namespace: development-mms-fe-staging
+      serviceName: development-mms-fe-staging-svc
+      gateway: onprem-gateway
+      gatewayNamespace: envoy-gateway-system
+      sectionName: https-mms-fe-staging
+      hostnames:
+        - mms-fe.staging.modsen.app
+      rules:
+        - name: rule-0-prefix-root
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
+          backendRefs:
+            - name: development-mms-fe-staging-svc
+              port: 80
+              group: ''
+              kind: Service
+              weight: 1
+      backendTrafficPolicy:
+        enabled: true
+        name: mms-fe-staging
+        namespace: development-mms-fe-staging
+        timeout:
+          tcp:
+            connectTimeout: 15s
+          http:
+            requestTimeout: 900s

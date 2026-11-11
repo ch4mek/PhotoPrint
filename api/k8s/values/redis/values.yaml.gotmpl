@@ -1,0 +1,30 @@
+image:
+  registry: mirror.gcr.io/bitnamilegacy
+  repository: redis
+
+auth:
+  enabled: {{ .Values | get "apps.redis.auth.enabled" "false" }}
+  existingSecret: {{ .Values | get "apps.redis.auth.existingSecret" "development-mms-dev-secrets" }}
+  existingSecretPasswordKey: redis_password
+  usePasswordFiles: {{ .Values | get "apps.redis.auth.usePasswordFiles" "false" }}
+  usePasswordFileFromSecret: {{ .Values | get "apps.redis.auth.usePasswordFileFromSecret" "true" }}
+master:
+  nodeAffinityPreset:
+    type: {{ .Values | get "apps.redis.nodeAffinityPreset.type" "hard" }}
+    key: {{ .Values | get "apps.redis.nodeAffinityPreset.key" "node-group" }}
+    values:
+      {{- toYaml (.Values | get "apps.redis.nodeAffinityPreset.values" (list "development")) | nindent 6 }}
+  resources:
+    requests:
+      memory: {{ .Values | get "apps.redis.resources.requests.memory" "64Mi" }}
+      cpu: {{ .Values | get "apps.redis.resources.requests.cpu" "50m" }}
+    limits:
+      memory: {{ .Values | get "apps.redis.resources.limits.memory" "128Mi" }}
+      cpu: {{ .Values | get "apps.redis.resources.limits.cpu" "200m" }}
+replica:
+  nodeAffinityPreset:
+    type: {{ .Values | get "apps.redis.nodeAffinityPreset.type" "hard" }}
+    key: {{ .Values | get "apps.redis.nodeAffinityPreset.key" "node-group" }}
+    values: {{ .Values | get "apps.redis.nodeAffinityPreset.values" "development" }}
+  replicaCount: {{ .Values | get "apps.redis.replicaCount" "0" }}
+  

@@ -1,0 +1,8 @@
+{
+	"all": true,
+	"include": ["src/**/*.{js,jsx,ts,tsx}"],
+	"exclude": ["**/*.d.ts", "**/*.test.*", "**/*.spec.*", "**/index.ts"],
+	"reporter": ["lcov", "text-summary", "html"],
+	"temp-dir": ".nyc_output",
+	"report-dir": "coverage"
+}

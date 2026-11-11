@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Api\Modsen.Portal.Core.Api.csproj" />
+      <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Authentication\Modsen.Portal.Core.Authentication.csproj" />
+      <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.HostBuilder\Modsen.Portal.Core.HostBuilder.csproj" />
+      <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+      <ProjectReference Include="..\Modsen.Portal.Attendance.Requests\Modsen.Portal.Attendance.Requests.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "this.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      {{- include "this.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "this.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- if or (eq .Values.env "dev") (eq .Values.env "qa") (eq .Values.env "staging") (eq .Values.env "dev-pp") }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-group
+                operator: In
+                values:
+                - development
+      {{- end }}
+      imagePullSecrets:
+        - name: {{ .Values.deployment.imagePullSecrets }}
+      containers:
+        - name: {{ .Values.app }}-container
+          image: {{ .Values.deployment.image }}{{ ":" }}{{ .Values.deployment.tag }}
+          imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+          ports:
+            - containerPort: {{ .Values.deployment.containerPort.http }}
+          {{- if .Values.deployment.resources }}
+          resources: {{ toYaml .Values.deployment.resources | nindent 12 }}
+          {{- end }}
+          {{- if .Values.deployment.probes }}
+          probes: {{ toYaml .Values.deployment.probes | nindent 12 }}
+          {{- end }}

@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Api\Modsen.Portal.Core.Api.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Authentication\Modsen.Portal.Core.Authentication.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Communication\Modsen.Portal.Core.Communication.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Context\Modsen.Portal.Core.Context.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Database\Modsen.Portal.Core.Database.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Exceptions\Modsen.Portal.Core.Exceptions.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Export\Modsen.Portal.Core.Export.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.HostBuilder\Modsen.Portal.Core.HostBuilder.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.OData\Modsen.Portal.Core.OData.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Services\Modsen.Portal.Core.Services.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.UseCases\Modsen.Portal.Core.UseCases.csproj" />
+    <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Modsen.Portal.CloudStorage.AwsS3\Modsen.Portal.CloudStorage.AwsS3.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="AwesomeAssertions" />
+    <PackageReference Include="Bogus" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" />
+    <PackageReference Include="MockQueryable.Moq" />
+    <PackageReference Include="Moq" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+  </ItemGroup>
+
+</Project>

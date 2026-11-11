@@ -1,0 +1,1 @@
+export const BOOKING_DROP_TAB_WIDTH = 200;

@@ -1,0 +1,143 @@
+{{- range $idx, $route := .Values.routes }}
+{{- if $route.enabled }}
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ $route.name }}
+  namespace: {{ $route.namespace | default "default" }}
+  {{- if $route.annotations }}
+  annotations:
+    {{- toYaml $route.annotations | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if $route.hostnames }}
+  hostnames:
+    {{- toYaml $route.hostnames | nindent 4 }}
+  {{- end }}
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: {{ $route.gateway | default "my-eg" }}
+      namespace: {{ $route.gatewayNamespace | default "envoy-gateway-system" }}
+      {{- if $route.sectionName }}
+      sectionName: {{ $route.sectionName }}
+      {{- end }}
+  rules:
+    {{- range $route.rules }}
+    - name: {{ .name }}
+      matches:
+        {{- toYaml .matches | nindent 8 }}
+      {{- if .filters }}
+      filters:
+        {{- toYaml .filters | nindent 8 }}
+      {{- end }}
+      backendRefs:
+        {{- toYaml .backendRefs | nindent 8 }}
+    {{- end }}
+
+
+{{- if $route.backendTrafficPolicy }}
+{{- if $route.backendTrafficPolicy.enabled }}
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: {{ $route.backendTrafficPolicy.name | default $route.name }}
+  namespace: {{ $route.backendTrafficPolicy.namespace | default $route.namespace | default "default" }}
+  {{- if $route.backendTrafficPolicy.annotations }}
+  annotations:
+    {{- toYaml $route.backendTrafficPolicy.annotations | nindent 4 }}
+  {{- end }}
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: {{ $route.name }}
+      namespace: {{ $route.namespace | default "default" }}
+  {{- if $route.backendTrafficPolicy.circuitBreaker }}
+  circuitBreaker:
+    {{- toYaml $route.backendTrafficPolicy.circuitBreaker | nindent 4 }}
+  {{- end }}
+  {{- if $route.backendTrafficPolicy.requestBuffer }}
+  requestBuffer:
+    {{- toYaml $route.backendTrafficPolicy.requestBuffer | nindent 4 }}
+  {{- end }}
+  {{- if $route.backendTrafficPolicy.timeout }}
+  timeout:
+    {{- toYaml $route.backendTrafficPolicy.timeout | nindent 4 }}
+  {{- end }}
+  {{- if $route.backendTrafficPolicy.loadBalancer }}
+  loadBalancer:
+    {{- toYaml $route.backendTrafficPolicy.loadBalancer | nindent 4 }}
+  {{- end }}
+  {{- if $route.backendTrafficPolicy.retry }}
+  retry:
+    {{- toYaml $route.backendTrafficPolicy.retry | nindent 4 }}
+  {{- end }}
+{{- end }}
+{{- end }}
+
+{{- if and $route.securityPolicy $route.securityPolicy.enabled }}
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: {{ $route.securityPolicy.name | default (printf "%s-security-policy" $route.name) }}
+  namespace: {{ $route.securityPolicy.namespace | default $route.namespace | default "default" }}
+  labels:
+    app: {{ $route.serviceName }}
+    managed-by: gateway-resources
+    {{- if $route.securityPolicy.labels }}
+    {{- toYaml $route.securityPolicy.labels | nindent 4 }}
+    {{- end }}
+  {{- if $route.securityPolicy.annotations }}
+  annotations:
+    {{- toYaml $route.securityPolicy.annotations | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if $route.securityPolicy.authorization }}
+  authorization:
+    {{- toYaml $route.securityPolicy.authorization | nindent 4 }}
+  {{- end }}
+  {{- if $route.securityPolicy.cors }}
+  cors:
+    {{- if $route.securityPolicy.cors.allowCredentials }}
+    allowCredentials: {{ $route.securityPolicy.cors.allowCredentials }}
+    {{- end }}
+    {{- if $route.securityPolicy.cors.allowHeaders }}
+    allowHeaders:
+    {{- toYaml $route.securityPolicy.cors.allowHeaders | nindent 4 }}
+    {{- end }}
+    {{- if $route.securityPolicy.cors.allowMethods }}
+    allowMethods:
+    {{- toYaml $route.securityPolicy.cors.allowMethods | nindent 4 }}
+    {{- end }}
+    {{- if $route.securityPolicy.cors.allowOrigins }}
+    allowOrigins:
+    {{- toYaml $route.securityPolicy.cors.allowOrigins | nindent 4 }}
+    {{- end }}
+    {{- if $route.securityPolicy.cors.exposeHeaders }}
+    exposeHeaders:
+    {{- toYaml $route.securityPolicy.cors.exposeHeaders | nindent 4 }}
+    {{- end }}
+    {{- if $route.securityPolicy.cors.maxAge }}
+    maxAge: {{ $route.securityPolicy.cors.maxAge }}
+    {{- end }}
+  {{- end }}
+  {{- if $route.securityPolicy.rateLimit }}
+  rateLimit:
+    {{- toYaml $route.securityPolicy.rateLimit | nindent 4 }}
+  {{- end }}
+  {{- if $route.securityPolicy.authentication }}
+  authentication:
+    {{- toYaml $route.securityPolicy.authentication | nindent 4 }}
+  {{- end }}
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: {{ $route.name }}
+{{- end }}
+{{- end }}
+{{- end }}

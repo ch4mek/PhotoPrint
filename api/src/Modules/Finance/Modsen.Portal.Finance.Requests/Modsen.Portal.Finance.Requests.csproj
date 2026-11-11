@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.Finance.Controllers</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.Finance.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.UseCases\Modsen.Portal.Core.UseCases.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\BcseApi\Modsen.Portal.BcseApi.Contract\Modsen.Portal.BcseApi.Contract.csproj" />
+    <ProjectReference Include="..\..\Identity\Modsen.Portal.Identity.Contract\Modsen.Portal.Identity.Contract.csproj" />
+    <ProjectReference Include="..\..\TeamBoard\Modsen.Portal.TeamBoard.Contract\Modsen.Portal.TeamBoard.Contract.csproj" />
+    <ProjectReference Include="..\..\TimeTrack\Modsen.Portal.TimeTrack.Contract\Modsen.Portal.TimeTrack.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Finance.Contract\Modsen.Portal.Finance.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Finance.DataAccess.Npgsql\Modsen.Portal.Finance.DataAccess.Npgsql.csproj" />
+  </ItemGroup>
+
+</Project>

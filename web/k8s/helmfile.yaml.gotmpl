@@ -1,0 +1,25 @@
+environments:
+  dev:
+    values:
+      - envs/dev.yaml
+  qa:
+    values:
+      - envs/qa.yaml
+  stage:
+    values:
+      - envs/stage.yaml
+  prod:
+    values:
+      - envs/prod.yaml
+  dev-pp:
+    values:
+      - envs/people-force.yaml
+---
+releases:
+  - name: "{{ .Values.infrastructure_env }}-mms-fe-{{ .Values.app_env }}"
+    chart: charts/mms-fe
+    version: 1.0.0
+    namespace: "{{ .Values.infrastructure_env }}-mms-fe-{{ .Values.app_env }}"
+    installed: {{ .Values | get "apps.mms.installed" "true" }}
+    values:
+      - values/mms-fe/values.yaml.gotmpl

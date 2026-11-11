@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.OData\Modsen.Portal.Core.OData.csproj" />
+      <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Services\Modsen.Portal.Core.Services.csproj" />
+      <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.UseCases\Modsen.Portal.Core.UseCases.csproj" />
+      <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+      <ProjectReference Include="..\..\Identity\Modsen.Portal.Identity.Contract\Modsen.Portal.Identity.Contract.csproj" />
+      <ProjectReference Include="..\Modsen.Portal.Attendance.DataAccess.Npgsql\Modsen.Portal.Attendance.DataAccess.Npgsql.csproj" />
+    </ItemGroup>
+  
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+        <_Parameter1>Modsen.Portal.Attendance.Controllers</_Parameter1>
+      </AssemblyAttribute>
+      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+        <_Parameter1>Modsen.Portal.Attendance.UnitTests</_Parameter1>
+      </AssemblyAttribute>
+      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+        <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+      </AssemblyAttribute>
+    </ItemGroup>
+  
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Data.SqlClient" />
+    </ItemGroup>
+
+</Project>

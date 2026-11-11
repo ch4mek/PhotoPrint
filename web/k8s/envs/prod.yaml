@@ -1,0 +1,11 @@
+app_env: prod
+infrastructure_env: production
+
+apps:
+  mms:
+    installed: true
+    deployment:
+      tag: ""
+    ingress:
+      ingressDomain: "modsen.app"
+      secretName: cert-modsen-app

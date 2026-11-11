@@ -1,0 +1,15 @@
+export enum BorderRadiuses {
+	none = 0,
+	xs = 2,
+	xs2 = 4,
+	s = 3,
+	m = 6,
+	l = 7,
+	l2 = 8,
+	xl = 10,
+	xl2 = 14,
+	xl3 = 20,
+	xxl = 50,
+	half = '50%',
+	max = 9999,
+}

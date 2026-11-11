@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Context\Modsen.Portal.Core.Context.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Exceptions\Modsen.Portal.Core.Exceptions.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.HostBuilder\Modsen.Portal.Core.HostBuilder.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Services\Modsen.Portal.Core.Services.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+    <ProjectReference Include="..\..\Identity\Modsen.Portal.Identity.Contract\Modsen.Portal.Identity.Contract.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\StimulsoftReport\Modsen.Portal.StimulsoftReport.Contract\Modsen.Portal.StimulsoftReport.Contract.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\StimulsoftReport\Modsen.Portal.StimulsoftReport\Modsen.Portal.StimulsoftReport.csproj" />
+    <ProjectReference Include="..\..\Storage\Modsen.Portal.Storage.Contract\Modsen.Portal.Storage.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.KnowledgeBase.DataAccess.Npgsql\Modsen.Portal.KnowledgeBase.DataAccess.Npgsql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.KnowledgeBase.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.KnowledgeBase.Controllers</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.IntegrationTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+</Project>

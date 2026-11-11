@@ -1,0 +1,140 @@
+{{- if (.Values.route.enabled) }}
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ .Values.route.name }}
+  namespace: {{ .Values.route.namespace | default "default" }}
+  {{- if .Values.route.annotations }}
+  annotations:
+    {{- toYaml .Values.route.annotations | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.route.hostnames }}
+  hostnames:
+    {{- toYaml .Values.route.hostnames | nindent 4 }}
+  {{- end }}
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: {{ .Values.route.gateway | default "my-eg" }}
+      namespace: {{ .Values.route.gatewayNamespace | default "envoy-gateway-system" }}
+      {{- if .Values.route.sectionName }}
+      sectionName: {{ .Values.route.sectionName }}
+      {{- end }}
+  rules:
+    {{- range .Values.route.rules }}
+    - name: {{ .name }}
+      matches:
+        {{- toYaml .matches | nindent 8 }}
+      {{- if .filters }}
+      filters:
+        {{- toYaml .filters | nindent 8 }}
+      {{- end }}
+      backendRefs:
+        {{- toYaml .backendRefs | nindent 8 }}
+    {{- end }}
+
+{{- if .Values.backendTrafficPolicy }}
+{{- if .Values.backendTrafficPolicy.enabled }}
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: {{ .Values.backendTrafficPolicy.name | default .Values.route.name }}
+  namespace: {{ .Values.backendTrafficPolicy.namespace | default .Values.route.namespace | default "default" }}
+  {{- if .Values.backendTrafficPolicy.annotations }}
+  annotations:
+    {{- toYaml .Values.backendTrafficPolicy.annotations | nindent 4 }}
+  {{- end }}
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: {{ .Values.route.name }}
+      namespace: {{ .Values.route.namespace | default "default" }}
+  {{- if .Values.backendTrafficPolicy.circuitBreaker }}
+  circuitBreaker:
+    {{- toYaml .Values.backendTrafficPolicy.circuitBreaker | nindent 4 }}
+  {{- end }}
+  {{- if .Values.backendTrafficPolicy.requestBuffer }}
+  requestBuffer:
+    {{- toYaml .Values.backendTrafficPolicy.requestBuffer | nindent 4 }}
+  {{- end }}
+  {{- if .Values.backendTrafficPolicy.timeout }}
+  timeout:
+    {{- toYaml .Values.backendTrafficPolicy.timeout | nindent 4 }}
+  {{- end }}
+  {{- if .Values.backendTrafficPolicy.loadBalancer }}
+  loadBalancer:
+    {{- toYaml .Values.backendTrafficPolicy.loadBalancer | nindent 4 }}
+  {{- end }}
+  {{- if .Values.backendTrafficPolicy.retry }}
+  retry:
+    {{- toYaml .Values.backendTrafficPolicy.retry | nindent 4 }}
+  {{- end }}
+{{- end }}
+{{- end }}
+
+{{- if and .Values.securityPolicy .Values.securityPolicy.enabled }}
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: {{ .Values.securityPolicy.name | default (printf "%s-security-policy" .Values.route.name) }}
+  namespace: {{ .Values.securityPolicy.namespace | default .Values.route.namespace | default "default" }}
+  labels:
+    app: {{ .Values.route.serviceName }}
+    managed-by: gateway-resources
+    {{- if .Values.securityPolicy.labels }}
+    {{- toYaml .Values.securityPolicy.labels | nindent 4 }}
+    {{- end }}
+  {{- if .Values.securityPolicy.annotations }}
+  annotations:
+    {{- toYaml .Values.securityPolicy.annotations | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.securityPolicy.authorization }}
+  authorization:
+    {{- toYaml .Values.securityPolicy.authorization | nindent 4 }}
+  {{- end }}
+  {{- if .Values.securityPolicy.cors }}
+  cors:
+    {{- if .Values.securityPolicy.cors.allowCredentials }}
+    allowCredentials: {{ .Values.securityPolicy.cors.allowCredentials }}
+    {{- end }}
+    {{- if .Values.securityPolicy.cors.allowHeaders }}
+    allowHeaders:
+    {{- toYaml .Values.securityPolicy.cors.allowHeaders | nindent 4 }}
+    {{- end }}
+    {{- if .Values.securityPolicy.cors.allowMethods }}
+    allowMethods:
+    {{- toYaml .Values.securityPolicy.cors.allowMethods | nindent 4 }}
+    {{- end }}
+    {{- if .Values.securityPolicy.cors.allowOrigins }}
+    allowOrigins:
+    {{- toYaml .Values.securityPolicy.cors.allowOrigins | nindent 4 }}
+    {{- end }}
+    {{- if .Values.securityPolicy.cors.exposeHeaders }}
+    exposeHeaders:
+    {{- toYaml .Values.securityPolicy.cors.exposeHeaders | nindent 4 }}
+    {{- end }}
+    {{- if .Values.securityPolicy.cors.maxAge }}
+    maxAge: {{ .Values.securityPolicy.cors.maxAge }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.securityPolicy.rateLimit }}
+  rateLimit:
+    {{- toYaml .Values.securityPolicy.rateLimit | nindent 4 }}
+  {{- end }}
+  {{- if .Values.securityPolicy.authentication }}
+  authentication:
+    {{- toYaml .Values.securityPolicy.authentication | nindent 4 }}
+  {{- end }}
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: {{ .Values.route.name }}
+{{- end }}
+{{- end }}

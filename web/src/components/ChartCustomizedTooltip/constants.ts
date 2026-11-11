@@ -1,0 +1,6 @@
+export const CHART_TOOLTIP_ARROW_SIZE = 12;
+export const CHART_TOOLTIP_ARROW_OFFSET_X = -6;
+export const CHART_TOOLTIP_ARROW_OFFSET_Y = '40%';
+export const CHART_TOOLTIP_ARROW_ROTATE_DEG = '45deg';
+export const CHART_TOOLTIP_GAP = 4;
+export const CHART_TOOLTIP_MAX_WIDTH = 350;

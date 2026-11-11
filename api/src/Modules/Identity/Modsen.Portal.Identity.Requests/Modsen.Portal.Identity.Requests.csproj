@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.Identity.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.IntegrationTests</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Modsen.Portal.Identity.Controllers</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Authentication\Modsen.Portal.Core.Authentication.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Communication\Modsen.Portal.Core.Communication.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Exceptions\Modsen.Portal.Core.Exceptions.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.HostBuilder\Modsen.Portal.Core.HostBuilder.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Services\Modsen.Portal.Core.Services.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Agent\Modsen.Portal.Agent.Contract\Modsen.Portal.Agent.Contract.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Modsen.Portal.PowerAutomate\Modsen.Portal.PowerAutomate.csproj" />
+    <ProjectReference Include="..\..\Booking\Modsen.Portal.Booking.Contract\Modsen.Portal.Booking.Contract.csproj" />
+    <ProjectReference Include="..\..\Equipment\Modsen.Portal.Equipment.Contract\Modsen.Portal.Equipment.Contract.csproj" />
+    <ProjectReference Include="..\..\Inquiries\Modsen.Portal.Inquiries.Contract\Modsen.Portal.Inquiries.Contract.csproj" />
+    <ProjectReference Include="..\..\TimeTrack\Modsen.Portal.TimeTrack.Contract\Modsen.Portal.TimeTrack.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Identity.Contract\Modsen.Portal.Identity.Contract.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Identity.DataAccess.Npgsql\Modsen.Portal.Identity.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\Storage\Modsen.Portal.Storage.Contract\Modsen.Portal.Storage.Contract.csproj" />
+    <ProjectReference Include="..\..\TeamBoard\Modsen.Portal.TeamBoard.Contract\Modsen.Portal.TeamBoard.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

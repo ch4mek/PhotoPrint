@@ -1,0 +1,34 @@
+{
+	"reviewTitle": "Upcoming performance review",
+	"shortReviewTitle": "Upcoming perf. review",
+	"goToProfile": "Go to profile",
+	"widgets": {
+		"timesheet": { "title": "Timesheet calendar" },
+		"developmentPlan": {
+			"title": "Development plan",
+			"noPlan": "No development plans",
+			"markAsDoneButtonTitle": "Mark as done",
+			"noStatusTagTitle": "No status"
+		},
+		"upcomingEvents": {
+			"title": "Upcoming events",
+			"noEvents": "No upcoming events"
+		},
+		"companyLinks": { "title": "Company links" },
+		"birthdays": {
+			"title": "Birthdays",
+			"noBirthdays": "No birthdays today",
+			"allBirthdaysPopup": {
+				"searchResults_zero": "No results found",
+				"searchResults_one": "{{count}} result found",
+				"searchResults_other": "{{count}} results found"
+			}
+		},
+		"absences": { "title": "Absences", "noAbsences": "No assigned absences" }
+	},
+	"greetings": {
+		"goodMorning": "Good morning",
+		"goodAfternoon": "Good afternoon",
+		"goodEvening": "Good evening"
+	}
+}

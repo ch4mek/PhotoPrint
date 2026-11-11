@@ -1,0 +1,40 @@
+global:
+  security:
+    allowInsecureImages: true
+
+replicaCount: {{ .Values.apps.rabbitmq.replicaCount }}
+
+image:
+  registry: mirror.gcr.io/bitnamilegacy
+  repository: rabbitmq
+
+ingress:
+  enabled: {{ .Values.apps.rabbitmq.ingress.enabled }}
+  hostname: {{ .Values.apps.rabbitmq.ingress.hostname | quote }}
+  tls: {{ .Values.apps.rabbitmq.ingress.tls }}
+  annotations:
+    {{- range $key, $val := .Values.apps.rabbitmq.ingress.annotations }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end }}
+
+persistence:
+  size: {{ .Values.apps.rabbitmq.persistence.size | quote }}
+
+resources:
+  requests:
+    memory: {{ .Values.apps.rabbitmq.resources.requests.memory | quote }}
+    cpu: {{ .Values.apps.rabbitmq.resources.requests.cpu | quote }}
+  limits:
+    memory: {{ .Values.apps.rabbitmq.resources.limits.memory | quote }}
+    cpu: {{ .Values.apps.rabbitmq.resources.limits.cpu | quote }}
+
+nodeAffinityPreset:
+  type: {{ .Values | get "apps.rabbitmq.nodeAffinityPreset.type" "hard" }}
+  key: {{ .Values | get "apps.rabbitmq.nodeAffinityPreset.key" "node-group" }}
+  values:
+    {{- toYaml (.Values | get "apps.rabbitmq.nodeAffinityPreset.values" (list "development")) | nindent 6 }}
+
+loadDefinition:
+  enabled: {{ .Values.apps.rabbitmq.loadDefinition.enabled }}
+  existingSecret: {{ .Values.apps.rabbitmq.loadDefinition.existingSecret | quote }}
+  existingSecretKey: {{ .Values.apps.rabbitmq.loadDefinition.existingSecretKey | quote }}

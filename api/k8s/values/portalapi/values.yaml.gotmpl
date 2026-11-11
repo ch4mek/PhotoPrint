@@ -1,0 +1,82 @@
+app: {{ .Release.Name }}
+env: {{ .Values | get "app_env" "dev" }}
+
+deployment:
+  image: {{ .Values | get "apps.portalapi.deployment.image" "registry.modsen.app/mms/mms-api" }}
+  tag: {{ .Values | get "apps.portalapi.deployment.tag" "" }}
+  replicas: {{ .Values | get "apps.portalapi.deployment.replicas" "1" }}
+  imagePullPolicy: {{ .Values | get "apps.portalapi.deployment.imagePullPolicy" "IfNotPresent" }}
+  imagePullSecrets: {{ .Values | get "apps.portalapi.deployment.imagePullSecrets" "gitlab-pull-secret" }}
+  containerPort:
+    http: {{ .Values | get "apps.portalapi.deployment.containerPort.http" "80" }}
+  resources:
+    requests:
+      memory: {{ .Values | get "apps.portalapi.deployment.resources.requests.memory" "128Mi" }}
+      cpu: {{ .Values | get "apps.portalapi.deployment.resources.requests.cpu" "100m" }}
+    limits:
+      memory: {{ .Values | get "apps.portalapi.deployment.resources.limits.memory" "512Mi" }}
+      cpu: {{ .Values | get "apps.portalapi.deployment.resources.limits.cpu" "250m" }}
+  probe:
+    initialDelaySeconds: {{ .Values | get "apps.portalapi.deployment.probe.initialDelaySeconds" 30 }}
+    periodSeconds: {{ .Values | get "apps.portalapi.deployment.probe.periodSeconds" 10 }}
+    timeoutSeconds: {{ .Values | get "apps.portalapi.deployment.probe.timeoutSeconds" 30 }}
+
+autoscaling:
+  replicas:
+    min: {{ .Values | get "apps.portalapi.autoscaling.replicas.min" 1 }}
+    max: {{ .Values | get "apps.portalapi.autoscaling.replicas.max" 1 }}
+  cpuAverageUtilization: {{ .Values | get "apps.portalapi.autoscaling.cpuAverageUtilization" 70 }}
+  memoryAverageUtilization: {{ .Values | get "apps.portalapi.autoscaling.memoryAverageUtilization" 80 }}
+
+service:
+  type: {{ .Values | get "apps.portalapi.autoscaling.service.type" "ClusterIP" }}
+  servicePort:
+    http: {{ .Values | get "apps.portalapi.autoscaling.service.servicePort.http" 8082 }}
+
+ingress:
+  ingressDomain: {{ .Values | get "apps.portalapi.ingress.ingressDomain" "" }}
+  secretName: {{ .Values | get "apps.portalapi.ingress.secretName" "" }}
+
+routes:
+{{- $routes := .Values | get "apps.portalapi.routes" list }}
+
+{{- range $idx, $route := $routes }}
+  route-{{ $idx }}:
+    enabled: {{ $route | get "enabled" "" }}
+    name: {{ $route | get "name" "" }}
+    namespace: {{ $route | get "namespace" "" }}
+    serviceName: {{ $route | get "serviceName" "" }}
+    gateway: {{ $route | get "gateway" "" }}
+    gatewayNamespace: {{ $route | get "gatewayNamespace" "" }}
+    sectionName: {{ $route | get "sectionName" "" }}
+    hostnames:
+      {{ toYaml ( $route | get "hostnames" list ) | nindent 6 }}
+    rules:
+      {{ toYaml ( $route | get "rules" list ) | nindent 6 }}
+
+    backendTrafficPolicy:
+      enabled: {{ $route | get "backendTrafficPolicy.enabled" false }}
+      name: {{ $route | get "backendTrafficPolicy.name" "" }}
+      namespace: {{ $route | get "backendTrafficPolicy.namespace" "" }}
+      requestBuffer:
+        {{- toYaml ( $route | get "backendTrafficPolicy.requestBuffer" dict ) | nindent 8 }}
+      timeout:
+        {{- toYaml ( $route | get "backendTrafficPolicy.timeout" dict ) | nindent 8 }}
+      loadBalancer:
+        {{- toYaml ( $route | get "backendTrafficPolicy.loadBalancer" dict ) | nindent 8 }}
+      circuitBreaker:
+        {{- toYaml ( $route | get "backendTrafficPolicy.circuitBreaker" dict ) | nindent 8 }}
+
+    securityPolicy:
+      enabled: {{ $route | get "securityPolicy.enabled" false }}
+      name: {{ $route | get "securityPolicy.name" "" }}
+      namespace: {{ $route | get "securityPolicy.namespace" "" }}
+      authorization:
+        {{- toYaml ( $route | get "securityPolicy.authorization" dict ) | nindent 8 }}
+      cors:
+        {{- toYaml ( $route | get "securityPolicy.cors" dict ) | nindent 8 }}
+      authentication:
+        {{- toYaml ( $route | get "securityPolicy.authentication" dict ) | nindent 8 }}
+      rateLimit:
+        {{- toYaml ( $route | get "securityPolicy.rateLimit" dict ) | nindent 8 }}
+  {{- end }}

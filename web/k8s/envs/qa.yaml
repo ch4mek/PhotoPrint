@@ -1,0 +1,42 @@
+app_env: qa
+infrastructure_env: development
+
+apps:
+  mms:
+    installed: true
+    deployment:
+      tag: ""
+    ingress:
+      ingressDomain: "mms-fe.test.modsen.app"
+      secretName: cert-mms-fe-test-modsen-app
+    route:
+      enabled: true
+      name: mms-fe-qa-httproute
+      namespace: development-mms-fe-qa
+      serviceName: development-mms-fe-qa-svc
+      gateway: onprem-gateway
+      gatewayNamespace: envoy-gateway-system
+      sectionName: https-mms-fe-test
+      hostnames:
+        - mms-fe.test.modsen.app
+      rules:
+        - name: rule-0-prefix-root
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
+          backendRefs:
+            - name: development-mms-fe-qa-svc
+              port: 80
+              group: ''
+              kind: Service
+              weight: 1
+      backendTrafficPolicy:
+        enabled: true
+        name: mms-fe-qa
+        namespace: development-mms-fe-qa
+        timeout:
+          tcp:
+            connectTimeout: 15s
+          http:
+            requestTimeout: 900s

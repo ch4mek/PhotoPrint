@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Легион CCLVI</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap">
+<style>
+  :root{--bg:#FFFFFF;--ink:#1F2233;--ink-2:#5B6075;--ink-3:#9A9FB2;--line:#E4E6EE;--orange:#F17900;--orange-soft:#FFF1E3;--body:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  *{box-sizing:border-box}
+  html{scrollbar-color:var(--orange) #F5F6FA;scrollbar-width:thin}
+  ::-webkit-scrollbar{width:10px;height:10px} ::-webkit-scrollbar-track{background:#F5F6FA} ::-webkit-scrollbar-thumb{background:var(--orange);border-radius:5px;border:2px solid #fff}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);padding:4px}
+  .wrap{display:grid;gap:22px}
+  .game{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);user-select:none;outline:none;aspect-ratio:1200/340}
+  .game:focus-visible{box-shadow:0 0 0 3px var(--orange-soft),0 0 0 4px var(--orange)}
+  canvas#g{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .hint{position:absolute;left:0;right:0;top:34%;text-align:center;pointer-events:none;transition:opacity .3s}
+  .hint[hidden]{display:none}
+  .hint .t{font-weight:600;font-size:clamp(16px,1.8vw,24px);letter-spacing:.02em}
+  .hint .k{margin-top:10px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;color:var(--ink-2);font-size:13px}
+  .key{background:#fff;border:1px solid var(--line);border-bottom-width:3px;border-radius:6px;padding:4px 9px;font-weight:600;font-size:12px;color:var(--ink)}
+  .over{position:absolute;left:0;right:0;top:22%;text-align:center;pointer-events:none;color:var(--ink);display:flex;justify-content:center}
+  .over[hidden]{display:none}
+  /* плашка под результат — текст не поверх сцены; днём белая, ночью тёмная */
+  .over .box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 26px;max-width:min(640px,88%);box-shadow:0 8px 24px rgba(31,34,51,.08)}
+  .game.night .over .box{background:#1F2233;border-color:rgba(245,246,250,.22);box-shadow:none}
+  .over .t{font-weight:600;font-size:clamp(16px,1.9vw,26px);letter-spacing:.14em;text-transform:uppercase}
+  .over .q{margin-top:8px;font-size:15px;font-weight:500;max-width:60ch;margin-inline:auto}
+  .over .s{margin-top:6px;color:var(--ink-2);font-size:13px}
+  .over .a{margin-top:12px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)} /* подсказка «пробел — ещё раз» отдельной строкой */
+  .game.night .over{color:#F5F6FA} .game.night .over .s{color:rgba(245,246,250,.72)} .game.night .over .a{color:rgba(245,246,250,.5)}
+  .foot{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+  .legend{display:flex;gap:22px;flex-wrap:wrap;color:var(--ink-2);font-size:13px}
+  .legend div{display:flex;align-items:center;gap:8px}
+  .legend canvas{width:26px;height:26px}
+  .btn{font:600 13px var(--body);border-radius:999px;padding:10px 16px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);min-height:40px}
+  .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)} .btn:focus-visible{outline:3px solid var(--orange-soft);outline-offset:1px}
+  /* «Поздравить коллегу»: оранжевый контур + мягкое пульсирующее кольцо, на ховере — заливка */
+  .btn.cta2{display:inline-flex;align-items:center;gap:8px;color:var(--orange);border-color:var(--orange);animation:ring 2.2s ease-out infinite;transition:background .15s,color .15s}
+  .btn.cta2:hover{background:var(--orange);color:#fff;animation:none}
+  body.playing .btn.cta2{animation:none} /* пульс только между играми: до старта и после проигрыша */
+  @keyframes ring{0%{box-shadow:0 0 0 0 rgba(241,121,0,.45)}70%{box-shadow:0 0 0 10px rgba(241,121,0,0)}100%{box-shadow:0 0 0 0 rgba(241,121,0,0)}}
+  @media (prefers-reduced-motion: reduce){.btn.cta2{animation:none}}
+  dialog{overflow:auto;border:1px solid var(--line);border-radius:16px;padding:0;max-width:760px;max-height:calc(100% - 24px);width:calc(100% - 40px);box-shadow:0 30px 60px rgba(31,34,51,.2)}
+  dialog::backdrop{background:rgba(31,34,51,.35);backdrop-filter:blur(3px)}
+  .dlg{padding:24px;display:grid;gap:14px}
+  .dlg h2{margin:0;font-weight:600;font-size:20px}
+  .dlg-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .x{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink-2);font:400 22px/1 var(--body);cursor:pointer;display:grid;place-items:center;padding:0}
+  .x:hover{background:#F5F6FA;color:var(--ink)} .x:focus-visible{outline:3px solid var(--orange-soft);outline-offset:1px}
+  .form{display:grid;grid-template-columns:1fr auto;gap:10px}
+  .form input{font:500 15px var(--body);padding:11px 14px;border:1px solid var(--line);border-radius:10px;min-width:0}
+  .form input:focus-visible{outline:3px solid var(--orange-soft);outline-offset:1px;border-color:var(--orange)}
+  .tab{display:grid;gap:12px} .tab[hidden]{display:none}
+  .tab canvas{width:100%;height:auto;max-height:48vh;border-radius:10px;border:1px solid var(--line);object-fit:contain}
+  .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+  @media (max-width:720px){.foot{grid-template-columns:1fr}.hint .k{margin-top:4px;font-size:11px}.key{padding:2px 5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="game" id="game" tabindex="0" aria-label="Игра: легионер бежит. Пробел — прыжок, стрелка вниз — пригнуться">
+    <canvas id="g" width="1200" height="340"></canvas>
+    <div class="hint" id="hint"><div class="t">Нажми пробел</div><div class="k"><span class="key">Пробел</span><span class="key">↑</span> прыжок &nbsp;·&nbsp; <span class="key">↓</span> пригнуться (в воздухе — быстрее вниз) &nbsp;·&nbsp; <span class="key">X</span> удар мечом &nbsp;·&nbsp; клик тоже работает</div></div>
+    <div class="over" id="over" hidden><div class="box"><div class="t" id="overT">Ave atque vale</div><div class="q" id="overQ"></div><div class="s" id="overS">0 очков · рекорд 0</div><div class="a">пробел — ещё раз</div></div></div>
+  </div>
+
+  <div class="foot">
+    <div class="legend">
+      <div><canvas data-ic="hex"></canvas>гексагон — +10</div>
+      <div><canvas data-ic="col"></canvas>колонна — перепрыгни</div>
+      <div><canvas data-ic="bug"></canvas>баг — перепрыгни или разруби</div>
+      <div><canvas data-ic="sw"></canvas>меч — X / → / правая кнопка: +25 за баг</div>
+      <div><canvas data-ic="dl"></canvas>дедлайн — низкий перепрыгни, высокий пригнись</div>
+    </div>
+    <button class="btn cta2" id="congrats"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 20.7,7 20.7,17 12,22 3.3,17 3.3,7" fill="currentColor"/></svg>Поздравить коллегу</button>
+  </div>
+</div>
+
+<dialog id="dlg">
+  <div class="dlg">
+    <div class="dlg-head"><h2>Поздравление коллеге</h2><button class="x" id="xclose" type="button" aria-label="Закрыть">×</button></div>
+    <form class="form" id="nameForm"><input id="name" maxlength="28" placeholder="Имя коллеги" autocomplete="off" required><button class="btn primary" type="submit">Собрать</button></form>
+    <div class="tab" id="tab" hidden>
+      <canvas id="tabC" width="1000" height="520"></canvas>
+      <div class="row"><a class="btn primary" id="dl" download="modsen-256.png" href="#">Скачать картинку</a><button class="btn" id="copy" type="button">Скопировать текст</button><button class="btn" id="close" type="button">Закрыть</button></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  const W=1200,H=340,GY=280;
+  const cv=document.getElementById('g'),ctx=cv.getContext('2d'),game=document.getElementById('game');
+  const $=id=>document.getElementById(id);
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fit(){const r=game.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);ctx.setTransform(cv.width/W,0,0,cv.height/H,0,0);}
+  addEventListener('resize',fit);fit();
+  const ORANGE='#F17900';
+  const hexPath=(c,x,y,r)=>{c.beginPath();for(let i=0;i<6;i++){const a=Math.PI/6+i*Math.PI/3;const px=x+Math.cos(a)*r,py=y+Math.sin(a)*r;i?c.lineTo(px,py):c.moveTo(px,py);}c.closePath();};
+  const rnd=(a,b)=>a+Math.random()*(b-a);
+
+  // ───── state ─────
+  let mode='idle',night=false,speed,dist,score,hexes,cuts,best=0,runner,obs,cols,parts,arches,lastTs,frameN=0,lastFlip=0,stars=[],moonX=W-160;
+  try{best=+localStorage.getItem('legion-best')||0;}catch(e){}
+  function reset(){speed=6.5;dist=0;score=0;hexes=0;cuts=0;night=false;lastFlip=0;runner={x:120,feet:GY,vy:0,onGround:true,duck:false,frame:0,slash:0,cd:0};obs=[];cols=[];parts=[];arches=[];nextObs=520;nextCol=380;
+    stars=Array.from({length:24},()=>({x:rnd(0,W),y:rnd(14,150),s:Math.random()<.25?2:1}));moonX=W-160;}
+  let nextObs,nextCol;reset();
+
+  // ───── input ─────
+  const keys={};
+  function jump(){if(mode==='idle'){start();return;}if(mode==='over'){if(performance.now()-overAt>500)start();return;}if(mode!=='run')return;if(runner.onGround&&!runner.duck){runner.vy=-13.2;runner.onGround=false;}}
+  let overAt=0;
+  function start(){reset();game.classList.remove('night');mode='run';document.body.classList.add('playing');$('hint').hidden=true;$('over').hidden=true;lastTs=performance.now();game.focus();} // во время забега кнопка не пульсирует
+  // гладиус: третье действие — разрубить бага (камень и дедлайны мечу не поддаются)
+  function slash(){if(mode!=='run'||runner.duck||runner.cd>0)return;runner.slash=180;runner.cd=650;}
+  game.addEventListener('pointerdown',e=>{if(e.target.closest('button,a'))return;if(e.button===2){slash();return;}jump();});
+  game.addEventListener('contextmenu',e=>e.preventDefault());
+  addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||$('dlg').open)return;
+    if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();if(!keys[e.code]){keys[e.code]=true;jump();}}
+    if(e.code==='KeyX'||e.code==='ArrowRight'){e.preventDefault();if(!keys[e.code]){keys[e.code]=true;slash();}}
+    if(e.code==='ArrowDown'){e.preventDefault();keys.down=true;if(mode==='run'&&runner.onGround)runner.duck=true;}});
+  addEventListener('keyup',e=>{keys[e.code]=false;if(e.code==='ArrowDown'){keys.down=false;runner.duck=false;}});
+
+  // ───── spawning ─────
+  function spawnObs(){const r=Math.random();
+    if(r<.42)obs.push({t:'col',x:W+40,w:22,h:Math.random()<.5?46:66});
+    else if(r<.62)obs.push({t:'col2',x:W+40,w:56,h:46});
+    else if(r<.85||score<300)obs.push({t:'bug',x:W+40,w:36,h:20,own:rnd(.4,1.2)});
+    // дедлайн на двух высотах: низкий — только прыжок; высокий — пригнуться или точный прыжок (читай высоту, как у дино)
+    else obs.push({t:'dl',x:W+40,w:30,h:30,fly:Math.random()<.5?GY-38:GY-78,ph:Math.random()*6});}
+  // две явные полосы: низкая — собирается на бегу, высокая — только в прыжке; двусмысленной середины (80–100) нет
+  function spawnHex(){const n=2+Math.floor(Math.random()*4),hi=Math.random()<.5,arc=hi&&Math.random()<.6,y=GY-(hi?rnd(112,136):rnd(38,62));for(let i=0;i<n;i++)cols.push({x:W+40+i*38,y:y-(arc?Math.sin(i/(n-1||1)*Math.PI)*24:0),ph:Math.random()*6});}
+  function burst(x,y,n,col){for(let i=0;i<n;i++)parts.push({x,y,vx:rnd(-2.5,2.5),vy:rnd(-3.5,-.5),life:rnd(12,24),c:col});}
+
+  // ───── update ─────
+  function update(dt){const k=Math.min(dt/16.667,2.5);frameN++;
+    for(const p of parts){p.x+=p.vx*k;p.y+=p.vy*k;p.vy+=.3*k;p.life-=k;}parts=parts.filter(p=>p.life>0);
+    if(mode!=='run'){return;}
+    speed=Math.min(14,speed+.0018*k);const dx=speed*k;dist+=dx;
+    // ночное небо: звёзды и луна дрейфуют медленнее фона (параллакс, как у дино)
+    for(const s of stars){s.x-=dx*.06;if(s.x<-4){s.x=W+4;s.y=rnd(14,150);}}moonX-=dx*.03;if(moonX<-60)moonX=W+80;
+    score=Math.floor(dist/12)+hexes*10+cuts*25;
+    if(score-lastFlip>=700){night=!night;lastFlip=score;game.classList.toggle('night',night);}
+    // arches parallax
+    if(!arches.length||arches[arches.length-1].x<W-260)arches.push({x:(arches.length?arches[arches.length-1].x+260:0)});
+    arches.forEach(a=>a.x-=dx*.25);arches=arches.filter(a=>a.x>-300);
+    if(dist>=nextObs){spawnObs();nextObs=dist+speed*rnd(58,100)+140;}
+    if(dist>=nextCol){if(!obs.some(o=>Math.abs(o.x-(W+40))<140))spawnHex();nextCol=dist+rnd(360,720);}
+    // runner
+    const r=runner;r.vy+=(.72+(keys.down&&!r.onGround?1.1:0))*k;r.feet+=r.vy*k;if(r.feet>=GY){r.feet=GY;r.vy=0;if(!r.onGround&&keys.down)r.duck=true;r.onGround=true;}r.frame+=dx*.05; // ↓ в воздухе — быстрое падение
+    r.slash=Math.max(0,r.slash-dt);r.cd=Math.max(0,r.cd-dt);
+    const rh=r.duck?34:62,rw=r.duck?46:30;const rb={x:r.x-rw/2+4,y:r.feet-rh+4,w:rw-8,h:rh-4};
+    for(const o of obs){o.x-=dx+(o.own||0)*k;if(o.t==='dl')o.ph+=.06*k;if(o.t==='bug')o.lp=(o.lp||0)+(dx+(o.own||0)*k)*.32; // фаза семенящих лапок
+      const oy=o.t==='dl'?o.fly+Math.sin(o.ph)*6:GY-o.h;const ob={x:o.x+3,y:oy+3,w:o.w-6,h:o.h-4};
+      if(r.slash>0&&o.t==='bug'){const sb={x:r.x+6,y:r.feet-60,w:60,h:60};if(sb.x<ob.x+ob.w&&sb.x+sb.w>ob.x&&sb.y<ob.y+ob.h&&sb.y+sb.h>ob.y){o.dead=true;cuts++;burst(o.x+18,GY-12,12,ORANGE);continue;}}
+      if(rb.x<ob.x+ob.w&&rb.x+rb.w>ob.x&&rb.y<ob.y+ob.h&&rb.y+rb.h>ob.y){gameOver(o.t);return;}}
+    obs=obs.filter(o=>!o.dead&&o.x+o.w>-40);
+    // зона сбора гексагонов — по ВИЗУАЛЬНОЙ высоте легионера (до плюмажа), а не по хитбоксу столкновений: что касается фигуры — собирается
+    const hh=r.duck?34:92,hb={x:rb.x,y:r.feet-hh,w:rb.w,h:hh};
+    for(const c of cols){c.x-=dx;c.ph+=.08*k;const cy=c.y+Math.sin(c.ph)*3;if(c.x>hb.x-14&&c.x<hb.x+hb.w+14&&cy>hb.y-14&&cy<hb.y+hb.h+14){c.dead=true;hexes++;burst(c.x,cy,7,ORANGE);}}
+    cols=cols.filter(c=>!c.dead&&c.x>-30);}
+  // реплики проигрыша — по причине смерти, в духе девизов из поздравления
+  const OVER={
+    bug:[['Errare humanum est','Баг добрался до прода. Даже Архимед не застрахован.'],['Hotfix non tempus','Откладывай гладиус в сторону — бери хотфикс в свои руки.'],['Unus bug, totus legio','Баг на проде — и весь легион на ретро.'],['It works on my machine','На твоей машине баг тоже бегал. Просто быстрее.']],
+    col:[['Legacy vincit','Уткнулся в колонну легаси. Её не рефакторят — её перепрыгивают.'],['Architectura est','Колонна — это архитектура. С ней не спорят, через неё прыгают.'],['Memento saltum','Помни о прыжке. Камни не двигаются.'],['Roma non uno die','Рим не за день строился. Колонна стояла дольше твоего забега.']],
+    dl:[['Tempus fugit','Дедлайн настиг. Он всегда настигает.'],['Deadline victor','Спринт закрыл не ты. В следующий раз — пригнись.'],['Hora ruit','Час пробил. Прямо по шлему.'],['Estimatio erat optimistica','Оценка была оптимистичной. Как всегда.']],
+  };
+  function gameOver(cause){mode='over';document.body.classList.remove('playing');overAt=performance.now();const isNew=score>best&&score>0;
+    if(isNew){best=score;try{localStorage.setItem('legion-best',String(best));}catch(e){}}
+    window.parent.postMessage({type:'programmer-day-best-score',score},window.location.origin);
+    const pool=OVER[cause==='col2'?'col':cause]||OVER.bug;let [t,q]=pool[Math.floor(Math.random()*pool.length)];
+    if(isNew){t='Novus record';q='Рекорд побит. Легион гордится — и ждёт следующего.';}
+    $('overT').textContent=t;$('overQ').textContent=q;$('overS').textContent=`${score} очков · рекорд ${best}`;$('over').hidden=false;burst(runner.x,runner.feet-30,16,night?'#fff':'#1F2233');}
+
+  // ───── draw ─────
+  const pad5=n=>String(Math.min(n,99999)).padStart(5,'0');
+  function draw(){const ink=night?'#F5F6FA':'#1F2233',bg=night?'#1F2233':'#FFFFFF',faint=night?'rgba(245,246,250,.14)':'rgba(31,34,51,.10)',soft=night?'rgba(245,246,250,.35)':'rgba(31,34,51,.35)';
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    // ночь: звёзды (точки и искры) и полумесяц — цитата динозавра Google
+    if(night){ctx.fillStyle=ink;for(const s of stars){if(s.s===2){ctx.fillRect(s.x-3,s.y-.5,6,1);ctx.fillRect(s.x-.5,s.y-3,1,6);}else ctx.fillRect(s.x,s.y,2,2);}
+      ctx.beginPath();ctx.arc(moonX,64,22,0,Math.PI*2);ctx.fill();ctx.fillStyle=bg;ctx.beginPath();ctx.arc(moonX+11,58,19,0,Math.PI*2);ctx.fill();ctx.fillStyle=ink;}
+    // aqueduct arches (line art)
+    ctx.strokeStyle=faint;ctx.lineWidth=1.5;for(const a of arches){for(let i=0;i<2;i++){const x=a.x+i*130;ctx.beginPath();ctx.moveTo(x,GY-40);ctx.lineTo(x,GY-150);ctx.arc(x+50,GY-150,50,Math.PI,0);ctx.lineTo(x+100,GY-40);ctx.stroke();}ctx.beginPath();ctx.moveTo(a.x-15,GY-205);ctx.lineTo(a.x+260,GY-205);ctx.stroke();}
+    // ground
+    ctx.strokeStyle=ink;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,GY+.5);ctx.lineTo(W,GY+.5);ctx.stroke();
+    ctx.fillStyle=soft;const off=dist%48;for(let x=-off;x<W;x+=48){ctx.fillRect(x,GY+10,10,2);ctx.fillRect(x+26,GY+18,5,2);}
+    // hexes
+    for(const c of cols){const cy=c.y+Math.sin(c.ph)*3;hexPath(ctx,c.x,cy,11);ctx.fillStyle=ORANGE;ctx.fill();}
+    // obstacles
+    ctx.fillStyle=ink;ctx.strokeStyle=ink;
+    for(const o of obs){
+      if(o.t==='col'||o.t==='col2'){const n=o.t==='col2'?2:1;for(let i=0;i<n;i++){const x=o.x+i*30;ctx.fillRect(x+3,GY-o.h+6,16,o.h-6);ctx.fillRect(x,GY-o.h,22,6);ctx.fillRect(x-1,GY-4,24,4);ctx.fillStyle=bg;ctx.fillRect(x+8,GY-o.h+10,2,o.h-18);ctx.fillRect(x+13,GY-o.h+10,2,o.h-18);ctx.fillStyle=ink;}}
+      else if(o.t==='bug'){const lp=o.lp||0,bob=Math.abs(Math.sin(lp*.5))*1.4,y=GY-11-bob;
+        // суставчатые лапки семенят в противофазе, усики подрагивают, тело чуть покачивается
+        ctx.lineWidth=2;for(let i=0;i<3;i++){const bx=o.x+10+i*9,sw=Math.sin(lp+i*2.1)*5;ctx.beginPath();ctx.moveTo(bx,y+5);ctx.lineTo(bx+sw-3,y+10);ctx.lineTo(bx+sw-7,GY-1);ctx.stroke();}
+        ctx.beginPath();ctx.ellipse(o.x+18,y,15,9,0,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.ellipse(o.x+4,y,6,6,0,0,Math.PI*2);ctx.fill();
+        const tw=Math.sin(lp*.6)*.7;ctx.beginPath();ctx.moveTo(o.x-1,y-4);ctx.lineTo(o.x-9,y-11+tw);ctx.moveTo(o.x-1,y-1);ctx.lineTo(o.x-11,y-4-tw);ctx.stroke(); // усики едва покачиваются
+        ctx.fillStyle=bg;ctx.fillRect(o.x+16,y-6,2,12);ctx.fillStyle=ink;}
+      else {const y=o.fly+Math.sin(o.ph)*6;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(o.x+4,y);ctx.lineTo(o.x+26,y);ctx.lineTo(o.x+15,y+13);ctx.lineTo(o.x+26,y+26);ctx.lineTo(o.x+4,y+26);ctx.lineTo(o.x+15,y+13);ctx.closePath();ctx.stroke();ctx.beginPath();ctx.moveTo(o.x+9,y+22);ctx.lineTo(o.x+21,y+22);ctx.lineTo(o.x+15,y+16);ctx.closePath();ctx.fill();
+        ctx.strokeStyle=soft;ctx.beginPath();ctx.moveTo(o.x-6,y+13);ctx.lineTo(o.x-16-Math.sin(o.ph*3)*4,y+13);ctx.stroke();ctx.strokeStyle=ink;}}
+    // particles
+    for(const p of parts){ctx.globalAlpha=Math.max(0,p.life/24);ctx.fillStyle=p.c;ctx.fillRect(p.x-2,p.y-2,4,4);}ctx.globalAlpha=1;
+    drawLegion(ink,bg,soft);
+    // score (dino style)
+    ctx.fillStyle=ink;ctx.font='500 15px Onest, sans-serif';ctx.textAlign='right';ctx.letterSpacing='2px';
+    ctx.globalAlpha=.55;ctx.fillText('HI '+pad5(best),W-118,32);ctx.globalAlpha=1;ctx.fillText(pad5(score),W-24,32);ctx.letterSpacing='0px';
+    if(mode==='run'&&frameN%40<20&&score>0&&score%100<3){/* subtle tick */}
+  }
+  function drawLegion(ink,bg,soft){const r=runner,ph=Math.sin(r.frame),fy=r.feet;ctx.save();ctx.translate(r.x,fy);ctx.fillStyle=ink;ctx.strokeStyle=ink;ctx.lineCap='round';
+    if(r.duck){ // crouch: compact body, helmet low
+      ctx.fillRect(-16,-30,34,18);ctx.fillRect(18,-26,6,8);ctx.strokeStyle=ink;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-8,-12);ctx.lineTo(-10+ph*6,-2);ctx.moveTo(6,-12);ctx.lineTo(8-ph*6,-2);ctx.stroke();
+      ctx.beginPath();ctx.arc(20,-30,9,Math.PI,0);ctx.fill();ctx.fillStyle=ORANGE;ctx.beginPath();ctx.moveTo(22,-40);ctx.quadraticCurveTo(10,-50,-2,-46);ctx.quadraticCurveTo(10,-44,20,-38);ctx.fill();ctx.restore();return;}
+    const la=r.onGround?ph*9:6,lb=r.onGround?-ph*9:-4;
+    ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-5,-24);ctx.lineTo(-5+la,-2);ctx.moveTo(5,-24);ctx.lineTo(5+lb,-2);ctx.stroke();
+    ctx.fillRect(-13,-54,26,32); // tunic/armor
+    ctx.fillStyle=bg;for(let i=0;i<3;i++)ctx.fillRect(-11,-36+i*5,22,1.5); // pteruges lines
+    ctx.fillStyle=ink;
+    // shield with hex
+    ctx.beginPath();ctx.ellipse(-20,-40,8,15,0,0,Math.PI*2);ctx.fill();hexPath(ctx,-20,-40,4.5);ctx.fillStyle=ORANGE;ctx.fill();ctx.fillStyle=ink;
+    // arm + gladius (взмах при ударе; клинок тускнеет на перезарядке)
+    const sl=r.slash>0,p=sl?1-r.slash/180:0,th=sl?2.4-1.8*p:0.75;
+    ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(8,-48);ctx.lineTo(18,-38);ctx.stroke();
+    ctx.save();ctx.translate(18,-38);ctx.rotate(-th);ctx.fillStyle=ink;ctx.fillRect(-2,-5,4,9);ctx.fillRect(-7,3,14,3);ctx.fillStyle=(r.cd>0&&!sl)?soft:ink;ctx.fillRect(-1.5,6,3,26);ctx.fillStyle=(r.cd>0&&!sl)?soft:ink;ctx.beginPath();ctx.moveTo(-1.5,32);ctx.lineTo(0,38);ctx.lineTo(1.5,32);ctx.fill();ctx.restore();
+    if(sl){ctx.strokeStyle=ORANGE;ctx.lineWidth=3;ctx.globalAlpha=.75*(1-p);ctx.beginPath();ctx.arc(18,-38,40,-1.7,.5);ctx.stroke();ctx.globalAlpha=1;ctx.fillStyle=ink;}
+    // head + helmet
+    ctx.beginPath();ctx.arc(0,-66,10,0,Math.PI*2);ctx.fill();ctx.fillStyle=bg;ctx.fillRect(2,-68,6,3);ctx.fillStyle=ink; // eye slit
+    ctx.fillRect(-12,-70,24,4);ctx.beginPath();ctx.arc(0,-70,12,Math.PI,0);ctx.fill();ctx.fillRect(8,-66,5,10); // cheek guard
+    ctx.fillStyle=ORANGE;ctx.beginPath();ctx.moveTo(0,-82);ctx.quadraticCurveTo(-12,-94,-24,-90);ctx.quadraticCurveTo(-12,-88,0,-78);ctx.fill(); // plume
+    ctx.restore();}
+  // legend icons
+  document.querySelectorAll('[data-ic]').forEach(c=>{c.width=52;c.height=52;const x=c.getContext('2d');x.fillStyle='#1F2233';x.strokeStyle='#1F2233';const k=c.dataset.ic;
+    if(k==='hex'){hexPath(x,26,26,14);x.fillStyle=ORANGE;x.fill();}
+    else if(k==='col'){x.fillRect(19,14,14,30);x.fillRect(16,10,20,5);x.fillRect(15,42,22,4);}
+    else if(k==='bug'){x.lineWidth=2;x.lineCap='round';for(let i=0;i<3;i++){const bx=21+i*8,sw=[3,-3,3][i];x.beginPath();x.moveTo(bx,32);x.lineTo(bx+sw-2,37);x.lineTo(bx+sw-5,42);x.stroke();}
+      x.beginPath();x.ellipse(28,27,13,8,0,0,Math.PI*2);x.fill();x.beginPath();x.ellipse(15,27,5,5,0,0,Math.PI*2);x.fill();
+      x.beginPath();x.moveTo(11,24);x.lineTo(5,18);x.moveTo(11,27);x.lineTo(3,25);x.stroke();x.fillStyle='#fff';x.fillRect(26,21,2,12);x.fillStyle='#1F2233';}
+    else if(k==='sw'){x.save();x.translate(26,26);x.rotate(-.75);x.fillRect(-2,-14,4,10);x.fillRect(-8,-5,16,3);x.fillRect(-1.5,-2,3,24);x.beginPath();x.moveTo(-1.5,22);x.lineTo(0,27);x.lineTo(1.5,22);x.fill();x.restore();}
+    else{x.lineWidth=2;x.beginPath();x.moveTo(15,12);x.lineTo(37,12);x.lineTo(26,26);x.lineTo(37,40);x.lineTo(15,40);x.lineTo(26,26);x.closePath();x.stroke();}});
+
+  // ───── tabula ─────
+  const dlg=$('dlg');
+  function resetCard(){$('name').value='';$('tab').hidden=true;$('copy').textContent='Скопировать текст';}
+  $('congrats').addEventListener('click',()=>{resetCard();dlg.showModal();setTimeout(()=>$('name').focus(),30);});
+  $('close').addEventListener('click',()=>dlg.close());$('xclose').addEventListener('click',()=>dlg.close());dlg.addEventListener('close',resetCard); // крестик, «Закрыть», Esc — всё через событие close → сброс
+  const MOTTOS=['Veni, vidi, deploy.','Cogito ergo git push.','Per aspera ad release.','Errare humanum est — sed non in prod.','Alea iacta est: тесты зелёные.'];
+  // подписи без повторов: перемешанная очередь; после полного круга — новое перемешивание, первая ≠ последней показанной
+  let mottoQueue=[],lastMotto=-1;
+  function nextMotto(){if(!mottoQueue.length){mottoQueue=MOTTOS.map((_,i)=>i).sort(()=>Math.random()-.5);if(mottoQueue[0]===lastMotto&&mottoQueue.length>1)mottoQueue.push(mottoQueue.shift());}lastMotto=mottoQueue.shift();return MOTTOS[lastMotto];}
+  $('nameForm').addEventListener('submit',e=>{e.preventDefault();const name=$('name').value.trim();if(!name)return;const c=$('tabC'),x=c.getContext('2d'),Wt=c.width,Ht=c.height;
+    x.fillStyle='#fff';x.fillRect(0,0,Wt,Ht);x.strokeStyle='#E4E6EE';x.lineWidth=2;x.strokeRect(20,20,Wt-40,Ht-40);
+    x.save();x.globalAlpha=.08;for(let i=0;i<9;i++){hexPath(x,Wt-120+((i%3)*36),90+Math.floor(i/3)*32+((i%3)%2)*16,17);x.fillStyle=ORANGE;x.fill();}x.restore();
+    x.textAlign='left';x.fillStyle='#9A9FB2';x.font='500 20px Onest, sans-serif';x.letterSpacing='5px';x.fillText('CCLVI · XIII · IX · MMXXVI',70,110);x.letterSpacing='0px';
+    x.fillStyle='#1F2233';x.font='300 44px Onest, sans-serif';x.fillText('С Днём программиста,',70,200);
+    let fs=96;x.font=`700 ${fs}px Onest, sans-serif`;while(x.measureText(name+'!').width>Wt-140&&fs>40){fs-=4;x.font=`700 ${fs}px Onest, sans-serif`;}x.fillStyle=ORANGE;x.fillText(name+'!',70,300);
+    x.fillStyle='#5B6075';x.font='400 22px Onest, sans-serif';x.fillText(nextMotto(),70,360);
+    x.fillStyle='#9A9FB2';x.font='500 16px Onest, sans-serif';x.fillText('Modsen · легион разработчиков',70,Ht-60); // без данных забега: открытку пересылают и вне Modsen
+    hexPath(x,Wt-80,Ht-72,16);x.fillStyle=ORANGE;x.fill();
+    $('dl').href=c.toDataURL('image/png');$('tab').hidden=false; // имя остаётся, пока открытка открыта; сброс — при закрытии окна
+    $('copy').onclick=()=>{const t=`С Днём программиста, ${name}! CCLVI · 13.09.2026 — Modsen.`;navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>{$('copy').textContent='Скопировано';setTimeout(()=>$('copy').textContent='Скопировать текст',1400);});};});
+
+  lastTs=performance.now();
+  function frame(ts){const dt=ts-(lastTs||ts);lastTs=ts;update(dt);draw();requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

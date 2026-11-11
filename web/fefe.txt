@@ -1,0 +1,2462 @@
+.
+├── babel.config.js
+├── CHANGELOG.md
+├── craco.config.js
+├── Dockerfile
+├── e2e
+│   ├── mockDepartmentsTable.spec.ts
+│   ├── mocks
+│   │   ├── bookingReservation.mock.ts
+│   │   ├── clientProjects.mock.ts
+│   │   ├── clientsLookup.mock.ts
+│   │   ├── createTimesheet.mock.ts
+│   │   ├── dashboard.mock.ts
+│   │   ├── departments.ts
+│   │   ├── pieChart.mock.ts
+│   │   ├── projectsLookup.mock.ts
+│   │   ├── projectsLookupWithCategories.mock.ts
+│   │   ├── reports.mock.ts
+│   │   ├── TimesheetManagerById.mock.ts
+│   │   ├── timesheetManager.mock.ts
+│   │   ├── timesheets.mock.ts
+│   │   ├── updateCurrentUser.mock.ts
+│   │   ├── updateUser.mock.ts
+│   │   ├── userCertifacates.mock.ts
+│   │   ├── userInfo.mock.ts
+│   │   ├── user.mock.ts
+│   │   ├── userProjects.mock.ts
+│   │   ├── userReports.mock.ts
+│   │   ├── usersLookup.mock.ts
+│   │   ├── users.mock.ts
+│   │   └── userTasks.mock.ts
+│   └── test-1.spec.ts
+├── fefe.txt
+├── fileTransformer.js
+├── jest.config.ts
+├── k8s
+│   ├── charts
+│   │   └── mms-fe
+│   │       ├── Chart.yaml
+│   │       ├── templates
+│   │       │   ├── deployment.yaml
+│   │       │   ├── _helpers.tpl
+│   │       │   ├── horizontalpodautoscaler.yaml
+│   │       │   ├── ingress.yaml
+│   │       │   └── service.yaml
+│   │       └── values.yaml
+│   ├── envs
+│   │   ├── dev.yaml
+│   │   ├── prod.yaml
+│   │   ├── qa.yaml
+│   │   └── stage.yaml
+│   ├── helmfile.yaml
+│   └── values
+│       └── mms-fe
+│           └── values.yaml.gotmpl
+├── mime.types
+├── nginx.conf
+├── package.json
+├── playwright.config.ts
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
+├── README.md
+├── robots.txt
+├── src
+│   ├── App.tsx
+│   ├── assets
+│   │   ├── departments
+│   │   │   ├── administration.png
+│   │   │   ├── ba.png
+│   │   │   ├── design.png
+│   │   │   ├── devops.png
+│   │   │   ├── hr.png
+│   │   │   ├── java.png
+│   │   │   ├── js.png
+│   │   │   ├── marketing.png
+│   │   │   ├── mobile.png
+│   │   │   ├── net.png
+│   │   │   ├── php.png
+│   │   │   ├── pmo.png
+│   │   │   ├── python.png
+│   │   │   ├── qa.png
+│   │   │   ├── ruby.png
+│   │   │   ├── sales.png
+│   │   │   └── sysadmin.png
+│   │   ├── error
+│   │   │   └── workConfused.svg
+│   │   ├── logo
+│   │   │   ├── logoDarkMode.png
+│   │   │   └── logoWhiteMode.png
+│   │   ├── notFound
+│   │   │   └── notFound.svg
+│   │   ├── signature
+│   │   │   ├── facebook.svg
+│   │   │   ├── instagram.svg
+│   │   │   ├── line.svg
+│   │   │   ├── linkedin.svg
+│   │   │   ├── logo.svg
+│   │   │   ├── png
+│   │   │   │   ├── facebook.png
+│   │   │   │   ├── instagram.png
+│   │   │   │   ├── line.png
+│   │   │   │   ├── linkedin.png
+│   │   │   │   ├── logo.png
+│   │   │   │   └── twitter.png
+│   │   │   └── twitter.svg
+│   │   └── toast
+│   │       ├── error.png
+│   │       ├── info.png
+│   │       └── success.png
+│   ├── components
+│   │   ├── Accordion
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── AdaptiveButtonWrapper
+│   │   │   └── index.tsx
+│   │   ├── AttachFileButton
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── Avatar
+│   │   │   ├── index.tsx
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── BoxRandomColors
+│   │   │   ├── index.tsx
+│   │   │   ├── styled.ts
+│   │   │   └── types.ts
+│   │   ├── Bullet
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── ButtonAdd
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── ButtonTypography
+│   │   │   └── index.tsx
+│   │   ├── Chart
+│   │   │   ├── ChartContent
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── useChartSizes.ts
+│   │   │   │   │   └── useTooltipPosition.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── CustomizedTooltip
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── CustomizedXAxisTick
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── CustomizedYAxisTick
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── ChartStacked
+│   │   │   ├── constants.ts
+│   │   │   ├── CustomizedTooltip
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── CustomizedXAxisTick
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── CustomizedYAxisTick
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── useChartSizes.ts
+│   │   │   │   ├── useStackedTooltip.tsx
+│   │   │   │   └── useStackedTransformData.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── ChartStatistics
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── ChevronButton
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── Collapse
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── CollapsibleHardSkillList
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── CollapsibleTable
+│   │   │   ├── constants.ts
+│   │   │   ├── ExpandArrow
+│   │   │   │   └── index.tsx
+│   │   │   ├── hooks
+│   │   │   │   ├── useCountOpenedRows.tsx
+│   │   │   │   └── useOpenCollapsibleRow.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── TaskListHeader
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── TasksList
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── TaskTable
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── MobileTaskItem
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── TaskTableRowItem
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── types.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── types.ts
+│   │   │   ├── UserTableRow
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── UserTableRowHeader
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   └── utils.ts
+│   │   ├── CommonProjectAccessTab
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── ContextMenu
+│   │   │   ├── index.tsx
+│   │   │   └── styles.ts
+│   │   ├── CustomTypographies
+│   │   │   └── index.ts
+│   │   ├── DateSelector
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── DateTag
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── DetailedInfoContainer
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   └── styles.ts
+│   │   ├── DetailedInfoItem
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── DialogTypography
+│   │   │   ├── constants.ts
+│   │   │   └── styles.ts
+│   │   ├── Divider
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── ExportControl
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── FilterAutoselect
+│   │   │   └── index.tsx
+│   │   ├── FilterDropdown
+│   │   │   └── index.tsx
+│   │   ├── FilterDropDownWIthArrows
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── FilterMenuButton
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── FormattedTime
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── Grid
+│   │   │   ├── components
+│   │   │   │   ├── ControlButtons
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── DataGridHoverRowWrapper
+│   │   │   │   │   └── styles.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── factories
+│   │   │   │   ├── getActivityColumnFactory.ts
+│   │   │   │   ├── getArrayColumnFactory.ts
+│   │   │   │   ├── getColumnFactory.ts
+│   │   │   │   ├── getColumnWithColorCircleFactory.ts
+│   │   │   │   ├── getColumnWithTooltipFactory.ts
+│   │   │   │   ├── getEditColumnFactory.ts
+│   │   │   │   ├── getLogicColumnFactory.ts
+│   │   │   │   ├── getNestedColumnRenderer.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── types.ts
+│   │   │   │   └── useDynamicRowsHeight.ts
+│   │   │   ├── index.ts
+│   │   │   ├── modals
+│   │   │   │   ├── dateRangeModalRendered
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── freeTextAutoCompleteRenderer
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   ├── freeTextModalRenderer
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   ├── fromHoursToHoursModalRenderer
+│   │   │   │   │   ├── fromHoursToHoursModalRenderer.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── fromToDateModalRenderer
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   ├── fromToPriceModalRenderer
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── fromYearsToYearsModalRender
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── selectionModalRenderer
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── renderers
+│   │   │   │   ├── cell
+│   │   │   │   │   ├── activityCellRenderer
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── arrayCellRenderer
+│   │   │   │   │   │   ├── DropDown
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── cellLastUpdatedRender
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── TimeAgo
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       └── types.ts
+│   │   │   │   │   ├── cellRenderer
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── cellWithColorCircleRenderer
+│   │   │   │   │   │   ├── cellWithColorCircleRenderer.tsx
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── cellWithLinkRenderer
+│   │   │   │   │   │   ├── cellWithLinkRenderer.tsx
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── cellWithTooltipRenderer
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   ├── dynamicHeightCellRenderer
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── editCellRenderer
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── logicCellRenderer
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── nestedCellRenderer
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── noResultsFoundRenderer
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── profExperienceCellRender
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── profExperienceCellRender.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── tagCellRenderer
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   └── trackedCellRenderer
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       ├── styles.ts
+│   │   │   │   │       ├── trackedCellRenderer.tsx
+│   │   │   │   │       └── types.ts
+│   │   │   │   ├── header
+│   │   │   │   │   ├── headerCellRenderer
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── headerCellWithDisabledFilterRenderer
+│   │   │   │   │   │   ├── DisabledFilterControl
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── headerCellWithFilterRenderer
+│   │   │   │   │   │   ├── FilterControl
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── headerWithEditButton
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils
+│   │   │       ├── getColumnWidth.ts
+│   │   │       ├── getGridColumnTemplateFromHeader.ts
+│   │   │       ├── getPortalContainer.ts
+│   │   │       ├── getSkeletonRows.ts
+│   │   │       └── index.ts
+│   │   ├── Heading
+│   │   │   ├── index.tsx
+│   │   │   └── styles.ts
+│   │   ├── Hexagons
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── useHexagonIcons.tsx
+│   │   ├── HoverCircle
+│   │   │   └── index.tsx
+│   │   ├── IconWrapper
+│   │   │   └── index.ts
+│   │   ├── Logo
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── LogOutPopUp
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── OptionsButton
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.tsx
+│   │   │   └── types.ts
+│   │   ├── PageFallbackContent
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── PageHeader
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── PageTitleTypography
+│   │   │   └── index.tsx
+│   │   ├── PieChart
+│   │   │   ├── ActiveShape
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── CustomizedLabel
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── PrivateRoute
+│   │   │   ├── index.tsx
+│   │   │   └── type.ts
+│   │   ├── ProtectedRoute
+│   │   │   └── index.tsx
+│   │   ├── ProtectedView
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── ReactErrorBoundary
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── ResetFilterButton
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── RouteGuard
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── Square
+│   │   │   ├── index.ts
+│   │   │   └── types.ts
+│   │   ├── SquareButton
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── TabableContainer
+│   │   │   └── index.tsx
+│   │   ├── TabPanel
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── TextWithStrongInside
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── Timeline
+│   │   │   ├── BookedLabel
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── TooltipContent.tsx
+│   │   │   │   └── utils.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── CurrentTimeIndicator
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── styles.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── useAnyElementIsCut.ts
+│   │   │   │   ├── usePeriodSelection.ts
+│   │   │   │   └── useScrollTimelineToCurrentTime.ts
+│   │   │   ├── HourCell
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── styles.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── SelectionBox
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── styles.ts
+│   │   │   ├── TimelineContext
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── TimelineControls
+│   │   │   │   ├── hooks
+│   │   │   │   │   └── useIsMobileView.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── TimelineGrid
+│   │   │   │   ├── CurrentDate
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── TimeLabels
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── TimelineRow
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── TimelineSectionsColumn
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── TimelineSection
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils
+│   │   │       ├── calculateDuration.ts
+│   │   │       ├── convertCellIndexToTime.ts
+│   │   │       ├── converTimeToCellIndex.ts
+│   │   │       ├── convertTimeToCellIndex.ts
+│   │   │       ├── createTimelineSkeleton.ts
+│   │   │       ├── generateTimeLabels.ts
+│   │   │       ├── mapScrollPositionToScrollOffset.ts
+│   │   │       └── parseCellIndexPeriod.ts
+│   │   ├── ToastContainer
+│   │   │   ├── CloseButton
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── ToastContent
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── styles.ts
+│   │   │   └── types.ts
+│   │   ├── UserHardSkillList
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   └── UserMenu
+│   │       ├── index.tsx
+│   │       ├── styles.ts
+│   │       └── UserMenuDropdown
+│   │           ├── components
+│   │           │   └── MenuItem
+│   │           │       ├── index.tsx
+│   │           │       ├── styles.ts
+│   │           │       └── types.ts
+│   │           ├── constants.tsx
+│   │           ├── index.tsx
+│   │           ├── styles.ts
+│   │           ├── types.ts
+│   │           └── utils.ts
+│   ├── constants
+│   │   ├── activityStatus.ts
+│   │   ├── allowedFileSizes.ts
+│   │   ├── apiBaseUrl.ts
+│   │   ├── authConstants.ts
+│   │   ├── billabilityStatus.ts
+│   │   ├── bookingContext.ts
+│   │   ├── booking.ts
+│   │   ├── borderRadiuses.ts
+│   │   ├── calendar.ts
+│   │   ├── cellWidth.ts
+│   │   ├── charts.ts
+│   │   ├── commonStyles.ts
+│   │   ├── controlsTexts.ts
+│   │   ├── countryCalendar.ts
+│   │   ├── dataTypes.ts
+│   │   ├── date.ts
+│   │   ├── defaultValues.ts
+│   │   ├── degrees.ts
+│   │   ├── departments.ts
+│   │   ├── directions.ts
+│   │   ├── equipment.ts
+│   │   ├── errors.ts
+│   │   ├── exportConfigs.ts
+│   │   ├── featureNames.ts
+│   │   ├── feedbackAutoselectOptions.ts
+│   │   ├── fileExtensions.ts
+│   │   ├── filters.ts
+│   │   ├── formEntities.ts
+│   │   ├── formsConfig.ts
+│   │   ├── httpMethods.ts
+│   │   ├── httpStatuses.ts
+│   │   ├── iconSizes.ts
+│   │   ├── index.ts
+│   │   ├── itemColorModes.ts
+│   │   ├── links.ts
+│   │   ├── listRenderParams.ts
+│   │   ├── localstorage.ts
+│   │   ├── locationStates.ts
+│   │   ├── location.ts
+│   │   ├── mutationKeys.ts
+│   │   ├── noRowsGridFallback.tsx
+│   │   ├── notifications.ts
+│   │   ├── opacities.ts
+│   │   ├── pageTitles.ts
+│   │   ├── pagination.ts
+│   │   ├── pieChart.ts
+│   │   ├── queriesKeys.ts
+│   │   ├── queryParams.ts
+│   │   ├── queryPaths.ts
+│   │   ├── regexp.ts
+│   │   ├── roles.ts
+│   │   ├── routes.ts
+│   │   ├── searchParams.ts
+│   │   ├── slider.ts
+│   │   ├── sort.ts
+│   │   ├── staticText.ts
+│   │   ├── storageKeys.ts
+│   │   ├── time.ts
+│   │   ├── tooltipSizes.ts
+│   │   └── zIndexes.ts
+│   ├── context
+│   │   ├── AdminPanelCalendarCountriesContext.tsx
+│   │   ├── AuthContext.tsx
+│   │   ├── Booking.tsx
+│   │   ├── CellHeightsContext.ts
+│   │   ├── Configuration.tsx
+│   │   ├── Equipment.tsx
+│   │   ├── index.ts
+│   │   ├── ListScrollObserver.tsx
+│   │   ├── PerformanceReviewContext
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── PrevStringValueKeeper.tsx
+│   │   ├── Reports
+│   │   │   └── ReportsContext.tsx
+│   │   ├── Theme.tsx
+│   │   ├── TimesheetPrevValueKeeper.tsx
+│   │   ├── Toast.tsx
+│   │   └── types.ts
+│   ├── fields
+│   │   ├── Color
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── ColorPicker
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── ColorPickerWithoutRandomColors
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── NumberInput
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── Text
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── TextArea
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   └── Time
+│   │       ├── HoursInput
+│   │       │   ├── constants.ts
+│   │       │   ├── index.tsx
+│   │       │   ├── styles.ts
+│   │       │   └── types.ts
+│   │       └── TimeInput
+│   │           ├── TimeMask
+│   │           │   ├── constants.ts
+│   │           │   ├── index.tsx
+│   │           │   └── types.ts
+│   │           └── types.ts
+│   ├── forms
+│   │   ├── AdminPanelForm
+│   │   │   └── Skills
+│   │   │       ├── HardSkills
+│   │   │       │   ├── index.tsx
+│   │   │       │   ├── schema.ts
+│   │   │       │   └── types.ts
+│   │   │       ├── SoftSkills
+│   │   │       │   ├── index.tsx
+│   │   │       │   ├── schema.ts
+│   │   │       │   ├── styles.ts
+│   │   │       │   └── types.ts
+│   │   │       └── Specializations
+│   │   │           ├── constants.ts
+│   │   │           ├── index.tsx
+│   │   │           ├── schema.ts
+│   │   │           ├── types.ts
+│   │   │           └── utils.ts
+│   │   ├── CertificateForm
+│   │   │   ├── CertificateRow
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── schema.ts
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── ClientForm
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── schema.ts
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── components
+│   │   │   └── styles.ts
+│   │   ├── EquipmentForm
+│   │   │   ├── constants.ts
+│   │   │   ├── EquipmentUsers
+│   │   │   │   ├── History
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── useGetEquipmentHistoryColumns.tsx
+│   │   │   │   │   │   └── useGetEquipmentHistoryRows.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── renderers
+│   │   │   │   │   │   ├── deleteCellRenderer.tsx
+│   │   │   │   │   │   ├── historyCellRenderer.tsx
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── nameCellRenderer.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils
+│   │   │   │   │       ├── getMockRows.ts
+│   │   │   │   │       ├── mapEquipmentHistoryRows.ts
+│   │   │   │   │       └── overrideEquipmentGridStyles.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styled.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── UserForm
+│   │   │   │       ├── constants.ts
+│   │   │   │       ├── index.tsx
+│   │   │   │       ├── styles.ts
+│   │   │   │       ├── types.ts
+│   │   │   │       ├── utils
+│   │   │   │       │   └── isDateMoreThanCurrentDate.ts
+│   │   │   │       └── utils.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── MainForm
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils
+│   │   │       └── getGridAreaStyles.ts
+│   │   ├── FormObserver
+│   │   │   ├── index.tsx
+│   │   │   └── types.ts
+│   │   ├── PerformanceReviewForms
+│   │   │   ├── AddingPerformanceReviewForm
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   └── index.ts
+│   │   ├── Profile
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── ProfileFields
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── ProfileInfo
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── ProfileNotification
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── schema.ts
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── ProjectAccessAddingBase
+│   │   │   ├── components
+│   │   │   │   └── FTEInput
+│   │   │   │       ├── index.tsx
+│   │   │   │       └── utils.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── ProjectForm
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── ProjectAccessForm
+│   │   │   │   ├── hooks
+│   │   │   │   │   └── useGetProjectAccessFormValues.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── ProjectTab
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── schema.ts
+│   │   │   ├── types.ts
+│   │   │   ├── UserAccessTab
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── useAccessTabFilters.ts
+│   │   │   │   │   ├── useGetProjectAccessFormState.ts
+│   │   │   │   │   ├── useGetUserAccessTabGridColumns.tsx
+│   │   │   │   │   └── useGetUserAccessTabGridRows.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   └── utils.ts
+│   │   ├── schemas
+│   │   │   ├── constants.ts
+│   │   │   ├── index.ts
+│   │   │   └── types
+│   │   │       ├── currencyType1.ts
+│   │   │       ├── dateType1.ts
+│   │   │       ├── dateType2.ts
+│   │   │       ├── ddlType1.ts
+│   │   │       ├── email.ts
+│   │   │       ├── emailType2.ts
+│   │   │       ├── index.ts
+│   │   │       ├── longTextType1.ts
+│   │   │       ├── longTextType2.ts
+│   │   │       ├── numberType1.ts
+│   │   │       ├── numberType2.ts
+│   │   │       ├── phoneNumberType1.ts
+│   │   │       ├── phoneNumberType2.ts
+│   │   │       ├── textType1Dot1.ts
+│   │   │       ├── textType1Dot2.ts
+│   │   │       ├── textType1.ts
+│   │   │       ├── textType2.ts
+│   │   │       ├── textType3.ts
+│   │   │       ├── textType4.ts
+│   │   │       └── time.ts
+│   │   ├── SignatureForm
+│   │   │   ├── constants.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── schema.ts
+│   │   │   ├── Signature
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── SignatureClearDialog
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── SignatureControls
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── SignatureEditingPopUp
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   └── styles.ts
+│   │   ├── styles.ts
+│   │   ├── TeamboardForm
+│   │   │   ├── Comment
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── Conversation
+│   │   │   │   ├── components
+│   │   │   │   │   ├── ConversationMessages
+│   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   └── ConversationWarning
+│   │   │   │   │       ├── index.tsx
+│   │   │   │   │       └── types.ts
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── DevelopmentPlan
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── EmploymentHistory
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── Feedback
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── PersonalData
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── schemas
+│   │   │   │   └── hardSkillsSchemas.ts
+│   │   │   ├── UserContracts
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── UserHardSkills
+│   │   │   │   └── types.ts
+│   │   │   ├── UserProject
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schemas.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── UserSalary
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── UserSoftSkills
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── UserSpecialization
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── hooks
+│   │   │   │   │   └── useSpecializationFormSubmit.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── schema.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   └── UserSpecializations
+│   │   │       ├── index.tsx
+│   │   │       ├── schema.ts
+│   │   │       ├── types.ts
+│   │   │       └── utils.ts
+│   │   ├── types.ts
+│   │   ├── UserForm
+│   │   │   ├── CertificatesTab
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── constants.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── schema.ts
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── utils.test.ts
+│   │   └── utils.ts
+│   ├── global.d.ts
+│   ├── helpers
+│   │   ├── addOpacityToColor.ts
+│   │   ├── areValuesEqual.ts
+│   │   ├── avatarColor.ts
+│   │   ├── bookingFormatters.ts
+│   │   ├── bookingParsers.ts
+│   │   ├── bookingTime.ts
+│   │   ├── booking.tsx
+│   │   ├── capitalizeString.ts
+│   │   ├── checkIfFirstEntryProfileRoute.ts
+│   │   ├── checkIfForwardProps.ts
+│   │   ├── checkIfMessageIsAboutEmailDuplicate.ts
+│   │   ├── checkIfMessageIsAboutHeadDuplicate.ts
+│   │   ├── checkIfMessageIsAboutRoleDuplicate.ts
+│   │   ├── checkIfOptionEqualToValue.ts
+│   │   ├── checkIfProjectBlockedToShow.ts
+│   │   ├── checkIfUsersWithExtraDepartments.ts
+│   │   ├── convertFileSize.ts
+│   │   ├── convertOrderToQueryParam.ts
+│   │   ├── convertServerToastType.ts
+│   │   ├── convertSortDirection.ts
+│   │   ├── convertToChartData.ts
+│   │   ├── convertToSelectionModalOptions.ts
+│   │   ├── createDuplicateMessageRole.ts
+│   │   ├── createGridPagination.ts
+│   │   ├── createToast.tsx
+│   │   ├── dashboardPieChartUtils.ts
+│   │   ├── dateToISOString.ts
+│   │   ├── date.ts
+│   │   ├── expandDepartmentsData.ts
+│   │   ├── expandUsersData.ts
+│   │   ├── extractKey.ts
+│   │   ├── filterAvailableRoles.ts
+│   │   ├── filterUniqueWorkplaces.ts
+│   │   ├── findById.ts
+│   │   ├── findByName.ts
+│   │   ├── formatAllowedFileTypes.ts
+│   │   ├── formatDate.ts
+│   │   ├── formatName.ts
+│   │   ├── generateInitialData.ts
+│   │   ├── getAdaptivePopUpStylesConfig.ts
+│   │   ├── getAvailablePosistions.ts
+│   │   ├── getColor.ts
+│   │   ├── getCorrectUTCStringFormatFromDate.ts
+│   │   ├── getDateFormat.ts
+│   │   ├── getDeleteDialogTextComponent.tsx
+│   │   ├── getDepartmentsImage.ts
+│   │   ├── getDepartmentTitle.ts
+│   │   ├── getEmployeeOptions.ts
+│   │   ├── getEncodedQueryString.ts
+│   │   ├── getFileNameFromExportResponse.ts
+│   │   ├── getFilterInputHeight.ts
+│   │   ├── getInitialBookingOfficeByUserLocation.ts
+│   │   ├── getNotificationImg.ts
+│   │   ├── getRandomColor.ts
+│   │   ├── getToastMessage.ts
+│   │   ├── getTrimedString.ts
+│   │   ├── getTrimedUserUpdateItem.ts
+│   │   ├── getUserToastHeader.ts
+│   │   ├── index.ts
+│   │   ├── invertSortDirection.ts
+│   │   ├── isDateRangeValid.ts
+│   │   ├── isMeetingRoomTimeInPast.ts
+│   │   ├── isMeetingRoom.ts
+│   │   ├── localStorage.ts
+│   │   ├── mapNamesFromArray.ts
+│   │   ├── minutesToHours.ts
+│   │   ├── normalizerUser.ts
+│   │   ├── normalizeSearchString.ts
+│   │   ├── normalizeUser.ts
+│   │   ├── prevValueKeeper.ts
+│   │   ├── projectsFilter.ts
+│   │   ├── queries.ts
+│   │   ├── removeExtraSpaces.ts
+│   │   ├── removeGroupManagerFromRoles.ts
+│   │   ├── replaceSpecialCharacters.ts
+│   │   ├── reportStats.ts
+│   │   ├── requestErrorHandler.ts
+│   │   ├── scrollObserver.ts
+│   │   ├── setPaddingHeader.ts
+│   │   ├── subtractYearsFromCurrentDate.ts
+│   │   ├── translateDateUtils.ts
+│   │   ├── translateTimeUtils.ts
+│   │   ├── typePredicates.ts
+│   │   ├── updateGridItems.ts
+│   │   ├── utils.ts
+│   │   ├── validateImageURL.ts
+│   │   └── validTimeChecks.ts
+│   ├── hooks
+│   │   ├── index.ts
+│   │   ├── types.ts
+│   │   ├── useAllProjectsAssignedToUser.ts
+│   │   ├── useAllUserFilter.ts
+│   │   ├── useAttachDocument.tsx
+│   │   ├── useAxiosInterceptors.ts
+│   │   ├── useBodyBackground.ts
+│   │   ├── useBroadcastChannel.ts
+│   │   ├── useCheckboxHandler.ts
+│   │   ├── useColumnsHover.ts
+│   │   ├── useConfigurationContextValue.ts
+│   │   ├── useContextMenu.ts
+│   │   ├── useDebounce.ts
+│   │   ├── useFeatureFlag.ts
+│   │   ├── useFileSelect.ts
+│   │   ├── useFilledDesksWithRangeDate.ts
+│   │   ├── useFilters.ts
+│   │   ├── useGetMaxWidthByPeriodTimesheet.ts
+│   │   ├── useMobileView.tsx
+│   │   ├── useOutsideClickMany.ts
+│   │   ├── usePageWithSearch.ts
+│   │   ├── usePartialListRender.ts
+│   │   ├── usePrependInitialValue.ts
+│   │   ├── useProjectsFilters.ts
+│   │   ├── useResize.ts
+│   │   ├── useScreenSizeDown.ts
+│   │   ├── useScrollToBottom.ts
+│   │   ├── useStickyState.ts
+│   │   ├── useStopGridCellPropagation.ts
+│   │   ├── useSubscribeScrollListener.ts
+│   │   ├── useSwipe.ts
+│   │   ├── useTelemetry.ts
+│   │   ├── useTooltipContent.ts
+│   │   └── useUserFilter.ts
+│   ├── index.css
+│   ├── index.tsx
+│   ├── layouts
+│   │   └── main
+│   │       ├── config.tsx
+│   │       ├── constants.ts
+│   │       ├── index.tsx
+│   │       ├── LeftMenu
+│   │       │   ├── index.tsx
+│   │       │   ├── styles.ts
+│   │       │   └── types.ts
+│   │       ├── Notifications
+│   │       │   ├── constants.ts
+│   │       │   ├── index.tsx
+│   │       │   ├── NotificationButton
+│   │       │   │   ├── constants.ts
+│   │       │   │   ├── index.tsx
+│   │       │   │   ├── styles.tsx
+│   │       │   │   └── types.ts
+│   │       │   ├── NotificationsList
+│   │       │   │   ├── ApproveClearAllDialog
+│   │       │   │   │   ├── constants.ts
+│   │       │   │   │   └── index.tsx
+│   │       │   │   ├── constants.ts
+│   │       │   │   ├── context
+│   │       │   │   │   └── NotificationsContext.ts
+│   │       │   │   ├── index.tsx
+│   │       │   │   ├── NoNotificationsPlaceholder
+│   │       │   │   │   ├── index.tsx
+│   │       │   │   │   └── styles.ts
+│   │       │   │   ├── NotificationListItem
+│   │       │   │   │   ├── CreatedTimeTrackReportNotification
+│   │       │   │   │   │   ├── index.tsx
+│   │       │   │   │   │   └── styles.ts
+│   │       │   │   │   ├── GereratingTimeTrackReportNotification
+│   │       │   │   │   │   ├── index.tsx
+│   │       │   │   │   │   └── styles.ts
+│   │       │   │   │   ├── index.tsx
+│   │       │   │   │   ├── NotificationHeader
+│   │       │   │   │   │   ├── index.tsx
+│   │       │   │   │   │   ├── styles.ts
+│   │       │   │   │   │   └── types.ts
+│   │       │   │   │   ├── ReportGeneratingFailureNotification
+│   │       │   │   │   │   ├── index.tsx
+│   │       │   │   │   │   └── styles.ts
+│   │       │   │   │   ├── styles.ts
+│   │       │   │   │   └── utils.ts
+│   │       │   │   ├── styles.tsx
+│   │       │   │   ├── types.ts
+│   │       │   │   └── utils.ts
+│   │       │   └── utils.ts
+│   │       ├── styles.ts
+│   │       └── types.ts
+│   ├── pages
+│   │   ├── AdminPanel
+│   │   │   ├── components
+│   │   │   │   ├── AddBillableWorkingHoursPermissionsButton
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   ├── AddBillableWorkingHoursPermissionsForm
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styled.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── validationSchema.ts
+│   │   │   │   ├── AdminPanelCalendarTab
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── AddButtonCell
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   ├── CountryNameCell
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   │   └── validationSchema.ts
+│   │   │   │   │   │   ├── HoursInputCell
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── schema.ts
+│   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   └── TotalHoursCell
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       └── styles.ts
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── context
+│   │   │   │   │   │   └── AdminPanelContextOperationsContext.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── useAdminlPanelCalendarOperations.ts
+│   │   │   │   │   │   ├── useAdminPanelCalendarOperationsContext.ts
+│   │   │   │   │   │   ├── useAdminPanelMutations.ts
+│   │   │   │   │   │   ├── useGenerateCalendarColumns.tsx
+│   │   │   │   │   │   └── useGenerateCalendarRows.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── renderers
+│   │   │   │   │   │   ├── countryNameRenderer.tsx
+│   │   │   │   │   │   ├── headerCellRenderer.tsx
+│   │   │   │   │   │   ├── hoursCellRenderer.tsx
+│   │   │   │   │   │   ├── skeletonRenderer.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   ├── totalCellRenderer.tsx
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── AdminPanelGrids
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   └── BillableWorkingHoursPermissionsGrid
+│   │   │   │   │   │       ├── constants.ts
+│   │   │   │   │   │       ├── hooks
+│   │   │   │   │   │       │   ├── useBillableWorkingHoursPermissions
+│   │   │   │   │   │       │   │   ├── index.tsx
+│   │   │   │   │   │       │   │   └── types.ts
+│   │   │   │   │   │       │   ├── useBillableWorkingHoursPermissionsColumns
+│   │   │   │   │   │       │   │   ├── constants.ts
+│   │   │   │   │   │       │   │   ├── index.tsx
+│   │   │   │   │   │       │   │   └── types.ts
+│   │   │   │   │   │       │   ├── useBillableWorkingHoursPermissionsRows
+│   │   │   │   │   │       │   │   ├── constants.ts
+│   │   │   │   │   │       │   │   ├── index.tsx
+│   │   │   │   │   │       │   │   └── types.ts
+│   │   │   │   │   │       │   ├── useCreatePermissionAssignment
+│   │   │   │   │   │       │   │   ├── index.tsx
+│   │   │   │   │   │       │   │   └── types.ts
+│   │   │   │   │   │       │   ├── useGetUserFullnameFilterOptions
+│   │   │   │   │   │       │   │   ├── constants.ts
+│   │   │   │   │   │       │   │   └── index.ts
+│   │   │   │   │   │       │   ├── usePermissionAssignmentsResources
+│   │   │   │   │   │       │   │   ├── index.tsx
+│   │   │   │   │   │       │   │   └── types.ts
+│   │   │   │   │   │       │   └── useRevokePermissionAssignment
+│   │   │   │   │   │       │       ├── index.tsx
+│   │   │   │   │   │       │       └── types.ts
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       └── styles.ts
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── factories
+│   │   │   │   │   │   └── getRevokePermissionColumnFactory.ts
+│   │   │   │   │   ├── renderers
+│   │   │   │   │   │   └── revokePermissionCellRenderer
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       └── styles.ts
+│   │   │   │   │   └── styles.ts
+│   │   │   │   ├── AdminPanelHeader
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── AdminPanelSectionCard
+│   │   │   │   │   └── constants.ts
+│   │   │   │   ├── AdminPanelSettingsTab
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   ├── AdminPanelSidebar
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── AdminPanelSidebarTab
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   └── AdminPanelSkillsTab
+│   │   │   │       ├── components
+│   │   │   │       │   ├── DepartmentsList
+│   │   │   │       │   │   ├── index.tsx
+│   │   │   │       │   │   └── types.ts
+│   │   │   │       │   ├── HardSkills
+│   │   │   │       │   │   ├── index.tsx
+│   │   │   │       │   │   └── types.ts
+│   │   │   │       │   ├── SoftSkills
+│   │   │   │       │   │   ├── index.tsx
+│   │   │   │       │   │   └── types.ts
+│   │   │   │       │   ├── SpecializationsList
+│   │   │   │       │   │   ├── index.tsx
+│   │   │   │       │   │   ├── styles.ts
+│   │   │   │       │   │   └── types.ts
+│   │   │   │       │   ├── TileList
+│   │   │   │       │   │   ├── constants.ts
+│   │   │   │       │   │   ├── index.tsx
+│   │   │   │       │   │   ├── styles.ts
+│   │   │   │       │   │   ├── types.ts
+│   │   │   │       │   │   └── utils.ts
+│   │   │   │       │   └── TileListItem
+│   │   │   │       │       ├── index.tsx
+│   │   │   │       │       ├── styles.ts
+│   │   │   │       │       └── types.ts
+│   │   │   │       ├── constants.ts
+│   │   │   │       ├── index.tsx
+│   │   │   │       ├── styles.ts
+│   │   │   │       └── types.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── factories
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── popupJSXContentFactory.tsx
+│   │   │   │   └── styled.ts
+│   │   │   ├── hooks
+│   │   │   │   └── useAdminPanelSettingsFilter.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── reducer.ts
+│   │   │   ├── renderers
+│   │   │   │   └── revokingPermissionsPopupRenderer.tsx
+│   │   │   └── types.ts
+│   │   ├── AuthCallback
+│   │   │   └── index.tsx
+│   │   ├── Booking
+│   │   │   ├── components
+│   │   │   │   ├── BookingBlock
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── BookingBlockHeader
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── styled.ts
+│   │   │   │   │   │   ├── BookingBlockTabs
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   └── OfficeSelector
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       └── styled.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styled.ts
+│   │   │   │   ├── BookingForm
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── BookingCalendar
+│   │   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   │   ├── Day
+│   │   │   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   │   ├── BookingControls
+│   │   │   │   │   │   │   ├── AllDaySwitch
+│   │   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   │   ├── BookButton
+│   │   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   │   ├── hooks
+│   │   │   │   │   │   │   │   └── useMutateBookingItem.ts
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── RepeatWeeks
+│   │   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   │   ├── Repetitive
+│   │   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   │   ├── DatePickers
+│   │   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   │   ├── FieldHeaderWrapper
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── SelectedSeatView
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── styled.ts
+│   │   │   │   │   │   ├── TimeSelectors
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   │   └── UsersAutoselect
+│   │   │   │   │   │       └── index.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styled.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── BookingList
+│   │   │   │   │   ├── DeskBookingListItem
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── RoomBookingListItem
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── BookingManagement
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styled.ts
+│   │   │   │   ├── BookingTabs
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styled.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── BookingWarningPopup
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styled.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── BookingWorkplace
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── MeetingRoomsRenderer
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   │   ├── MinskSpaceALayout
+│   │   │   │   │   │   │   ├── darkThemeLayout.svg
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── layout.svg
+│   │   │   │   │   │   │   └── styled.ts
+│   │   │   │   │   │   ├── MinskSpaceBLayout
+│   │   │   │   │   │   │   ├── darkThemeLayout.svg
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── layout.svg
+│   │   │   │   │   │   │   └── styled.ts
+│   │   │   │   │   │   ├── MinskSpaceCLayout
+│   │   │   │   │   │   │   ├── darkThemeLayout.svg
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── layout.svg
+│   │   │   │   │   │   │   └── styled.ts
+│   │   │   │   │   │   ├── MinskSpaceDLayout
+│   │   │   │   │   │   │   ├── darkThemeLayout.svg
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── layout.svg
+│   │   │   │   │   │   │   └── styled.ts
+│   │   │   │   │   │   ├── SpacesTabs
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styled.ts
+│   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   ├── WarsawSpaceLayout
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── styled.ts
+│   │   │   │   │   │   └── WorkplaceSpaceRenderer
+│   │   │   │   │   │       ├── components
+│   │   │   │   │   │       │   └── Desk
+│   │   │   │   │   │       │       ├── index.tsx
+│   │   │   │   │   │       │       ├── styled.ts
+│   │   │   │   │   │       │       └── types.ts
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       └── styled.ts
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useWorkplaceConfiguration.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── Legend
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styled.ts
+│   │   │   │   │   ├── styled.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── MapPopUp
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── DarkThemeMapImage.svg
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── MapImage.svg
+│   │   │   │   │   └── styled.ts
+│   │   │   │   └── PopUps
+│   │   │   │       ├── BookingCancelledPopupBody
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── DeleteDeskBookingPopupBody
+│   │   │   │       │   └── index.tsx
+│   │   │   │       ├── DeleteMeetingRoomBookingPopupBody
+│   │   │   │       │   └── index.tsx
+│   │   │   │       └── PopUpBody
+│   │   │   │           ├── index.tsx
+│   │   │   │           ├── styles.ts
+│   │   │   │           └── types.ts
+│   │   │   ├── constants.tsx
+│   │   │   ├── context
+│   │   │   │   └── BookingMapContext.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── Clients
+│   │   │   ├── components
+│   │   │   │   ├── ClientsProjectsGrid
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   └── ExpandedCell
+│   │   │   │       ├── index.tsx
+│   │   │   │       ├── styles.ts
+│   │   │   │       └── types.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── hooks
+│   │   │   │   └── useClientsHeaders.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── renderers
+│   │   │   │   └── clientExpandableNameCellRenderer.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── constants.ts
+│   │   ├── Dashboard
+│   │   │   ├── components
+│   │   │   │   ├── DashboardCollapsibleTable
+│   │   │   │   │   ├── DashBoardTasksList
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── DashboardUserTableRow
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── DashboardList
+│   │   │   │   │   ├── ActivityChart
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styled.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── DashboardPieChart
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── PageHeaderDashboard
+│   │   │   │       ├── index.tsx
+│   │   │   │       ├── styles.ts
+│   │   │   │       └── types.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── DashboardEngineer
+│   │   │   │   ├── components
+│   │   │   │   │   └── DashboardActivityTable
+│   │   │   │   │       ├── constants.tsx
+│   │   │   │   │       ├── hooks
+│   │   │   │   │       │   └── useGetDashboardEngineerColumns.tsx
+│   │   │   │   │       ├── index.tsx
+│   │   │   │   │       └── utils.ts
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.tsx
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── DashboardManagers
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── TeamAndAll
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styled.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── utils.ts
+│   │   ├── Departments
+│   │   │   ├── constants.tsx
+│   │   │   ├── hooks
+│   │   │   │   └── useDepartmentColumns.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── Equipment
+│   │   │   ├── components
+│   │   │   │   └── EquipmentExportButton
+│   │   │   │       ├── EquipmentExportButton.tsx
+│   │   │   │       ├── styles.ts
+│   │   │   │       └── types.ts
+│   │   │   ├── constants.tsx
+│   │   │   ├── EquipmentGrid
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── useEquipmentHeaders.ts
+│   │   │   │   ├── useEquipmentsValues.ts
+│   │   │   │   └── useExportEquipment.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── hooks
+│   │   │   ├── types.ts
+│   │   │   ├── useClientsValues.ts
+│   │   │   ├── useFiltersPopoverControls.ts
+│   │   │   ├── useProjectsValues.tsx
+│   │   │   ├── useShowModal.ts
+│   │   │   └── useTableState.ts
+│   │   ├── NotFound
+│   │   │   ├── index.tsx
+│   │   │   └── styles.ts
+│   │   ├── PerformanceReview
+│   │   │   ├── components
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── PerformanceReviewGrid
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── datesRenderCell
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── useGetGridColumns.ts
+│   │   │   │   │   │   └── useGetGridRows
+│   │   │   │   │   │       ├── constants.ts
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       └── types.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils
+│   │   │   │   │       └── overridePerfomanceReviewGridStyles.ts
+│   │   │   │   ├── PerformanceReviewHeader
+│   │   │   │   │   ├── FilterFields
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── useSetAllUsers.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   └── PerformanceReviewWarning
+│   │   │   │       ├── constants.ts
+│   │   │   │       ├── index.tsx
+│   │   │   │       └── types.ts
+│   │   │   ├── hooks
+│   │   │   │   └── usePerformanceReviewModalsState.ts
+│   │   │   ├── index.tsx
+│   │   │   └── styles.ts
+│   │   ├── Profile
+│   │   │   ├── components
+│   │   │   │   ├── EquipmentSlider
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   └── ProfileTabs
+│   │   │   │       ├── index.tsx
+│   │   │   │       ├── styles.ts
+│   │   │   │       └── types.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── hooks.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   └── types.ts
+│   │   ├── Projects
+│   │   │   ├── constants.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── useProjectsFilters.ts
+│   │   │   │   └── useProjectsHeaders.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── reducer.ts
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── RedirectPage
+│   │   │   ├── index.tsx
+│   │   │   └── styles.ts
+│   │   ├── Reports
+│   │   │   ├── components
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── ReportsControls
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── useReportsFilters.ts
+│   │   │   │   ├── ReportsControlsBar
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── ReportsList
+│   │   │   │   │   ├── EmployeeList
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── EmployerList
+│   │   │   │   │   │   ├── constants.ts
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── usePieChartSize.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── ReportsTable
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── ReportsProjectRow
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   └── utils.ts
+│   │   │   │   │   ├── ReportsUserTableRow
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   └── utils.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── SignIn
+│   │   │   ├── index.tsx
+│   │   │   └── styles.ts
+│   │   ├── styles.ts
+│   │   ├── Teamboard
+│   │   │   ├── constants.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── useTeamboardColumns.tsx
+│   │   │   │   ├── useTeamboardFilters.ts
+│   │   │   │   └── useTeambordRows.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── types.ts
+│   │   │   └── utils.ts
+│   │   ├── TeamBoardUser
+│   │   │   ├── CommentContainer
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── styles.ts
+│   │   │   ├── components
+│   │   │   │   ├── ContractsTab
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── useContractsColumns.tsx
+│   │   │   │   │   │   ├── useContractsFilters.ts
+│   │   │   │   │   │   ├── useContractsMutation.ts
+│   │   │   │   │   │   └── useContractsRow.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── ConversationsTab
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useConversationFilters.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── ConversationTable
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── useAttachedDocumentDownload.ts
+│   │   │   │   │   │   └── useConversationsColumns.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── renderers
+│   │   │   │   │   │   ├── attachedDocumentCellRenderer.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── DevelopmentPlanTab
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useDevelopmentPlanFilters.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── DevelopmentPlanTable
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useDevelopmentPlanColumns.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── FeedbackTab
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useConversationFilters.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── FeedbackTable
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useFeedbackColumns.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── renders
+│   │   │   │   │   │   ├── linkCellRenderer.tsx
+│   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── HardSkillsTab
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── useHardSkillsMutations.ts
+│   │   │   │   │   │   └── useSpecializationFilters.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── HardSkillsTable
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   └── HardSkillCell
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       ├── styles.ts
+│   │   │   │   │   │       └── types.ts
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useHardSkillsTableColumns.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── PerformanceReviewTab
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── usePerformanceReviewFilters.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── PerformanceReviewTable
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── usePerformanceReviewColumns.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── renderers
+│   │   │   │   │   │   └── dateCellRenderer.tsx
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── ProjectsTable
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useProjectTableColumns.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── SalaryTab
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useHardSkillsFilters.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── SalaryTable
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useSalaryTableColumns.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── SoftSkillsTab
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── useSoftSkillsFilters.ts
+│   │   │   │   │   │   └── useSoftSkillsTableColumns.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── utils
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── SpecializationTabHeader
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── SpecializationTable
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── HardSkillCell
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   │   ├── HardSkillNameRenderer
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── HardSkillSeniorityCell
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   │   ├── HardSkillsTable
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   │   ├── SeniorityCell
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   │   └── SpecializationCell
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       └── styles.ts
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── context
+│   │   │   │   │   │   └── specializationTableContext.ts
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── useSpecializationHardSkillsTableColumns.ts
+│   │   │   │   │   │   ├── useSpecializationHardSkillsTableRows.ts
+│   │   │   │   │   │   ├── useTabSpecializationTableColumns.tsx
+│   │   │   │   │   │   └── useTabSpecializationTableRows.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── TabHeader
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── TabWrapper
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── TeamboardProjectAccessTab
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── TeamboardTabWrapper
+│   │   │   │       └── styles.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── context
+│   │   │   │   ├── personalDataContext.ts
+│   │   │   │   └── tabContext.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── useConversationFormState.ts
+│   │   │   │   ├── useDevelopmentPlanFormState.ts
+│   │   │   │   ├── useFeedbackFormState.ts
+│   │   │   │   ├── useMutateHardSkills.ts
+│   │   │   │   ├── usePerformanceReviewFormState.ts
+│   │   │   │   ├── useSalaryFormState.ts
+│   │   │   │   └── useUserProjectAssingmentFormState.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styles.ts
+│   │   │   ├── TeamBoardUserSummaryTab
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── ConverstationSection
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── DevelopmentPlanSection
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── EmploymentHistory
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── FeedbackSection
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── HardSkillSection
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── InfoDataContainer
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── Item
+│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   └── types.ts
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── PersonalData
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── ProjectSection
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── SalarySection
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── TeamBoardSummaryTableWrapper
+│   │   │   │       └── index.ts
+│   │   │   ├── TeamBoardUserTabs
+│   │   │   │   ├── index.tsx
+│   │   │   │   ├── styles.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── types.ts
+│   │   │   ├── UpcomingReview
+│   │   │   │   ├── constants.ts
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── styles.ts
+│   │   │   └── utils.ts
+│   │   ├── TimeSheet
+│   │   │   ├── components
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── RoleDropdownWithDepartments
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── SkeletonTimesheet
+│   │   │   │   │   ├── GridRenders
+│   │   │   │   │   │   └── renderSkeletonCell.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   └── useSkeletonTimeSheetColumns.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── styles.ts
+│   │   │   │   ├── TimeSheeetManager
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── TimesheetManagerStatus
+│   │   │   │   │   │   │   ├── components
+│   │   │   │   │   │   │   │   └── ListItemContextMenu
+│   │   │   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │   │   │       └── styles.ts
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   └── UserTimesheet
+│   │   │   │   │   │       ├── components
+│   │   │   │   │   │       │   ├── constants.ts
+│   │   │   │   │   │       │   ├── DayTotalTime.tsx
+│   │   │   │   │   │       │   ├── PeriodTotalTime.tsx
+│   │   │   │   │   │       │   ├── styles.ts
+│   │   │   │   │   │       │   └── UserInfo.tsx
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       └── styles.ts
+│   │   │   │   │   ├── GridRenderers
+│   │   │   │   │   │   ├── renderNameHeader.tsx
+│   │   │   │   │   │   ├── renderTotalHeadercell.tsx
+│   │   │   │   │   │   └── userTimesheetRenderer.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── useTimeSheetManagerColumns.ts
+│   │   │   │   │   │   └── useTimeSheetManagerRows.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils
+│   │   │   │   │       ├── getEngineerGridFirstRowColorStyles.ts
+│   │   │   │   │       ├── getRowHeight.ts
+│   │   │   │   │       └── index.ts
+│   │   │   │   ├── Timesheet
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── TimeSheetControlsBar
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── TimesheetEngineer
+│   │   │   │   │   ├── components
+│   │   │   │   │   │   ├── AddTaskCell
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── CellInput
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   ├── styles.ts
+│   │   │   │   │   │   │   └── types.ts
+│   │   │   │   │   │   ├── DoubleTimeInputCell
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   │   ├── EmptyCell
+│   │   │   │   │   │   │   └── index.tsx
+│   │   │   │   │   │   ├── TaskInfoCell
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── TaskNameInput
+│   │   │   │   │   │   │       └── index.ts
+│   │   │   │   │   │   ├── TimeInputCell
+│   │   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   │   └── styles.ts
+│   │   │   │   │   │   └── TotalDayTimeCell.tsx
+│   │   │   │   │   │       ├── index.tsx
+│   │   │   │   │   │       ├── styles.ts
+│   │   │   │   │   │       └── types.ts
+│   │   │   │   │   ├── constants.ts
+│   │   │   │   │   ├── GridRenderers
+│   │   │   │   │   │   ├── renderDateHeaderCell.tsx
+│   │   │   │   │   │   ├── renderTaskInfoCell.tsx
+│   │   │   │   │   │   ├── renderTaskInfoHeaderCell.tsx
+│   │   │   │   │   │   ├── renderTotalCell.tsx
+│   │   │   │   │   │   └── renderTrackCell.tsx
+│   │   │   │   │   ├── hooks
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── useAddScrollListener.tsx
+│   │   │   │   │   │   ├── useGenerateTimeSheetGridColumns.tsx
+│   │   │   │   │   │   ├── useTimesheetMutations.ts
+│   │   │   │   │   │   └── useTimesheetRowsOperations.ts
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── timesheetRowsStorage.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   ├── utils.ts
+│   │   │   │   │   └── validationSchema.ts
+│   │   │   │   ├── TimeSheetFilters
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── TimesheetPageControls
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── styles.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── utils.ts
+│   │   │   │   ├── TimesheetSubmitStatus
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── styles.ts
+│   │   │   │   └── UserDropdown
+│   │   │   │       ├── index.tsx
+│   │   │   │       └── types.ts
+│   │   │   ├── constants.ts
+│   │   │   ├── context
+│   │   │   │   ├── mutateTimesheetStatusContext.ts
+│   │   │   │   ├── projectOptionsContext.ts
+│   │   │   │   ├── timesheetParametersContext.ts
+│   │   │   │   └── timesheetStatusContext.ts
+│   │   │   ├── hooks
+│   │   │   │   ├── useGridWidth.ts
+│   │   │   │   └── useRoleFilterDebounce.ts
+│   │   │   ├── index.tsx
+│   │   │   ├── styled.tsx
+│   │   │   ├── types.ts
+│   │   │   └── utils
+│   │   │       ├── getHeaderHeight.ts
+│   │   │       ├── getInitialTimesheetsModeFilter.ts
+│   │   │       ├── getInputLabelsColorStyles.ts
+│   │   │       ├── getTimesheetColumnWIdth.ts
+│   │   │       ├── getTimesheetStatusColor.ts
+│   │   │       ├── getTotalPeriodTrackedTime.ts
+│   │   │       ├── index.ts
+│   │   │       ├── isFutureData.ts
+│   │   │       └── isMonthPeriod.ts
+│   │   └── Users
+│   │       ├── constants.ts
+│   │       ├── hooks
+│   │       │   ├── useUserFIlters.ts
+│   │       │   ├── useUsersHeaders.ts
+│   │       │   └── useUsersValues.ts
+│   │       ├── index.tsx
+│   │       ├── types.ts
+│   │       └── utils.ts
+│   ├── queries
+│   │   ├── adminPanel
+│   │   │   ├── types.ts
+│   │   │   ├── useCreateCalendarCountry.ts
+│   │   │   ├── useCreateCalendarTime.ts
+│   │   │   ├── useCreateHardSkill.tsx
+│   │   │   ├── useCreateSoftSkill.tsx
+│   │   │   ├── useCreateSpecialization.tsx
+│   │   │   ├── useDeleteCalendarCountry.ts
+│   │   │   ├── useDeleteHardSkill.tsx
+│   │   │   ├── useDeleteSoftSkill.tsx
+│   │   │   ├── useDeleteSpecialization.ts
+│   │   │   ├── useGetSpecializationById.ts
+│   │   │   ├── useGetWorkingHours.ts
+│   │   │   ├── useHardSkillsLookup.ts
+│   │   │   ├── useHardSkills.ts
+│   │   │   ├── useHardSkill.ts
+│   │   │   ├── useSoftSkills.ts
+│   │   │   ├── useSoftSkill.ts
+│   │   │   ├── useSpecializations.ts
+│   │   │   ├── useSpecialization.ts
+│   │   │   ├── useUpdateCalendarCountry.ts
+│   │   │   ├── useUpdateCalendarTime.ts
+│   │   │   ├── useUpdateHardSkill.tsx
+│   │   │   ├── useUpdateSoftSkill.tsx
+│   │   │   └── useUpdateSpecialization.tsx
+│   │   ├── booking
+│   │   │   ├── index.ts
+│   │   │   ├── types.ts
+│   │   │   ├── useCheckCollisions.tsx
+│   │   │   ├── useCheckMeetingRoomsCollisions.tsx
+│   │   │   ├── useCreateBooking.ts
+│   │   │   ├── useCreateMeetingRoomBooking.ts
+│   │   │   ├── useDeleteBooking.ts
+│   │   │   ├── useDeleteMeetingRoomBooking.ts
+│   │   │   ├── useGetBookings.ts
+│   │   │   ├── useGetMeetingRoomsReservation.ts
+│   │   │   ├── useGetReservation.ts
+│   │   │   ├── useGetRoomsBookings.ts
+│   │   │   ├── useGetSpaceWorkplaces.ts
+│   │   │   └── utils.ts
+│   │   ├── equipment
+│   │   │   ├── index.ts
+│   │   │   ├── types.ts
+│   │   │   ├── useCreateEquipment.ts
+│   │   │   ├── useDeleteActiveHolder.ts
+│   │   │   ├── useDeleteLastEquipmentHistoryItem.ts
+│   │   │   ├── useGetEquipmentById.ts
+│   │   │   ├── useGetEquipmentDeletedHistory.ts
+│   │   │   ├── useGetEquipmentHistory.ts
+│   │   │   ├── useGetEquipments.ts
+│   │   │   ├── useGetEquipmentUsersLookup.ts
+│   │   │   ├── useGetUserEquipment.ts
+│   │   │   ├── useUpdateActiveHolder.ts
+│   │   │   └── useUpdateEquipment.ts
+│   │   ├── notifications
+│   │   │   ├── types.ts
+│   │   │   ├── useDeleteAllNotification.tsx
+│   │   │   ├── useDeleteNotification.tsx
+│   │   │   ├── useGetNotificationsPreview.tsx
+│   │   │   ├── useGetNotifications.tsx
+│   │   │   ├── useGetReportFile.ts
+│   │   │   └── useReadNotifications.tsx
+│   │   ├── performanceReview
+│   │   │   ├── index.ts
+│   │   │   ├── useCreatePerformanceReview.ts
+│   │   │   ├── useCreatePerformanceReview.types.ts
+│   │   │   ├── useGetPerformanceReview.ts
+│   │   │   └── useGetPerformanceReview.types.ts
+│   │   ├── projects
+│   │   │   ├── types.ts
+│   │   │   └── useGetUsersByProjectId.ts
+│   │   ├── signature
+│   │   │   ├── index.ts
+│   │   │   ├── useGetSignature.ts
+│   │   │   ├── useResetSignature.ts
+│   │   │   └── useUpdateSignature.ts
+│   │   ├── teamboard
+│   │   │   ├── contracts
+│   │   │   │   ├── useCreateContract.ts
+│   │   │   │   ├── useGetContractById.ts
+│   │   │   │   ├── useGetUserContracts.ts
+│   │   │   │   └── useUpdateContract.ts
+│   │   │   ├── types.ts
+│   │   │   ├── useCreateConversation.ts
+│   │   │   ├── useCreateDevelopmentPlans.ts
+│   │   │   ├── useCreateDevelopmentPlan.ts
+│   │   │   ├── useCreateFeedback.ts
+│   │   │   ├── useCreateSpecializationSnapshot.ts
+│   │   │   ├── useCreateUserSalaries.ts
+│   │   │   ├── useCreateUserSalary.ts
+│   │   │   ├── useCreateUserSpecialization.ts
+│   │   │   ├── useDeleteUserHardSkill.ts
+│   │   │   ├── useEmploymentHistory.ts
+│   │   │   ├── useGetSpecializationsSnapshots.ts
+│   │   │   ├── useGetUserSpecializationSnapshotById.ts
+│   │   │   ├── usePersonalData.ts
+│   │   │   ├── useTeamboard.ts
+│   │   │   ├── useTeamboardUsersLookup.ts
+│   │   │   ├── useUpdateComment.ts
+│   │   │   ├── useUpdateConversation.ts
+│   │   │   ├── useUpdateDevelopmentPlans.ts
+│   │   │   ├── useUpdateDevelopmentPlan.ts
+│   │   │   ├── useUpdateEmploymentHistory.ts
+│   │   │   ├── useUpdateFeedback.ts
+│   │   │   ├── useUpdatePersonalData.ts
+│   │   │   ├── useUpdateSpecializationSnapshot.ts
+│   │   │   ├── useUpdateUserHardSkill.ts
+│   │   │   ├── useUpdateUserPrimarySpecialization.ts
+│   │   │   ├── useUpdateUserSalaries.ts
+│   │   │   ├── useUpdateUserSalary.ts
+│   │   │   ├── useUpdateUserSoftSkill.ts
+│   │   │   ├── useUserConversations.ts
+│   │   │   ├── useUserConverstaions.ts
+│   │   │   ├── useUserDevelopmentPlanById.ts
+│   │   │   ├── useUserDevelopmentPlans.ts
+│   │   │   ├── useUserFeedbackById.ts
+│   │   │   ├── useUserFeedbackClients.ts
+│   │   │   ├── useUserFeedbacksReviewers.ts
+│   │   │   ├── useUserFeedbacks.ts
+│   │   │   ├── useUserHardSkillsLookup.ts
+│   │   │   ├── useUserHardSkills.ts
+│   │   │   ├── useUserHardSkill.ts
+│   │   │   ├── useUserNotAssignedSpecializations.ts
+│   │   │   ├── useUserPerformanceReview.ts
+│   │   │   ├── useUserProjectAssignmentById.ts
+│   │   │   ├── useUserProjectAssignments.ts
+│   │   │   ├── useUserProjectsLookup.ts
+│   │   │   ├── useUserSalaries.ts
+│   │   │   ├── useUserSalaryById.ts
+│   │   │   ├── useUserSalary.ts
+│   │   │   ├── useUserSoftSkills.ts
+│   │   │   ├── useUserSupervisors.ts
+│   │   │   └── useUserUniqueSpecializations.ts
+│   │   ├── timesheet
+│   │   │   ├── index.ts
+│   │   │   ├── types.ts
+│   │   │   ├── useCreateTimesheet.ts
+│   │   │   ├── useDeleteTimesheet.ts
+│   │   │   ├── useGetTimesheetManagerExtendedById.ts
+│   │   │   ├── useGetTimesheetManager.ts
+│   │   │   ├── useGetTimesheet.ts
+│   │   │   ├── useGetUserTimesheetStatus.tsx
+│   │   │   ├── useUpdateTimesheetTaskName.ts
+│   │   │   ├── useUpdateTimesheet.ts
+│   │   │   └── useUpdateUserTimesheetStatus.tsx
+│   │   ├── types.ts
+│   │   ├── useAddUserProjectAssign.ts
+│   │   ├── useAddUserToProject.ts
+│   │   ├── useClientProjects.ts
+│   │   ├── useClientsLookup.ts
+│   │   ├── useClients.ts
+│   │   ├── useClient.ts
+│   │   ├── useCreateCertificate.tsx
+│   │   ├── useCreateClient.tsx
+│   │   ├── useCreateProject.tsx
+│   │   ├── useCreateUser.tsx
+│   │   ├── useDashboardChartData.ts
+│   │   ├── useDashboardManager.ts
+│   │   ├── useDashboard.ts
+│   │   ├── useDeleteCertificate.ts
+│   │   ├── useDeleteFactory.tsx
+│   │   ├── useEditUserProjectAssign.ts
+│   │   ├── useExport.tsx
+│   │   ├── useGetConfiguration.ts
+│   │   ├── useGetDepartments.ts
+│   │   ├── useGetFile.ts
+│   │   ├── useGetProjectsByClient.ts
+│   │   ├── useGetRedirectInfoById.ts
+│   │   ├── useGetReports.ts
+│   │   ├── useGetUserCertificates.ts
+│   │   ├── useGetUserProjects.ts
+│   │   ├── useGetUserReports.ts
+│   │   ├── useGetUserTasks.ts
+│   │   ├── useLogout.ts
+│   │   ├── useProjectManagersLookup.ts
+│   │   ├── useProjectsLookup.ts
+│   │   ├── useProjectsLookupWithCategories.ts
+│   │   ├── useProjects.ts
+│   │   ├── useProject.ts
+│   │   ├── useQueryPieChart.ts
+│   │   ├── user
+│   │   │   ├── types.ts
+│   │   │   ├── useAllUsersLookup.ts
+│   │   │   ├── useIsUserExists.ts
+│   │   │   └── useUpdateCurrentUser.tsx
+│   │   ├── useUpdateClientStatus.tsx
+│   │   ├── useUpdateClient.tsx
+│   │   ├── useUpdateProjectStatus.tsx
+│   │   ├── useUpdateProject.tsx
+│   │   ├── useUpdateUserStatus.tsx
+│   │   ├── useUpdateUser.tsx
+│   │   ├── useUploadFile.ts
+│   │   ├── useUserInfo.ts
+│   │   ├── useUserProjects.ts
+│   │   ├── useUsersLookupFilters.tsx
+│   │   ├── useUsersLookup.ts
+│   │   ├── useUsers.ts
+│   │   ├── useUser.ts
+│   │   └── utils
+│   │       ├── convertDateRangeToQueryParam.ts
+│   │       ├── convertFilterArrayToQueryParam.ts
+│   │       ├── convertFromToDateObjToQueryParam.ts
+│   │       ├── convertFromToValueToQueryParam.ts
+│   │       ├── getLogicFilterValue.ts
+│   │       └── index.ts
+│   ├── react-app-env.d.ts
+│   ├── reportWebVitals.ts
+│   ├── routes
+│   │   └── index.tsx
+│   ├── services
+│   │   └── telemetryService.ts
+│   ├── __tests__
+│   │   ├── addOpacityToColor.test.ts
+│   │   ├── areValuesEqual.test.ts
+│   │   ├── avatarColor.test.ts
+│   │   ├── booking
+│   │   │   ├── getFormattedTimePeriod.test.ts
+│   │   │   ├── getInitialTimelineDate.test.ts
+│   │   │   └── isAllowToBook.test.ts
+│   │   ├── booking.test.ts
+│   │   ├── capitalizeString.test.ts
+│   │   ├── changeFTEValue.test.ts
+│   │   ├── checkNullableField.test.ts
+│   │   ├── checkIfDateMoreThanCurrentDate.test.ts
+│   │   ├── checkIfFirstEntryProfileRoute.test.ts
+│   │   ├── checkIfForwardProps.test.ts
+│   │   ├── checkIfMessageIsAboutRoleDuplicate.test.ts
+│   │   ├── checkIfProjectBlockedToShow.test.ts
+│   │   ├── checkIfUsersWithExtraDepartments.test.ts
+│   │   ├── createDuplicateMessageRole.test.ts
+│   │   ├── dashboardPiChartUtils.test.ts
+│   │   ├── dateToISOString.test.ts
+│   │   ├── expandDepartmentData.test.ts
+│   │   ├── expandUserData.test.ts
+│   │   ├── filterAvailableRoles.test.ts
+│   │   ├── findById.test.ts
+│   │   ├── findByName.test.ts
+│   │   ├── formatName.test.ts
+│   │   ├── formsUtils.test.ts
+│   │   ├── generateBookingTimeSelectorsOptions.test.ts
+│   │   ├── generateInitialDate.test.ts
+│   │   ├── getDepartmentImages.test.ts
+│   │   ├── getDepartmentTitle.test.ts
+│   │   ├── getEmployeeOptions.test.ts
+│   │   ├── getFileNameFromExportRespone.test.ts
+│   │   ├── getNearestTime.test.ts
+│   │   ├── getNotificationImg.test.ts
+│   │   ├── getPreviousMonthNumber.test.ts
+│   │   ├── getRandomColor.test.ts
+│   │   ├── getYearOfDashboard.test.ts
+│   │   ├── isDateRangeValid.test.ts
+│   │   ├── localStorage.test.ts
+│   │   ├── minutesToHours.test.ts
+│   │   ├── mocks
+│   │   │   ├── Configuration.ts
+│   │   │   ├── entities.ts
+│   │   │   ├── lookupUsers.ts
+│   │   │   ├── minskOffice.ts
+│   │   │   └── theme.ts
+│   │   ├── normalizerUser.test.ts
+│   │   ├── normalizeSearchString.test.ts
+│   │   ├── normalizeUser.test.ts
+│   │   ├── queries.test.ts
+│   │   ├── removeExtraSpaces.test.ts
+│   │   ├── replaceSpecialCharacters.test.ts
+│   │   ├── roles.test.ts
+│   │   ├── schemas
+│   │   │   ├── currencyType1.test.ts
+│   │   │   ├── dateType1.test.ts
+│   │   │   ├── ddlType1.test.ts
+│   │   │   ├── email.test.ts
+│   │   │   ├── longTextType1.test.ts
+│   │   │   ├── longTextType2.test.ts
+│   │   │   ├── numberType1.test.ts
+│   │   │   ├── numberType2.test.ts
+│   │   │   ├── phoneNumberType1.test.ts
+│   │   │   ├── textType1Dot1.test.ts
+│   │   │   ├── textType1.test.ts
+│   │   │   ├── textType2.test.ts
+│   │   │   ├── textType3.test.ts
+│   │   │   ├── textType4.test.ts
+│   │   │   └── time.test.ts
+│   │   ├── setPaddingsHeader.test.ts
+│   │   ├── timePickerMonthUtils.test.ts
+│   │   ├── timePicker.test.ts
+│   │   ├── timesheets
+│   │   │   └── utls.test.ts
+│   │   ├── translateTimeUnits.test.ts
+│   │   ├── updateGridItems.test.ts
+│   │   └── validTimeChecks.test.ts
+│   ├── theme
+│   │   └── index.tsx
+│   ├── types
+│   │   ├── AdminPanel.ts
+│   │   ├── Booking.ts
+│   │   ├── BoxRandomColors.ts
+│   │   ├── Certificate.ts
+│   │   ├── Clients.ts
+│   │   ├── columnHoverTypes.ts
+│   │   ├── common.ts
+│   │   ├── Configuration.ts
+│   │   ├── Dashboard.ts
+│   │   ├── Equipment.ts
+│   │   ├── Filter.ts
+│   │   ├── Forms.ts
+│   │   ├── Form.ts
+│   │   ├── Grid.ts
+│   │   ├── helpers.ts
+│   │   ├── hooks.ts
+│   │   ├── index.ts
+│   │   ├── Notifications.ts
+│   │   ├── PerformanceReview.ts
+│   │   ├── PieChart.ts
+│   │   ├── Project.ts
+│   │   ├── Redirect.ts
+│   │   ├── Report.ts
+│   │   ├── Tasks.ts
+│   │   ├── Teamboard.ts
+│   │   └── UserInfo.ts
+│   └── vitals.ts
+└── tsconfig.json
+
+542 directories, 1921 files

@@ -1,0 +1,133 @@
+{
+	"title": "Bookings",
+	"pageTabs": {
+		"bookings": "Bookings",
+		"spaces": "Spaces"
+	},
+	"blockTabs": {
+		"details": "Details",
+		"bookings": "Bookings"
+	},
+	"offices": {
+		"warsaw": "Office W",
+		"minsk": "Office M"
+	},
+	"form": {
+		"dateLabel": "Date",
+		"timeLabel": "Time",
+		"guestNameLabel": "Guest name",
+		"modes": {
+			"guest": "Guests",
+			"employee": "Employees"
+		},
+		"types": {
+			"booking": "Booking",
+			"blocking": "Blocking"
+		},
+		"repetitive": {
+			"repeatBookingLabel": "Repeat booking",
+			"allDayLabel": "All day",
+			"repeatEvery_one": "Repeat every",
+			"repeatEvery_other": "Repeat every",
+			"week_one": "week",
+			"week_other": "weeks"
+		},
+		"roomAvailability": {
+			"available": "Available",
+			"unavailable": "Unavailable"
+		}
+	},
+	"labels": {
+		"desk": "Desk",
+		"room": "Room",
+		"guest": "Guest",
+		"meetingRoom": "Meeting room",
+		"deskAccusative": "desk",
+		"roomAccusative": "room"
+	},
+	"actions": {
+		"book": "Book a {{resource}}",
+		"blockDesk": "Block a desk",
+		"viewMap": "View Map"
+	},
+	"deskStatus": {
+		"available": "Available",
+		"blocked": "Blocked",
+		"booked": "Booked",
+		"guest": "Guest",
+		"selected": "Your desk"
+	},
+	"timeline": {
+		"today": "Today",
+		"workingHours": "Working hours",
+		"timezone": "Time zone"
+	},
+	"map": {
+		"officeMap": "Office map",
+		"floors": {
+			"fourth": "4th floor"
+		}
+	},
+	"spaces": {
+		"meetingRooms": "Meeting Rooms",
+		"rooms": "Rooms"
+	},
+	"equipment": {
+		"seats": "Seats",
+		"board": "Board",
+		"camera": "Camera",
+		"laptop": "Laptop",
+		"screen": "Screen",
+		"speakerphone": "Speakerphone",
+		"usbHub": "USB hub"
+	},
+	"tooltips": {
+		"bookedBy": "booked by {{name}}",
+		"deskBlockedBy": "Desk is blocked by",
+		"deskBookedBy": "Desk is booked by",
+		"bookingNotAllowed": "You can't book a desk in this space"
+	},
+	"toasts": {
+		"deskBooked": "Desk has been successfully booked",
+		"meetingRoomBooked": "Meeting room has been successfully booked",
+		"deskUnblocked": "Desk has been successfully unblocked",
+		"bookingCanceled": "Booking has been canceled",
+		"successBookingCanceled": "Your booking has been successfully canceled",
+		"alreadyHaveBooking": "You already have a booking for selected time period. Please cancel the booking or choose another time",
+		"notificationMarkedAsRead": "Your notification has been marked as read"
+	},
+	"dialogs": {
+		"cancel": {
+			"header": "Booking cancelation",
+			"confirmOwn": "Are you sure you want to cancel your booking?",
+			"confirmOtherBefore": "Are you sure you want to cancel",
+			"confirmOtherAfter": "booking?"
+		},
+		"unblock": {
+			"header": "Desk unblocking",
+			"confirm": "Are you sure you want to unblock the desk?"
+		},
+		"blockDesk": {
+			"header": "Desk blocking",
+			"confirm": "Are you sure you want to block the desk?"
+		}
+	},
+	"warnings": {
+		"cannotBookPrefix": "You cannot book it, because the workplace",
+		"isBlocked": "is blocked",
+		"isBookedForPeriod": "is booked for the following period: {{period}}",
+		"meetingRoomCollision": "You cannot book it, because the {{room}} is booked for the following period: {{period}}"
+	},
+	"errors": {
+		"inputValidGuestName": "Please enter a valid guest name",
+		"selectDesk": "Please select a desk",
+		"selectRoom": "Please select a room",
+		"selectDate": "Please select a date",
+		"alreadyHaveBooking": "You already have a booking for selected period. Please cancel the booking or choose another date(s)",
+		"selectedDeskBooked": "Selected desk has been already booked. You can choose another available desk",
+		"guestAlreadyBooked": "Guest with this name already has a booking for selected period. Please cancel the booking or choose another date(s)",
+		"meetingRoomAlreadyBooked": "Meeting room for the selected period has already been booked. You can choose another available period.",
+		"cantBookMeetingRoomInPast": "You cannot book a meeting room in the past",
+		"generic": "Something went wrong"
+	}
+}

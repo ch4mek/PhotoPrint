@@ -1,0 +1,225 @@
+﻿using MockQueryable.Moq;
+using Modsen.Portal.Core.Exceptions;
+using Modsen.Portal.Core.Services.BusinessRules;
+using Modsen.Portal.Core.TeamBoard;
+using Modsen.Portal.Identity.Contract;
+using Modsen.Portal.TeamBoard.DataAccess.Npgsql;
+using Modsen.Portal.TeamBoard.DataAccess.Npgsql.DatabaseEntities;
+using Modsen.Portal.TeamBoard.Requests.Core.DbQueries;
+using Modsen.Portal.TeamBoard.Requests.UserPersonalInfo.Core.BusinessRules;
+using Modsen.Portal.TeamBoard.Requests.UserPersonalInfo.Requests;
+using Modsen.Portal.TeamBoard.Requests.UserPersonalInfo.Requests.RequestDto;
+using Moq;
+
+namespace Modsen.Portal.TeamBoard.UnitTests.PersonalInfo.UpdatePersonalData;
+
+public class UpdatePersonalDataRequestTests
+{
+    private readonly Mock<IIsTeamBoardUserExistWithHRAccessControlDbQuery> _isUserExistByUserIdDbQueryMock = new();
+    private readonly Mock<ITeamBoardDbContext> _teamboardDbContextMock = new();
+    private readonly Mock<IIdentityCrossWriterContract> _identityContractMock = new();
+    private readonly Mock<IArePersonalPhoneAndEmailsUniqueBusinessRule> _arePersonalPhoneAndEmailsUniqueBusinessRule = new ();
+
+    private readonly CancellationToken _token = CancellationToken.None;
+
+    private readonly UpdatePersonalDataRequest _handler;
+
+    public UpdatePersonalDataRequestTests()
+    {
+        _handler = new UpdatePersonalDataRequest(
+            _isUserExistByUserIdDbQueryMock.Object,
+            _teamboardDbContextMock.Object,
+            _identityContractMock.Object,
+            _arePersonalPhoneAndEmailsUniqueBusinessRule.Object);
+    }
+
+    [Fact]
+    public async Task HandleWhenTeamBoardUserDoesNotExistThrowEntityNotFoundException()
+    {
+        // Arrange
+        var userId = 999999;
+
+        var query = new UpdatePersonalDataRequest.Command(
+            new UpdatePersonalDataRequestDto(userId, null, null, null, null, null,
+            null, null, null, null, null, null, null, null,"A1", new DateOnly(), null, null, null));
+
+        _isUserExistByUserIdDbQueryMock
+            .Setup(x => x.ExecuteAsync(userId, _token))
+            .ReturnsAsync(false);
+
+        // Act
+        var action = () => _handler.Handle(query, _token);
+
+        // Assert
+        await action.Should().ThrowAsync<EntityNotFoundException>("User is not found.");
+    }
+
+    [Fact]
+    public async Task HandleWhenTeamBoardUserExistsShouldReturnPersonalData()
+    {
+        // Arrange
+        var userId = 15;
+        var personalEmail = new string("qwertyyyy@modsen.by");
+        var personalEmailSecond = new string("qwert1yyyy@modsen.by");
+        var personalPhone = new string("375291111111");
+        var telegram = "@telegram";
+        var englishLevelId = new string("A1");
+        var dateOfBirth = new DateOnly(2004, 1, 1);
+        var firstName = "test";
+        var lastName = "test";
+        var firstNameRu = "тест";
+        var lastNameRu = "тест";
+        var pathronymicRu = "тест";
+        var groupId = 1;
+        var departmentId = "Net";
+        var corporateEmail = new string("qwert1yyyy@modsen-software.com");
+        var position = "Employee";
+
+        var command = new UpdatePersonalDataRequest.Command(new UpdatePersonalDataRequestDto(
+            userId,
+            firstName,
+            lastName,
+            firstNameRu,
+            lastNameRu,
+            pathronymicRu,
+            groupId,
+            departmentId,
+            corporateEmail,
+            personalEmail,
+            personalEmailSecond,
+            personalPhone,
+            telegram,
+            null,
+            englishLevelId,
+            dateOfBirth,
+            position,
+            MilitaryServiceStatus.Unfit,
+            IsGraduatedJobPlacement: true));
+
+        _arePersonalPhoneAndEmailsUniqueBusinessRule
+            .Setup(x => x.IsCorrespondsToBusiness(It.IsAny<ArePersonalPhoneAndEmailsUniqueBusinessModel>(), _token))
+            .ReturnsAsync(BusinessRuleResult.Success());
+
+        _isUserExistByUserIdDbQueryMock
+            .Setup(x => x.ExecuteAsync(userId, _token))
+            .ReturnsAsync(true);
+
+        _teamboardDbContextMock.Setup(x => x.TeamBoardUsers)
+            .Returns(new List<TeamBoardUser>
+            {
+                new()
+                {
+                    UserId = userId,
+                    FirstName = "test",
+                    LastName = "test",
+                    Email = "test"
+                }
+            }.BuildMockDbSet().Object);
+
+        _teamboardDbContextMock.Setup(x => x.EnglishLevels)
+            .Returns(new List<EnglishLevel>
+            {
+                new()
+                {
+                    Id = englishLevelId,
+                    Description = "test",
+                    ShortName = "test",
+                    ExternalName = "test",
+                    InternalName = "test"
+                }
+            }.BuildMockDbSet().Object);
+
+        // Act
+        var result = await _handler.Handle(command, _token);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.PersonalEmail.Should().Be(personalEmail);
+        result.PersonalPhone.Should().Be(personalPhone);
+        result.EnglishLevelId.Should().Be(englishLevelId);
+        result.Telegram.Should().Be(telegram);
+        result.Position.Should().Be(position);
+    }
+
+    [Fact]
+    public async Task HandleWhenTeamBoardUserPersonalPhoneExistsShouldThrowEntityConflictException()
+    {
+        // Arrange
+        var userId = 15;
+        var personalEmail = new string("qwertyyyy@modsen.by");
+        var personalEmailSecond = new string("qwertyyyy@modsen.by");
+        var personalPhone = new string("375291111111");
+        var telegram = "@telegram";
+        var englishLevelId = new string("A1");
+        var dateOfBirth = new DateOnly(2002, 2, 2);
+        var firstName = "test";
+        var lastName = "test";
+        var firstNameRu = "тест";
+        var lastNameRu = "тест";
+        var pathronymicRu = "тест";
+        var groupId = 1;
+        var departmentId = "Net";
+        var corporateEmail = new string("qwert1yyyy@modsen-software.com");
+        var position = "Employee";
+
+        var secondUserFirstName = "Charles";
+        var secondUserLastName = "Leclerc";
+
+        var command = new UpdatePersonalDataRequest.Command(new UpdatePersonalDataRequestDto(
+            userId,
+            firstName,
+            lastName,
+            firstNameRu,
+            lastNameRu,
+            pathronymicRu,
+            groupId,
+            departmentId,
+            corporateEmail,
+            personalEmail,
+            personalEmailSecond,
+            personalPhone,
+            telegram,
+            null,
+            englishLevelId,
+            dateOfBirth,
+            position,
+            MilitaryServiceStatus.Unfit,
+            IsGraduatedJobPlacement: true));
+
+        var failReason = "failReason";
+
+        _arePersonalPhoneAndEmailsUniqueBusinessRule
+            .Setup(x => x.IsCorrespondsToBusiness(It.IsAny<ArePersonalPhoneAndEmailsUniqueBusinessModel>(), _token))
+            .ReturnsAsync(BusinessRuleResult.Fail(failReason));
+
+        _isUserExistByUserIdDbQueryMock
+            .Setup(x => x.ExecuteAsync(userId, _token))
+            .ReturnsAsync(true);
+
+        _teamboardDbContextMock.Setup(x => x.TeamBoardUsers)
+            .Returns(new List<TeamBoardUser>
+            {
+                new()
+                {
+                    UserId = userId,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = "test"
+                },
+                new()
+                {
+                    UserId = userId + 1,
+                    FirstName = secondUserFirstName,
+                    LastName = secondUserLastName,
+                    PersonalPhone = personalPhone,
+                    Email = "test"
+                }
+            }.BuildMockDbSet().Object);
+
+        // Act
+        var action = () => _handler.Handle(command, _token);
+
+        // Assert
+        await action.Should().ThrowAsync<EntityConflictException>().WithMessage(failReason);
+    }
+}

@@ -1,0 +1,167 @@
+{
+	"userProfileTitle": "User profile",
+	"reviewTitle": "Upcoming performance review",
+	"shortReviewTitle": "Upcoming perf. review",
+	"notPlanned": "Not planned",
+	"personalData": {
+		"title": "Personal data",
+		"fullNameEnglish": "Full name (english)",
+		"fullNameRussian": "Full name (russian)",
+		"emailCorporate": "Email (corporate)",
+		"emailPersonal": "Email (personal)",
+		"phone": "Phone number",
+		"hardSkills": "Hard skills",
+		"englishLevel": "English level",
+		"softSkills": "Soft skills",
+		"department": "Department",
+		"location": "Location",
+		"dateOfBirth": "Date of birth",
+		"currentLocation": "Current location",
+		"registeredLocation": "Registered location",
+		"telegram": "Telegram",
+		"militaryServiceStatus": "Military service status",
+		"graduateJobPlacement": "Graduate job placement",
+		"linkedIn": "LinkedIn",
+		"popup": {
+			"formName": "User profile personal data form",
+			"title": "Personal data editing",
+			"inputLabel": "Location"
+		}
+	},
+	"employmentHistory": {
+		"title": "Employment history",
+		"professionalActivityStartDate": "Professional activity start date",
+		"firstProjectStartDate": "First project start date",
+		"hireDate": "Hire date",
+		"contractEndDate": "Contract end date"
+	},
+	"projects": {
+		"sectionHeader": "Projects",
+		"projectName": "Project name",
+		"clientName": "Client",
+		"billability": "Billability",
+		"startDate": "Start date",
+		"endDate": "End date",
+		"status": "Status"
+	},
+	"absence": {
+		"availableDays": "available days",
+		"availableHours": "available hours",
+		"balanceDays": "balance days",
+		"balanceHours": "balance hours",
+		"inquiryTemplateName": "Request type",
+		"dateFrom": "Date from",
+		"dateTo": "Date to",
+		"quantity": "Quantity",
+		"status": "Status",
+		"date": "Date",
+		"requestType": "Request type",
+		"description": "Description",
+		"used": "Used",
+		"accrued": "Accrued",
+		"remainder": "Remainder (Balance)",
+		"documents": "Documents",
+		"proportionalAccrual": "Proportional accrual",
+		"request": "Request",
+		"resetAnnualBalance": "Reset annual balance",
+		"correction": "Correction",
+		"history": "History"
+	},
+	"skills": {
+		"name": "Name",
+		"seniority": "Seniority"
+	},
+	"developmentPlan": {
+		"sectionHeader": "Development plan",
+		"status": "Status",
+		"deadlineDate": "Deadline date",
+		"summary": "Summary"
+	},
+	"equipmentTab": {
+		"equipmentName": "Equipment name",
+		"type": "Type",
+		"serialNumber": "Serial number",
+		"inventoryNumber": "Inventory number",
+		"issueDate": "Issue date",
+		"returnDate": "Return date",
+		"status": "Status",
+		"assigned": "Assigned",
+		"returned": "Returned"
+	},
+	"educationTab": {
+		"educationLevel": "Education level",
+		"educationalInstitution": "Educational institution",
+		"faculty": "Faculty",
+		"specialization": "Specialization",
+		"studyForm": "Study form",
+		"graduationYear": "Graduation year",
+		"certificates": {
+			"technology": "Specialization",
+			"certificateId": "Certificate id",
+			"stack": "Stack",
+			"receiptDate": "Date"
+		}
+	},
+	"salaryTab": {
+		"payslips": "Payslips",
+		"viewPayslipDescription": "View payslip description",
+		"reportDate": "Date",
+		"fileName": "Payslip",
+		"salary": "Salary",
+		"salaryFrom": "Salary from"
+	},
+	"hardSkillsTab": {
+		"specialization": "Specialization"
+	},
+	"softSkillsTab": {
+		"softSkill": "Soft skill"
+	},
+	"developmentPlanTab": {
+		"startDate": "Start date",
+		"endDate": "Confirm. date",
+		"summary": "Summary",
+		"status": "Status",
+		"deadlineDate": "Deadline date"
+	},
+	"performanceReviewTab": {
+		"performanceReviewDate": "Date",
+		"agreements": "Agreements",
+		"documents": "Documents",
+		"docLinks": "Doc. links"
+	},
+	"dateTag": {
+		"tagNames": {
+			"future": "White",
+			"upcoming": "Yellow",
+			"imminent": "Orange",
+			"overdueMoreThanNDays": "Red",
+			"passed": "Green"
+		},
+		"tagDescriptions": {
+			"future": "> 7 days",
+			"upcoming": "< 3 days and ≤ 7 days",
+			"imminent": "≤ 3 days or overdue ≤ 7 days",
+			"overdueMoreThanNDays": "overdue > 7 days",
+			"passed": "passed"
+		}
+	},
+	"contractTab": {
+		"startDate": "Start date",
+		"endDate": "End date"
+	},
+	"tabs": {
+		"summary": "Summary",
+		"absences": "Absences",
+		"equipment": "Equipment",
+		"education": "Education",
+		"salary": "Salary",
+		"projects": "Projects",
+		"hardSkills": "Hard skills",
+		"softSkills": "Soft skills",
+		"developmentPlan": "Dev. plan",
+		"performanceReview": "Perf. review",
+		"contracts": "Contracts",
+		"signature": "Signature",
+		"jiraSettings": "Jira settings"
+	}
+}

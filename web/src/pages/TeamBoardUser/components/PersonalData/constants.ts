@@ -1,0 +1,17 @@
+export enum PersonalDataFields {
+	DATE_OF_BIRTH = 'Date of birth',
+	DEPARTMENT = 'Department',
+	FULL_NAME_ENGLISH = 'Full name (english)',
+	FULL_NAME_RUSSIAN = 'Full name (russian)',
+	ENGLISH_LEVEL = 'English level',
+	EMAIL_CORPORATE = 'Email (corporate)',
+	EMAIL_PERSONAL = 'Email (personal)',
+	HARD_SKILLS = 'Hard skills',
+	PHONE = 'Phone number',
+	SOFT_SKILLS = 'Soft skills',
+	REGISTERED_LOCATION = 'Registered location',
+	TELEGRAM = 'Telegram',
+	MILITARY_SERVICE_STATUS = 'Military service status',
+	GRADUATE_JOB_PLACEMENT = 'Graduate job placement',
+	LINKEDIN = 'LinkedIn',
+}

@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Database\Modsen.Portal.Core.Database.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.Utils\Modsen.Portal.Core.Utils.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Attendance\Modsen.Portal.Attendance.DataAccess.Npgsql\Modsen.Portal.Attendance.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Booking\Modsen.Portal.Booking.DataAccess.Npgsql\Modsen.Portal.Booking.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Cv\Modsen.Portal.Cv.DataAccess.Npgsql\Modsen.Portal.Cv.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Equipment\Modsen.Portal.Equipment.DataAccess.Npgsql\Modsen.Portal.Equipment.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Finance\Modsen.Portal.Finance.DataAccess.Npgsql\Modsen.Portal.Finance.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Identity\Modsen.Portal.Identity.DataAccess.Npgsql\Modsen.Portal.Identity.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Inquiries\Modsen.Portal.Inquiries.DataAccess.Npgsql\Modsen.Portal.Inquiries.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\KnowledgeBase\Modsen.Portal.KnowledgeBase.DataAccess.Npgsql\Modsen.Portal.KnowledgeBase.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Merch\Modsen.Portal.Merch.DataAccess.Npgsql\Modsen.Portal.Merch.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Notification\Modsen.Portal.Notification.DataAccess.Npgsql\Modsen.Portal.Notification.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\Storage\Modsen.Portal.Storage.DataAccess.Npgsql\Modsen.Portal.Storage.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\TeamBoard\Modsen.Portal.TeamBoard.DataAccess.Npgsql\Modsen.Portal.TeamBoard.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Modules\TimeTrack\Modsen.Portal.TimeTrack.DataAccess.Npgsql\Modsen.Portal.TimeTrack.DataAccess.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\Core\Modsen.Portal.Core.HostBuilder\Modsen.Portal.Core.HostBuilder.csproj" />
+    <ProjectReference Include="..\Modsen.Portal.Migrator.DataAccess\Modsen.Portal.Migrator.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>

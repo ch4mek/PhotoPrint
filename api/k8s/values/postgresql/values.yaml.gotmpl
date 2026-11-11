@@ -1,0 +1,46 @@
+global:
+  postgresql:
+    auth:
+      database: {{ .Values | get "apps.postgresql.auth.database" "mms-db" }}
+      username: {{ .Values | get "apps.postgresql.auth.username" "dbuser" }}
+      existingSecret: {{ .Values | get "apps.postgresql.auth.existingSecret" "mms-dev-postgresql-secrets" }}
+      secretKeys:
+        adminPasswordKey: postgres-password
+
+image:
+  registry: mirror.gcr.io
+
+primary:
+  extendedConfiguration: |
+    max_connections = 500
+  resources:
+    requests:
+      cpu: {{ .Values | get "apps.postgresql.resources.requests.cpu" "200m" }}
+      memory: {{ .Values | get "apps.postgresql.resources.requests.memory" "512Mi" }}
+      ephemeral-storage: {{ .Values | get "apps.postgresql.resources.requests.ephemeral-storage" "50Mi" }}
+    limits:
+      cpu: {{ .Values | get "apps.postgresql.resources.limits.cpu" "500m" }}
+      memory: {{ .Values | get "apps.postgresql.resources.limits.memory" "1024Mi" }}
+      ephemeral-storage: {{ .Values | get "apps.postgresql.resources.limits.ephemeral-storage" "2Gi" }}
+  nodeAffinityPreset:
+    type: {{ .Values | get "apps.postgresql.nodeAffinityPreset.type" "hard" }}
+    key: {{ .Values | get "apps.postgresql.nodeAffinityPreset.key" "node-group" }}
+    values:
+      {{- toYaml (.Values | get "apps.postgresql.nodeAffinityPreset.values" (list "development")) | nindent 6 }}
+  persistence:
+    size: {{ .Values | get "apps.postgresql.persistence.size" "20Gi" }}
+readReplicas:
+  resources:
+    requests:
+      cpu: {{ .Values | get "apps.postgresql.resources.requests.cpu" "200m" }}
+      memory: {{ .Values | get "apps.postgresql.resources.requests.memory" "512Mi" }}
+      ephemeral-storage: {{ .Values | get "apps.postgresql.resources.requests.ephemeral-storage" "50Mi" }}
+    limits:
+      cpu: {{ .Values | get "apps.postgresql.resources.limits.cpu" "500m" }}
+      memory: {{ .Values | get "apps.postgresql.resources.limits.memory" "1024Mi" }}
+      ephemeral-storage: {{ .Values | get "apps.postgresql.resources.limits.ephemeral-storage" "2Gi" }}
+  nodeAffinityPreset:
+    type: {{ .Values | get "apps.postgresql.nodeAffinityPreset.type" "hard" }}
+    key: {{ .Values | get "apps.postgresql.nodeAffinityPreset.key" "node-group" }}
+    values: {{ .Values | get "apps.postgresql.nodeAffinityPreset.values" "development" }}
+    

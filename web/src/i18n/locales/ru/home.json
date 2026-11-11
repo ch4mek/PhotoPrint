@@ -1,0 +1,38 @@
+{
+	"reviewTitle": "Предстоящая оценка эффективности работы",
+	"shortReviewTitle": "Предстоящая оценка",
+	"goToProfile": "Перейти в профиль",
+	"widgets": {
+		"timesheet": { "title": "Календарь отчетности" },
+		"developmentPlan": {
+			"title": "План развития",
+			"noPlan": "Нет планов развития",
+			"markAsDoneButtonTitle": "Отметить как выполненный",
+			"noStatusTagTitle": "Нет статуса"
+		},
+		"upcomingEvents": {
+			"title": "События",
+			"noEvents": "Нет предстоящих событий"
+		},
+		"companyLinks": { "title": "Ссылки" },
+		"birthdays": {
+			"title": "Дни рождения",
+			"noBirthdays": "Сегодня нет дней рождений",
+			"allBirthdaysPopup": {
+				"searchResults_zero": "Ничего не найдено",
+				"searchResults_one": "Найден {{count}} результат",
+				"searchResults_few": "Найдено {{count}} результата",
+				"searchResults_many": "Найдено {{count}} результатов"
+			}
+		},
+		"absences": {
+			"title": "Отсутствия",
+			"noAbsences": "Нет назначенных отсутствий"
+		}
+	},
+	"greetings": {
+		"goodMorning": "Доброе утро",
+		"goodAfternoon": "Добрый день",
+		"goodEvening": "Добрый вечер"
+	}
+}

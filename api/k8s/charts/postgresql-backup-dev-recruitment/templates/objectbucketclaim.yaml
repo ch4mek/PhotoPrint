@@ -1,0 +1,8 @@
+---
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: {{ .Values.postgresqlBackupDevRecruitment.ceph.bucketName }}
+spec:
+  generateBucketName: {{ include "this.name" . }}-bucket
+  storageClassName: {{ .Values.postgresqlBackupDevRecruitment.ceph.storageClassName }}
