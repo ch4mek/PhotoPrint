@@ -13,7 +13,7 @@
     <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" />
-    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" />
+    
     <PackageReference Include="AspNetCore.HealthChecks.Redis" />
   </ItemGroup>
 

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Npgsql;
+using Microsoft.Extensions.Configuration;
 
 namespace Modsen.Portal.Core.Database;
 
@@ -12,17 +11,12 @@ public class DataSourceFactory
         _configuration = configuration;
     }
 
-    public NpgsqlDataSource Create()
+    public PortalDbDataSource Create()
     {
-        if (_configuration.GetValue<bool>("AWS:RDS:UseAwsIam"))
-        {
-            return new AwsIamDataSourceFactory(_configuration).Create();
-        }
-
         var connectionString = _configuration.GetConnectionString("TrackDb");
 
         ArgumentException.ThrowIfNullOrEmpty(connectionString);
 
-        return NpgsqlDataSource.Create(connectionString);
+        return new PortalDbDataSource(connectionString);
     }
 }

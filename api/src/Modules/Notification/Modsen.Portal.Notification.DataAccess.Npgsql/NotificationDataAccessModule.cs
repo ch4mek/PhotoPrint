@@ -15,7 +15,7 @@ public sealed class NotificationDataAccessModule : RegistrationModule
         {
             var factory = serviceProvider.GetRequiredService<IConnectionFactory>();
 
-            optionsBuilder.UseNpgsql(factory.GetConnection(), pgOptions =>
+            optionsBuilder.UsePortalMySql(factory.GetConnection(), pgOptions =>
             {
                 pgOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, NotificationDbContext.Schema);
             })

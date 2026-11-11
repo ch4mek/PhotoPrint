@@ -23,7 +23,7 @@ public sealed class IdentityDataAccessModule : RegistrationModule
         {
             var factory = serviceProvider.GetRequiredService<IConnectionFactory>();
 
-            optionsBuilder.UseNpgsql(factory.GetConnection(), pgOptions =>
+            optionsBuilder.UsePortalMySql(factory.GetConnection(), pgOptions =>
                 {
                     pgOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, IdentityModuleDbContext.Schema);
                 })

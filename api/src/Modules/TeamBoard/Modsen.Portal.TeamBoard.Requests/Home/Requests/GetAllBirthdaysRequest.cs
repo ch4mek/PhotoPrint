@@ -82,8 +82,8 @@ internal sealed class GetAllBirthdaysRequest : IQueryHandler<GetAllBirthdaysRequ
             var pattern = $"%{request.Keyword.Trim()}%";
 
             query = query.Where(user =>
-                EF.Functions.ILike(user.FirstName + " " + user.LastName, pattern) ||
-                EF.Functions.ILike(user.LastName + " " + user.FirstName, pattern)
+                EF.Functions.Like(user.FirstName + " " + user.LastName, pattern) ||
+                EF.Functions.Like(user.LastName + " " + user.FirstName, pattern)
             );
         }
 

@@ -57,7 +57,7 @@ internal sealed class CreateEquipmentReportRequest : ICommandHandler<CreateEquip
 
         var equipmentReportDto = await _equipmentDbContext.EquipmentReports
             .AsNoTracking()
-            .Where(equipmentReport => EF.Functions.ILike(equipmentReport.SerialNumber, serialNumber) && equipmentReport.DataHash == jsonDataHash)
+            .Where(equipmentReport => EF.Functions.Like(equipmentReport.SerialNumber, serialNumber) && equipmentReport.DataHash == jsonDataHash)
             .Select(equipmentReport => new EquipmentReportDto
             {
                 Id = equipmentReport.Id,

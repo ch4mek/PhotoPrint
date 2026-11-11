@@ -3,7 +3,7 @@
     <PackageReference Include="Hangfire" />
     <PackageReference Include="Hangfire.Console.Extensions" />
     <PackageReference Include="Hangfire.Console.Extensions.Serilog" />
-    <PackageReference Include="Hangfire.PostgreSql" />
+    <PackageReference Include="Hangfire.InMemory" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Modsen.Portal.Core.Database\Modsen.Portal.Core.Database.csproj" />

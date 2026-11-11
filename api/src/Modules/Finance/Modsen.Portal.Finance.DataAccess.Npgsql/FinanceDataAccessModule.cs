@@ -16,7 +16,7 @@ public sealed class FinanceDataAccessModule : RegistrationModule
         {
             var factory = serviceProvider.GetRequiredService<IConnectionFactory>();
 
-            options.UseNpgsql(factory.GetConnection(), pgOptions =>
+            options.UsePortalMySql(factory.GetConnection(), pgOptions =>
             {
                 pgOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, FinanceDbContext.Schema);
                 pgOptions.MigrationsAssembly(typeof(FinanceDataAccessModule).Assembly.FullName);

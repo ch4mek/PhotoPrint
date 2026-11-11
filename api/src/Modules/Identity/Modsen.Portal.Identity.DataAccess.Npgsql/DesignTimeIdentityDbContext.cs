@@ -8,6 +8,6 @@ internal class DesignTimeIdentityDbContext : DesignTimeBaseDbContext, IDesignTim
 {
     public IdentityModuleDbContext CreateDbContext(string[] args)
     {
-        return new IdentityModuleDbContext(new DbContextOptionsBuilder<IdentityModuleDbContext>().UseNpgsql(GetConnectionString()).Options);
+        return new IdentityModuleDbContext(new DbContextOptionsBuilder<IdentityModuleDbContext>().UsePortalMySql(GetConnectionString()).Options);
     }
 }

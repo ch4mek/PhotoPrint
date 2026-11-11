@@ -8,6 +8,6 @@ internal class DesignTimeTimeTrackDbContext : DesignTimeBaseDbContext, IDesignTi
 {
     public TimeTrackDbContext CreateDbContext(string[] args)
     {
-        return new TimeTrackDbContext(new DbContextOptionsBuilder<TimeTrackDbContext>().UseNpgsql(GetConnectionString()).Options);
+        return new TimeTrackDbContext(new DbContextOptionsBuilder<TimeTrackDbContext>().UsePortalMySql(GetConnectionString()).Options);
     }
 }

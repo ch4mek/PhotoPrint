@@ -16,7 +16,7 @@ public sealed class InquiriesDataAccessModule : RegistrationModule
         {
             var factory = serviceProvider.GetRequiredService<IConnectionFactory>();
 
-            options.UseNpgsql(factory.GetConnection(), pgOptions =>
+            options.UsePortalMySql(factory.GetConnection(), pgOptions =>
             {
                 pgOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, InquiriesDbContext.Schema);
                 pgOptions.MigrationsAssembly(typeof(InquiriesDataAccessModule).Assembly.FullName);

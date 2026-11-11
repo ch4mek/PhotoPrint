@@ -78,7 +78,7 @@ internal class PayloadUserDetailsLoader : IPayloadUserDetailsLoader
                         || projectUser.UserOnProjectTo == DateOnly.FromDateTime(DateTime.MinValue)
                         || projectUser.UserOnProjectTo.Value.Year >= payloadYear)
                         &&
-                        (projectName == null || EF.Functions.ILike(projectUser.Project!.ProjectName, $"%{projectName.Trim()}%")))
+                        (projectName == null || EF.Functions.Like(projectUser.Project!.ProjectName, $"%{projectName.Trim()}%")))
                     .Select(projectUser => new UserProjectDetailsCoreDto
                     {
                         ProjectId = projectUser.ProjectId,

@@ -40,7 +40,7 @@ internal sealed class GetUserSpecializationsByUserIdRequest
             .Include(x => x.User)
             .Where(x => x.UserId == request.UserId && x.User!.IsActive)
             .Where(x => request.SpecializationTemplateName == null ||
-                EF.Functions.ILike(x.SpecializationTemplate!.Name, $"%{(request.SpecializationTemplateName ?? string.Empty).ToLower(CultureInfo.InvariantCulture)}%"))
+                EF.Functions.Like(x.SpecializationTemplate!.Name, $"%{(request.SpecializationTemplateName ?? string.Empty).ToLower(CultureInfo.InvariantCulture)}%"))
             .OrderByDescending(x => x.IsPrimary)
                 .ThenByDescending(x => x.CreatedAtUtc)
             .ToArrayAsync(cancellationToken);

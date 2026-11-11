@@ -20,7 +20,7 @@ public sealed class TeamBoardDataAccessModule : RegistrationModule
         {
             var factory = serviceProvider.GetRequiredService<IConnectionFactory>();
 
-            options.UseNpgsql(factory.GetConnection(), pgOptions =>
+            options.UsePortalMySql(factory.GetConnection(), pgOptions =>
             {
                 pgOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, TeamBoardDbContext.Schema);
                 pgOptions.MigrationsAssembly(typeof(TeamBoardDataAccessModule).Assembly.FullName);

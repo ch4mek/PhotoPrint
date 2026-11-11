@@ -16,7 +16,7 @@ public sealed class MigratorModule : RegistrationModule
         {
             var factory = serviceProvider.GetRequiredService<IConnectionFactory>();
 
-            optionsBuilder.UseNpgsql(factory.GetConnection(),
+            optionsBuilder.UsePortalMySql(factory.GetConnection(),
                 pgOptions =>
                     pgOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, MigratorDbContext.Schema));
         });

@@ -26,7 +26,7 @@ internal sealed class ClientLookupLoader : IClientLookupLoader
 
         if (!request.KeyWord.IsNullOrWhiteSpace())
         {
-            query = query.Where(client => EF.Functions.ILike(client.Name, $"{request.KeyWord}%"));
+            query = query.Where(client => EF.Functions.Like(client.Name, $"{request.KeyWord}%"));
         }
 
         if (request.IsActive.HasValue)

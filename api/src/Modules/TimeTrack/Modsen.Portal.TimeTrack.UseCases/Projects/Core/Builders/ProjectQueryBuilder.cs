@@ -66,7 +66,7 @@ internal class ProjectQueryBuilder(ITimeTrackDbContext timeTrackDbContext) : IPr
     {
         if (_keyWord is not null)
         {
-            projects = projects.Where(p => EF.Functions.ILike(p.Name, $"{_keyWord}%"));
+            projects = projects.Where(p => EF.Functions.Like(p.Name, $"{_keyWord}%"));
         }
 
         if (_isPublic.HasValue)

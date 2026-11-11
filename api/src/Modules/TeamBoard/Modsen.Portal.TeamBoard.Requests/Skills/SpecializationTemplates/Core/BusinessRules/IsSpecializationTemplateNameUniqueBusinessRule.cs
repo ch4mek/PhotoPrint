@@ -21,7 +21,7 @@ internal sealed class IsSpecializationTemplateNameUniqueBusinessRule : IIsSpecia
     {
         return !await _dbContext.SpecializationTemplates.AnyAsync(
             specialization =>
-                EF.Functions.ILike(specialization.Name, name) &&
+                EF.Functions.Like(specialization.Name, name) &&
                 specialization.IsActive &&
                 specialization.Id != id,
             cancellationToken);

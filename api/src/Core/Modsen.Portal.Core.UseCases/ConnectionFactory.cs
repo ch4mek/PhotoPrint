@@ -1,19 +1,18 @@
 ﻿using System.Data;
 using System.Data.Common;
 using Modsen.Portal.Core.Database;
-using Npgsql;
 
 namespace Modsen.Portal.Core.UseCases;
 
 internal sealed class ConnectionFactory : IConnectionFactory
 {
-    private readonly NpgsqlDataSource _dataSource;
+    private readonly PortalDbDataSource _dataSource;
     private DbConnection? _connection;
     private DbTransaction? _transaction;
     private readonly Lock _lockObject = new();
     private bool _disposedValue;
 
-    public ConnectionFactory(NpgsqlDataSource dataSource)
+    public ConnectionFactory(PortalDbDataSource dataSource)
     {
         _dataSource = dataSource;
     }

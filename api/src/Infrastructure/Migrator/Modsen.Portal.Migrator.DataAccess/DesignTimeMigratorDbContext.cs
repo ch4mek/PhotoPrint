@@ -8,6 +8,6 @@ internal class DesignTimeMigratorDbContext : DesignTimeBaseDbContext, IDesignTim
 {
     public MigratorDbContext CreateDbContext(string[] args)
     {
-        return new MigratorDbContext(new DbContextOptionsBuilder<MigratorDbContext>().UseNpgsql(GetConnectionString()).Options);
+        return new MigratorDbContext(new DbContextOptionsBuilder<MigratorDbContext>().UsePortalMySql(GetConnectionString()).Options);
     }
 }

@@ -55,8 +55,7 @@ internal class ProjectUserConfiguration : IEntityTypeConfiguration<ProjectUser>
         builder.Property(x => x.UserOnProjectTo).IsRequired(false);
 
         builder
-            .HasIndex(x => new { x.UserOnProjectFrom, x.UserOnProjectTo })
-            .IncludeProperties(x => new { x.UserId });
+            .HasIndex(x => new { x.UserOnProjectFrom, x.UserOnProjectTo, x.UserId });
 
         builder.HasOne(x => x.UserOnProjectSeniorityLevel)
             .WithMany()

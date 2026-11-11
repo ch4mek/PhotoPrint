@@ -14,7 +14,6 @@ using Modsen.Portal.Notification.DataAccess.Npgsql;
 using Modsen.Portal.Storage.DataAccess.Npgsql;
 using Modsen.Portal.TeamBoard.DataAccess.Npgsql;
 using Modsen.Portal.TimeTrack.DataAccess.Npgsql;
-using Npgsql;
 
 namespace Modsen.Portal.Migrator;
 
@@ -163,7 +162,7 @@ public static class PortalMigrator
     {
         var factory = scope.GetRequiredService<IConnectionFactory>();
         var options = new DbContextOptionsBuilder<TContext>()
-            .UseNpgsql(factory.GetConnection(), options =>
+            .UsePortalMySql(factory.GetConnection(), options =>
             {
                 options.CommandTimeout(120);
                 options.MigrationsHistoryTable(
@@ -181,7 +180,7 @@ public static class PortalMigrator
 
         try
         {
-            context.Database.Migrate();
+            context.Database.EnsureCreated();
             logger.LogInformation("Database associated with context {Name} has been migrated", contextName);
         }
         finally

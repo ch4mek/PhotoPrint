@@ -140,7 +140,7 @@ internal class GetProjectRatesQueryBuilder : IGetProjectRatesQueryBuilder
         if (!(_filter?.UserFullName).IsNullOrEmpty())
         {
             var keyword = $"%{_filter.UserFullName.Trim()}%";
-            query = query.Where(x => EF.Functions.ILike(
+            query = query.Where(x => EF.Functions.Like(
                 x.User!.LastNameRu == null && x.User!.FirstNameRu == null
                     ? x.User!.LastName + " " + x.User!.FirstName
                     : x.User!.LastNameRu != null && x.User!.FirstNameRu != null
@@ -171,7 +171,7 @@ internal class GetProjectRatesQueryBuilder : IGetProjectRatesQueryBuilder
         if (!(_filter?.ProjectName).IsNullOrEmpty())
         {
             var keyword = $"%{_filter.ProjectName.Trim()}%";
-            query = query.Where(x => EF.Functions.ILike(x.Project!.ProjectName, keyword));
+            query = query.Where(x => EF.Functions.Like(x.Project!.ProjectName, keyword));
         }
 
         return query;
@@ -182,7 +182,7 @@ internal class GetProjectRatesQueryBuilder : IGetProjectRatesQueryBuilder
         if (!(_filter?.ClientName).IsNullOrEmpty())
         {
             var keyword = $"%{_filter.ClientName.Trim()}%";
-            query = query.Where(x => EF.Functions.ILike(x.Project!.Client!.Name, keyword));
+            query = query.Where(x => EF.Functions.Like(x.Project!.Client!.Name, keyword));
         }
 
         return query;
@@ -194,7 +194,7 @@ internal class GetProjectRatesQueryBuilder : IGetProjectRatesQueryBuilder
         {
             var keyword = $"%{_filter.ClientLegalEntity.Trim()}%";
             query = query.Where(x => x.Project!.Client!.LegalEntity != null
-                                && EF.Functions.ILike(x.Project!.Client.LegalEntity, keyword));
+                                && EF.Functions.Like(x.Project!.Client.LegalEntity, keyword));
         }
 
         return query;

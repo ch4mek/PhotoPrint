@@ -307,7 +307,7 @@ internal sealed class GetPayloadUsersQueryBuilder : IGetPayloadUsersQueryBuilder
             var keyword = $"%{_filter.ResourceGroupName.Trim()}%";
             var groupIds = await _teamBoardDbContext.TeamBoardResourceGroups
                 .Where(g => g.IsActive)
-                .Where(g => EF.Functions.ILike(g.ResourceGroupName, keyword))
+                .Where(g => EF.Functions.Like(g.ResourceGroupName, keyword))
                 .Select(x => x.ResourceGroupId)
                 .ToListAsync(token);
             query = query
@@ -324,7 +324,7 @@ internal sealed class GetPayloadUsersQueryBuilder : IGetPayloadUsersQueryBuilder
         {
             var keyword = $"%{_filter.Plan.Trim()}%";
             query = query.Where(x => x.UserPayloadDetails
-                .Any(payload => payload.Plan != null && EF.Functions.ILike(payload.Plan, keyword)));
+                .Any(payload => payload.Plan != null && EF.Functions.Like(payload.Plan, keyword)));
         }
 
         return query;
@@ -335,7 +335,7 @@ internal sealed class GetPayloadUsersQueryBuilder : IGetPayloadUsersQueryBuilder
         if (!(_filter?.Comment).IsNullOrEmpty())
         {
             var keyword = $"%{_filter.Comment.Trim()}%";
-            query = query.Where(x => x.Comments != null && EF.Functions.ILike(x.Comments, keyword));
+            query = query.Where(x => x.Comments != null && EF.Functions.Like(x.Comments, keyword));
         }
 
         return query;
@@ -365,7 +365,7 @@ internal sealed class GetPayloadUsersQueryBuilder : IGetPayloadUsersQueryBuilder
             query = query.Where(x => x.UserProjects.Any(up =>
                 (up.UserOnProjectFrom == minDate || up.UserOnProjectFrom.Year <= _year) &&
                 ((up.UserOnProjectTo == null || up.UserOnProjectTo == minDate)  || up.UserOnProjectTo.Value.Year >= _year) &&
-                EF.Functions.ILike(up.Project!.ProjectName, keyword)));
+                EF.Functions.Like(up.Project!.ProjectName, keyword)));
         }
 
         return query;
@@ -376,7 +376,7 @@ internal sealed class GetPayloadUsersQueryBuilder : IGetPayloadUsersQueryBuilder
         if (!(_filter?.UserFullName).IsNullOrEmpty())
         {
             var keyword = $"%{_filter.UserFullName.Trim()}%";
-            query = query.Where(x => EF.Functions.ILike(
+            query = query.Where(x => EF.Functions.Like(
                 x.LastNameRu == null && x.FirstNameRu == null
                     ? x.LastName + " " + x.FirstName
                     : x.LastNameRu != null && x.FirstNameRu != null

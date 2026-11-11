@@ -134,8 +134,8 @@ internal class IdentityQueryBuilder : IIdentityQueryBuilder
         {
             var searchPattern = $"{_keyWord}%";
 
-            query = query.Where(c => EF.Functions.ILike(c.FirstName, searchPattern)
-                || EF.Functions.ILike(c.LastName, searchPattern));
+            query = query.Where(c => EF.Functions.Like(c.FirstName, searchPattern)
+                || EF.Functions.Like(c.LastName, searchPattern));
         }
 
         if (_isActive.HasValue)

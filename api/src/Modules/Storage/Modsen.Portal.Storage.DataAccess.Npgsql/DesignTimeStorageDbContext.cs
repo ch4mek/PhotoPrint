@@ -8,6 +8,6 @@ internal class DesignTimeStorageDbContext : DesignTimeBaseDbContext, IDesignTime
 {
     public StorageDbContext CreateDbContext(string[] args)
     {
-        return new StorageDbContext(new DbContextOptionsBuilder<StorageDbContext>().UseNpgsql(GetConnectionString()).Options);
+        return new StorageDbContext(new DbContextOptionsBuilder<StorageDbContext>().UsePortalMySql(GetConnectionString()).Options);
     }
 }

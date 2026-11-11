@@ -20,7 +20,7 @@ internal sealed class IsHardSkillNameUniqueBusinessRule : IIsHardSkillNameUnique
     public async Task<bool> IsCorrespondsToBusiness(int? id, string name, CancellationToken cancellationToken)
     {
         return !await _dbContext.HardSkills.AnyAsync(hardSkill =>
-                EF.Functions.ILike(hardSkill.Name, name) &&
+                EF.Functions.Like(hardSkill.Name, name) &&
                 id != hardSkill.Id &&
                 hardSkill.IsActive,
             cancellationToken);

@@ -21,7 +21,7 @@ internal class IsSoftSkillNameUniqueBusinessRule : IIsSoftSkillNameUniqueBusines
     {
         return !await _dbContext.SoftSkills
             .AnyAsync(softSkill =>
-                    EF.Functions.ILike(softSkill.Name, name) &&
+                    EF.Functions.Like(softSkill.Name, name) &&
                     id != softSkill.Id &&
                     softSkill.IsActive,
                 cancellationToken);

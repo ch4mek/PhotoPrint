@@ -8,6 +8,6 @@ internal class DesignTimeFinanceDbContext : DesignTimeBaseDbContext, IDesignTime
 {
     public FinanceDbContext CreateDbContext(string[] args)
     {
-        return new FinanceDbContext(new DbContextOptionsBuilder<FinanceDbContext>().UseNpgsql(GetConnectionString()).Options);
+        return new FinanceDbContext(new DbContextOptionsBuilder<FinanceDbContext>().UsePortalMySql(GetConnectionString()).Options);
     }
 }

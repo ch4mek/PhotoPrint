@@ -25,7 +25,7 @@ internal class MicrofrontendsConfigConfiguration : IEntityTypeConfiguration<Micr
             .IsRequired(false);
 
         builder.Property(config => config.JsonData)
-            .HasColumnType("jsonb")
+            .HasColumnType("json")
             .IsRequired();
     }
 }

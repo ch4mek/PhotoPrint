@@ -8,6 +8,6 @@ internal class DesignTimeKnowledgeBaseDbContext : DesignTimeBaseDbContext, IDesi
 {
     public KnowledgeBaseDbContext CreateDbContext(string[] args)
     {
-        return new KnowledgeBaseDbContext(new DbContextOptionsBuilder<KnowledgeBaseDbContext>().UseNpgsql(GetConnectionString()).Options);
+        return new KnowledgeBaseDbContext(new DbContextOptionsBuilder<KnowledgeBaseDbContext>().UsePortalMySql(GetConnectionString()).Options);
     }
 }

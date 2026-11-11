@@ -118,8 +118,8 @@ internal class ArePersonalPhoneAndEmailsUniqueBusinessRule : IArePersonalPhoneAn
     {
         return await _teamBoardDbContext.TeamBoardUsers
             .Where(u => u.UserId != userId &&
-                        (u.PersonalEmail != null && emails.Any(e => EF.Functions.ILike(e, u.PersonalEmail)) ||
-                         u.PersonalEmailSecond != null && emails.Any(e => EF.Functions.ILike(e, u.PersonalEmailSecond))))
+                        (u.PersonalEmail != null && emails.Any(e => EF.Functions.Like(e, u.PersonalEmail)) ||
+                         u.PersonalEmailSecond != null && emails.Any(e => EF.Functions.Like(e, u.PersonalEmailSecond))))
             .Select(u => new ValueTuple<string?, string?>(
                 u.PersonalEmail,
                 u.PersonalEmailSecond))

@@ -9,7 +9,7 @@ internal class DesignTimeAttendanceDbContext : DesignTimeBaseDbContext, IDesignT
     public AttendanceDbContext CreateDbContext(string[] args)
     {
         var builder = new DbContextOptionsBuilder<AttendanceDbContext>();
-        builder.UseNpgsql(GetConnectionString());
+        builder.UsePortalMySql(GetConnectionString());
 
         return new AttendanceDbContext(builder.Options);
     }

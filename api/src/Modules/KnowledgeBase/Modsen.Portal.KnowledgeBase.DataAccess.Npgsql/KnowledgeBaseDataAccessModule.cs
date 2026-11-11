@@ -16,7 +16,7 @@ public sealed class KnowledgeBaseDataAccessModule : RegistrationModule
         {
             var factory = serviceProvider.GetRequiredService<IConnectionFactory>();
 
-            options.UseNpgsql(factory.GetConnection(), pgOptions =>
+            options.UsePortalMySql(factory.GetConnection(), pgOptions =>
             {
                 pgOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, KnowledgeBaseDbContext.Schema);
                 pgOptions.MigrationsAssembly(typeof(KnowledgeBaseDataAccessModule).Assembly.FullName);

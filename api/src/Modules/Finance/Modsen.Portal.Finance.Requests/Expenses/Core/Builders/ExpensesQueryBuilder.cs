@@ -66,7 +66,7 @@ internal class ExpensesQueryBuilder : IExpensesQueryBuilder
         if (!(_filter?.CategoryName).IsNullOrEmpty())
         {
             var keyword = $"%{_filter.CategoryName.Trim()}%";
-            categoriesQuery = categoriesQuery.Where(x => EF.Functions.ILike(x.Name, keyword));
+            categoriesQuery = categoriesQuery.Where(x => EF.Functions.Like(x.Name, keyword));
         }
 
         var pagedCategories = await GetCategoriesIdsAsync(categoriesQuery, token);

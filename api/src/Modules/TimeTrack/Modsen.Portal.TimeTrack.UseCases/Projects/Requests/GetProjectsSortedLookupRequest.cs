@@ -30,7 +30,7 @@ internal sealed class GetProjectsSortedLookupRequest
 
         if (!request.KeyWord.IsNullOrWhiteSpace())
         {
-            query = query.Where(project => EF.Functions.ILike(project.Name, $"{request.KeyWord}%"));
+            query = query.Where(project => EF.Functions.Like(project.Name, $"{request.KeyWord}%"));
         }
 
         if (_authenticatedUserContext.GetRoles().IsEmployee() || _authenticatedUserContext.GetRoles().IsSystemAdministrator())

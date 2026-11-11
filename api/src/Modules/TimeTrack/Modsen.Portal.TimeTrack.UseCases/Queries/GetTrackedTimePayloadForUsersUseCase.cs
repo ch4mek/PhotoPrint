@@ -64,7 +64,7 @@ internal sealed class GetTrackedTimePayloadForUsersUseCase(
                     (up.UserOnProjectTo == minDate || up.UserOnProjectTo == null) ||
                     up.UserOnProjectTo.HasValue && up.UserOnProjectTo.Value.Year >= request.Year
                 ))
-            .Where(up => keyword == null || EF.Functions.ILike(up.Project!.Name, keyword))
+            .Where(up => keyword == null || EF.Functions.Like(up.Project!.Name, keyword))
             .OrderByDescending(up => up.UserOnProjectFrom)
             .Select(up => new AssignmentRow
             {
@@ -85,7 +85,7 @@ internal sealed class GetTrackedTimePayloadForUsersUseCase(
             .Where(timesheet => request.UserIds.Contains(timesheet.UserId))
             .Where(timesheet => timesheet.ReportYear == request.Year)
             .Where(timesheet => !timesheet.Project!.IsPublic)
-            .Where(timesheet => keyword == null || EF.Functions.ILike(timesheet.Project!.Name, keyword))
+            .Where(timesheet => keyword == null || EF.Functions.Like(timesheet.Project!.Name, keyword))
             .GroupBy(timesheet => new { timesheet.ReportMonthOfYear, timesheet.ReportForDate, timesheet.UserId, timesheet.ProjectId })
             .Select(group => new TimesheetRow
             {

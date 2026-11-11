@@ -21,7 +21,7 @@ internal sealed class GetEquipmentReportRelevancePeriodsRequest : IQueryHandler<
     {
         var equipmentReportRelevancePeriods = await _equipmentDbContext.EquipmentReportRelevancePeriods
             .AsNoTracking()
-            .Where(equipmentReport => EF.Functions.ILike(equipmentReport.EquipmentReport!.SerialNumber, request.SerialNumber))
+            .Where(equipmentReport => EF.Functions.Like(equipmentReport.EquipmentReport!.SerialNumber, request.SerialNumber))
             .Select(equipmentReport => new EquipmentReportRelevancePeriodDto
             {
                 FromUtc = equipmentReport.FromUtc,

@@ -35,8 +35,8 @@ internal class TimeTrackUserProvider : ITimeTrackUserProvider
         if (!keyWord.IsNullOrWhiteSpace())
         {
             var searchPattern = $"{keyWord}%";
-            query = query.Where(c => EF.Functions.ILike(c.FirstName, searchPattern) ||
-                EF.Functions.ILike(c.LastName, searchPattern));
+            query = query.Where(c => EF.Functions.Like(c.FirstName, searchPattern) ||
+                EF.Functions.Like(c.LastName, searchPattern));
         }
 
         var timeTrackUsers = await query
@@ -229,8 +229,8 @@ internal class TimeTrackUserProvider : ITimeTrackUserProvider
         }
 
         var searchPattern = $"{keyWord.ToLower(CultureInfo.InvariantCulture)}%";
-        return query.Where(c => EF.Functions.ILike(c.FirstName, searchPattern) ||
-            EF.Functions.ILike(c.LastName, searchPattern));
+        return query.Where(c => EF.Functions.Like(c.FirstName, searchPattern) ||
+            EF.Functions.Like(c.LastName, searchPattern));
     }
 
     private static async Task<List<Domain.TimeTrackUser>> ExecuteUsersLookupAsync(

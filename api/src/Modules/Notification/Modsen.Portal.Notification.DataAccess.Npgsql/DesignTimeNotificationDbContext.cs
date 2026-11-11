@@ -8,6 +8,6 @@ internal class DesignTimeNotificationDbContext : DesignTimeBaseDbContext, IDesig
 {
     public NotificationDbContext CreateDbContext(string[] args)
     {
-        return new NotificationDbContext(new DbContextOptionsBuilder<NotificationDbContext>().UseNpgsql(GetConnectionString()).Options);
+        return new NotificationDbContext(new DbContextOptionsBuilder<NotificationDbContext>().UsePortalMySql(GetConnectionString()).Options);
     }
 }

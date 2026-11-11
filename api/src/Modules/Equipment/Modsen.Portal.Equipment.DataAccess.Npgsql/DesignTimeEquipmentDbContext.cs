@@ -8,6 +8,6 @@ internal class DesignTimeEquipmentDbContext : DesignTimeBaseDbContext, IDesignTi
 {
     public EquipmentDbContext CreateDbContext(string[] args)
     {
-        return new EquipmentDbContext(new DbContextOptionsBuilder<EquipmentDbContext>().UseNpgsql(GetConnectionString()).Options);
+        return new EquipmentDbContext(new DbContextOptionsBuilder<EquipmentDbContext>().UsePortalMySql(GetConnectionString()).Options);
     }
 }
