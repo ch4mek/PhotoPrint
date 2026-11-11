@@ -1,31 +1,31 @@
 version: "3.9"
 
 services:
-  postgres:
-    image: postgres:16-alpine
+  mysql:
+    image: mysql:8
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-kontur}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kontur}
-      POSTGRES_DB: ${POSTGRES_DB:-kontur}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-kontur}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-kontur}
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "${MYSQL_PORT:-3306}:3306"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mysqldata:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kontur} -d ${POSTGRES_DB:-kontur}"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASSWORD:-kontur}"]
       interval: 5s
       timeout: 3s
-      retries: 10
+      retries: 20
 
   api:
     build: ./api
     depends_on:
-      postgres:
+      mysql:
         condition: service_healthy
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__Default: Host=postgres;Port=5432;Database=${POSTGRES_DB:-kontur};Username=${POSTGRES_USER:-kontur};Password=${POSTGRES_PASSWORD:-kontur}
+      ConnectionStrings__Default: Server=mysql;Port=3306;Database=${MYSQL_DATABASE:-kontur};User=root;Password=${MYSQL_ROOT_PASSWORD:-kontur}
       Jwt__Secret: ${JWT_SECRET:-change-me-in-env}
       Jwt__LifetimeMinutes: ${JWT_LIFETIME_MINUTES:-120}
       UseMocks: ${USE_MOCKS:-true}
@@ -46,4 +46,4 @@ services:
       - "5173:80"
 
 volumes:
-  pgdata:
+  mysqldata:

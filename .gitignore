@@ -4,6 +4,10 @@ obj/
 *.user
 appsettings.*.local.json
 
+# Локальные секреты разработки (реальные пароли БД и ключи)
+api/src/Kontur.Api/appsettings.Development.json
+.env
+
 # Node
 node_modules/
 dist/

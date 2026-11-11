@@ -9,7 +9,7 @@
 - [x] Контракт API (`contracts/openapi.yaml`) — v0.9, для команд треков 2/3
 - [x] Синтетический датасет с сюжетами (`dataset/`) — регенерация одной командой
 - [x] Инфраструктура запуска (docker-compose + локальный режим)
-- [ ] API (api/) — .NET 9, в разработке
+- [x] API (api/) — .NET 9: вход/роли/scope, Пульс (8 KPI + алерты + drill-down), реестр решений с проверкой эффекта, аудит; smoke-тест `scripts/api_smoke.py` — 17/17 PASS
 - [ ] Web (web/) — React 19 + Vite + MUI, в разработке
 
 ## Стек
@@ -17,7 +17,7 @@
 | Слой | Технология |
 |---|---|
 | API | .NET 9, ASP.NET Core, EF Core 9, модульный монолит |
-| БД | PostgreSQL 16 |
+| БД | MySQL 8 |
 | Realtime | SignalR (`/hubs/pulse`) |
 | Web | React 19 + TypeScript + Vite + MUI + TanStack Query + Zustand |
 | Данные | только синтетика (`dataset/seed/`) |
@@ -35,19 +35,19 @@ docker compose up --build
 
 ### Вариант Б — локально (разработка)
 
-Требуется: .NET 9 SDK, Node 24+, PostgreSQL 16 на localhost:5432.
+Требуется: .NET 9 SDK, Node 24+, MySQL 8 на localhost:3306.
+Строка подключения берётся из `api/src/Kontur.Api/appsettings.Development.json`
+(файл с реальным паролем в git не попадает; шаблон — в `appsettings.json`).
+База `kontur` и схема создаются автоматически при первом старте.
 
 ```bash
-# 1. База (один раз): создать базу kontur
-psql -U postgres -c "CREATE DATABASE kontur;"
+# 1. API (миграции/сид/датасет применяются при старте)
+cd api && dotnet run --project src/Kontur.Api       # http://localhost:8080/swagger
 
-# 2. API
-cd api && dotnet run --project src/Kontur.Api.Host   # миграции и сиды применяются при старте
+# 2. Web
+cd web && npm i && npm run dev                       # http://localhost:5173
 
-# 3. Web
-cd web && npm i && npm run dev                        # http://localhost:5173
-
-# 4. Синтетика (при необходимости перегенерировать)
+# 3. Синтетика (при необходимости перегенерировать)
 python dataset/generate.py
 ```
 
