@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-kontur}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kontur}
+      POSTGRES_DB: ${POSTGRES_DB:-kontur}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kontur} -d ${POSTGRES_DB:-kontur}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: ./api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=${POSTGRES_DB:-kontur};Username=${POSTGRES_USER:-kontur};Password=${POSTGRES_PASSWORD:-kontur}
+      Jwt__Secret: ${JWT_SECRET:-change-me-in-env}
+      Jwt__LifetimeMinutes: ${JWT_LIFETIME_MINUTES:-120}
+      UseMocks: ${USE_MOCKS:-true}
+      Llm__Provider: ${LLM_PROVIDER:-mock}
+      Llm__ApiKey: ${LLM_API_KEY:-}
+      Llm__Model: ${LLM_MODEL:-}
+      TZ: Europe/Minsk
+    ports:
+      - "8080:8080"
+
+  web:
+    build: ./web
+    depends_on:
+      - api
+    environment:
+      VITE_API_URL: http://localhost:8080
+    ports:
+      - "5173:80"
+
+volumes:
+  pgdata:

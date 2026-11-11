@@ -1,0 +1,39 @@
+{
+ "sources": [
+  {
+   "name": "CRM (Bitrix24-мок)",
+   "lag_hours": 8,
+   "status": "yellow",
+   "issues": [
+    "5 пар дублей клиентов",
+    "нет телефонов у 3% записей"
+   ]
+  },
+  {
+   "name": "ERP/производство",
+   "lag_minutes": 15,
+   "status": "green",
+   "issues": []
+  },
+  {
+   "name": "1С (финансы)",
+   "lag_hours": 26,
+   "status": "yellow",
+   "issues": [
+    "расхождение итогов 0.7% за позапрошлый месяц"
+   ]
+  },
+  {
+   "name": "База знаний",
+   "lag_hours": 40,
+   "status": "green",
+   "issues": []
+  }
+ ],
+ "reconciliation": {
+  "period": "M-2",
+  "erp_total_units": 1483200,
+  "fin_total_units": 1493577,
+  "diff_percent": 0.7
+ }
+}

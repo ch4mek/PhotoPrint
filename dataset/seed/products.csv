@@ -1,0 +1,7 @@
+id,name,price_byn,cost_ratio,production_days,min_pixels,formats
+p-book20,"Фотокнига 20×20, 20 разворотов",89.0,0.52,3,1500000,JPEG;PNG
+p-book30,"Фотокнига 30×30, 30 разворотов",149.0,0.55,4,1500000,JPEG;PNG
+p-calendar,Настенный календарь А3,45.0,0.45,2,1500000,JPEG;PNG
+p-magnets,"Магниты, набор 9 шт.",29.0,0.38,2,800000,JPEG;PNG
+p-canvas,Холст 40×60,69.0,0.48,3,1500000,JPEG;PNG
+p-mug,Кружка с фото,25.0,0.35,1,1500000,JPEG;PNG

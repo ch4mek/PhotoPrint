@@ -1,0 +1,10 @@
+order_id,customer_id,product_id,photos,submitted_at,age_hours,quality_flags
+ord-01797,cust-022,p-calendar,17,2026-11-02T21:52:00,208.7,unsupported_format
+ord-01798,cust-103,p-calendar,35,2026-11-02T19:41:00,210.9,
+ord-01799,cust-080,p-mug,41,2026-11-03T10:51:00,195.7,
+ord-01802,cust-145,p-book30,48,2026-11-05T20:37:00,138.0,
+ord-01807,cust-229,p-magnets,10,2026-11-07T19:30:00,91.1,unsupported_format
+ord-01811,cust-186,p-book20,11,2026-11-08T09:31:00,77.1,
+ord-01812,cust-136,p-book20,47,2026-11-08T21:09:00,65.4,unsupported_format
+ord-01813,cust-154,p-mug,10,2026-11-08T14:55:00,71.7,
+ord-01818,cust-098,p-book20,42,2026-11-11T15:48:00,-1.2,unsupported_format
