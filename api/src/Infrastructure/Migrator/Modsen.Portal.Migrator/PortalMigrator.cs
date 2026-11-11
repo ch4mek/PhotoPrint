@@ -3,15 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Modsen.Portal.Attendance.DataAccess.Npgsql;
-using Modsen.Portal.Booking.DataAccess.Npgsql;
 using Modsen.Portal.Core.Database;
-using Modsen.Portal.Cv.DataAccess.Npgsql;
 using Modsen.Portal.Equipment.DataAccess.Npgsql;
 using Modsen.Portal.Finance.DataAccess.Npgsql;
 using Modsen.Portal.Identity.DataAccess.Npgsql;
 using Modsen.Portal.Inquiries.DataAccess.Npgsql;
 using Modsen.Portal.KnowledgeBase.DataAccess.Npgsql;
-using Modsen.Portal.Merch.DataAccess.Npgsql;
 using Modsen.Portal.Migrator.DataAccess;
 using Modsen.Portal.Notification.DataAccess.Npgsql;
 using Modsen.Portal.Storage.DataAccess.Npgsql;
@@ -45,15 +42,6 @@ public static class PortalMigrator
     {
         using var context = new TimeTrackDbContext(
             serviceProvider.CreateContextOptions<TimeTrackDbContext>(TimeTrackDbContext.Schema)
-        );
-
-        context.MigrateDbContext(serviceProvider);
-    }
-
-    public static void MigrateBookingDb(this IServiceProvider serviceProvider)
-    {
-        using var context = new BookingDbContext(
-            serviceProvider.CreateContextOptions<BookingDbContext>(BookingDbContext.Schema)
         );
 
         context.MigrateDbContext(serviceProvider);
@@ -113,24 +101,6 @@ public static class PortalMigrator
         context.MigrateDbContext(serviceProvider);
     }
 
-    public static void MigrateMerchDb(this IServiceProvider serviceProvider)
-    {
-        using var context = new MerchDbContext(
-            serviceProvider.CreateContextOptions<MerchDbContext>(MerchDbContext.Schema)
-        );
-
-        context.MigrateDbContext(serviceProvider);
-    }
-
-    public static void MigrateCvDb(this IServiceProvider serviceProvider)
-    {
-        using var context = new CvDbContext(
-            serviceProvider.CreateContextOptions<CvDbContext>(CvDbContext.Schema)
-        );
-
-        context.MigrateDbContext(serviceProvider);
-    }
-
     public static void MigrateAttendancesDb(this IServiceProvider serviceProvider)
     {
         using var context = new AttendanceDbContext(
@@ -159,11 +129,6 @@ public static class PortalMigrator
         serviceProvider.ExecuteSeeds<TimeTrackDbContext>();
     }
 
-    public static void ExecuteBookingSeed(this IServiceProvider serviceProvider)
-    {
-        serviceProvider.ExecuteSeeds<BookingDbContext>();
-    }
-
     public static void ExecuteEquipmentSeed(this IServiceProvider serviceProvider)
     {
         serviceProvider.ExecuteSeeds<EquipmentDbContext>();
@@ -182,16 +147,6 @@ public static class PortalMigrator
     public static void ExecuteKnowledgeBaseSeed(this IServiceProvider serviceProvider)
     {
         serviceProvider.ExecuteSeeds<KnowledgeBaseDbContext>();
-    }
-
-    public static void ExecuteMerchSeed(this IServiceProvider serviceProvider)
-    {
-        serviceProvider.ExecuteSeeds<MerchDbContext>();
-    }
-
-    public static void ExecuteCvSeed(this IServiceProvider serviceProvider)
-    {
-        serviceProvider.ExecuteSeeds<CvDbContext>();
     }
 
     public static void ExecuteAttendancesSeed(this IServiceProvider serviceProvider)

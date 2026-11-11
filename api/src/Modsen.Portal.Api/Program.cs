@@ -43,21 +43,17 @@ await ServiceHostBuilder
         serviceProvider.MigrateTeamBoardDb();
         serviceProvider.MigrateIdentityDb();
         serviceProvider.MigrateTimeTrackDb();
-        serviceProvider.MigrateBookingDb();
         serviceProvider.MigrateEquipmentDb();
         serviceProvider.MigrateStorageDb();
         serviceProvider.MigrateNotificationDb();
         serviceProvider.MigrateKnowledgeBaseDb();
         serviceProvider.MigrateInquiriesDb();
-        serviceProvider.MigrateMerchDb();
-        serviceProvider.MigrateCvDb();
         serviceProvider.MigrateAttendancesDb();
         serviceProvider.MigrateFinanceDb();
         serviceProvider.ExecuteIdentitySeed();
         serviceProvider.ExecuteFinanceSeed();
 
         serviceProvider.ApplyMigrationTasks([
-            "PublishExistingUsersToBooking",
         ]);
 
         serviceProvider.ApplyMigrationTasks([
@@ -80,7 +76,6 @@ await ServiceHostBuilder
             "PublishExistingUsersToTimeTrack",
             "PublishExistingUsersToKnowledgeBase",
             "PublishExistingUsersToInquiries",
-            "PublishExistingUsersToMerch",
             "PublishExistingUsersToCv",
             "PublishExistingUsersToAttendance",
             "PublishExistingUsersToFinance",
@@ -88,12 +83,10 @@ await ServiceHostBuilder
         ]);
 
         serviceProvider.ExecuteTimeTrackSeed();
-        serviceProvider.ExecuteBookingSeed();
         serviceProvider.ExecuteEquipmentSeed();
         serviceProvider.ExecuteTeamBoardSeed();
         serviceProvider.ExecuteInquiriesSeed();
         serviceProvider.ExecuteKnowledgeBaseSeed();
-        serviceProvider.ExecuteMerchSeed();
 
         serviceProvider.ApplyMigrationTasks([
             "PublishExistingDepartmentsToEquipment",
@@ -117,7 +110,6 @@ await ServiceHostBuilder
         ]);
 
 
-        serviceProvider.ExecuteCvSeed();
         serviceProvider.ExecuteAttendancesSeed();
 
         serviceProvider.VerifyDataConsistency();

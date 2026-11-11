@@ -34,11 +34,6 @@
     <ProjectReference Include="..\Modules\Attendance\Modsen.Portal.Attendance.Controllers\Modsen.Portal.Attendance.Controllers.csproj" />
     <ProjectReference Include="..\Modules\Attendance\Modsen.Portal.Attendance.DataAccess.Npgsql\Modsen.Portal.Attendance.DataAccess.Npgsql.csproj" />
     <ProjectReference Include="..\Modules\Attendance\Modsen.Portal.Attendance.Requests\Modsen.Portal.Attendance.Requests.csproj" />
-    <ProjectReference Include="..\Modules\Booking\Modsen.Portal.Booking.Controllers\Modsen.Portal.Booking.Controllers.csproj" />
-    <ProjectReference Include="..\Modules\Booking\Modsen.Portal.Booking.Requests\Modsen.Portal.Booking.Requests.csproj" />
-    <ProjectReference Include="..\Modules\Certificate\Modsen.Portal.Certificate.Controllers\Modsen.Portal.Certificate.Controllers.csproj" />
-    <ProjectReference Include="..\Modules\Certificate\Modsen.Portal.Certificate.UseCases\Modsen.Portal.Certificate.UseCases.csproj" />
-    <ProjectReference Include="..\Modules\Cv\Modsen.Portal.Cv.Controllers\Modsen.Portal.Cv.Controllers.csproj" />
     <ProjectReference Include="..\Modules\Equipment\Modsen.Portal.Equipment.Controllers\Modsen.Portal.Equipment.Controllers.csproj" />
     <ProjectReference Include="..\Modules\Finance\Modsen.Portal.Finance.Controllers\Modsen.Portal.Finance.Controllers.csproj" />
     <ProjectReference Include="..\Modules\Identity\Modsen.Portal.Identity.Contract\Modsen.Portal.Identity.Contract.csproj" />
@@ -46,15 +41,12 @@
     <ProjectReference Include="..\Modules\Identity\Modsen.Portal.Identity.Requests\Modsen.Portal.Identity.Requests.csproj" />
     <ProjectReference Include="..\Modules\Inquiries\Modsen.Portal.Inquiries.Controllers\Modsen.Portal.Inquiries.Controllers.csproj" />
     <ProjectReference Include="..\Modules\KnowledgeBase\Modsen.Portal.KnowledgeBase.Controllers\Modsen.Portal.KnowledgeBase.Controllers.csproj" />
-    <ProjectReference Include="..\Modules\Merch\Modsen.Portal.Merch.Controllers\Modsen.Portal.Merch.Controllers.csproj" />
     <ProjectReference Include="..\Modules\Notification\Modsen.Portal.Notification.Controllers\Modsen.Portal.Notification.Controllers.csproj" />
     <ProjectReference Include="..\Modules\Notification\Modsen.Portal.Notification.UseCases\Modsen.Portal.Notification.UseCases.csproj" />
     <ProjectReference Include="..\Modules\Storage\Modsen.Portal.Storage.Controllers\Modsen.Portal.Storage.Controllers.csproj" />
     <ProjectReference Include="..\Modules\Storage\Modsen.Portal.Storage.Requests\Modsen.Portal.Storage.Requests.csproj" />
     <ProjectReference Include="..\Modules\TeamBoard\Modsen.Portal.TeamBoard.Controllers\Modsen.Portal.TeamBoard.Controllers.csproj" />
     <ProjectReference Include="..\Modules\TeamBoard\Modsen.Portal.TeamBoard.Requests\Modsen.Portal.TeamBoard.Requests.csproj" />
-    <ProjectReference Include="..\Modules\TeamWork\Modsen.Portal.TeamWork.Controllers\Modsen.Portal.TeamWork.Controllers.csproj" />
-    <ProjectReference Include="..\Modules\TeamWork\Modsen.Portal.TeamWork.UseCases\Modsen.Portal.TeamWork.UseCases.csproj" />
     <ProjectReference Include="..\Modules\TimeTrack\Modsen.Portal.TimeTrack.Controllers\Modsen.Portal.TimeTrack.Controllers.csproj" />
     <ProjectReference Include="..\Modules\Utilities\Modsen.Portal.Utilities.Controllers\Modsen.Portal.Utilities.Controllers.csproj" />
   </ItemGroup>

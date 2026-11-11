@@ -12,19 +12,15 @@ public class CrossModuleReferencesTest
         var modules = new List<string>
         {
             "Attendance",
-            "Booking",
-            "Certificate",
             "Cv",
             "Equipment",
             "Finance",
             "Identity",
             "Inquiries",
             "KnowledgeBase",
-            "Merch",
             "Notification",
             "Storage",
             "TeamBoard",
-            "TeamWork",
             "TimeTrack",
             "Utilities"
         };

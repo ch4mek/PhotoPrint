@@ -1585,70 +1585,6 @@
       "modsen.portal.bcseapi.contract": {
         "type": "Project"
       },
-      "modsen.portal.booking.contract": {
-        "type": "Project",
-        "dependencies": {
-          "Modsen.Portal.Core": "[1.0.0, )"
-        }
-      },
-      "modsen.portal.booking.controllers": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[4.8.0, 4.8.0]",
-          "Modsen.Portal.Booking.Requests": "[1.0.0, )",
-          "Modsen.Portal.Core.HostBuilder": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )"
-        }
-      },
-      "modsen.portal.booking.dataaccess.npgsql": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[4.8.0, 4.8.0]",
-          "Microsoft.CodeAnalysis.Common": "[4.8.0, 4.8.0]",
-          "Modsen.Portal.Core": "[1.0.0, )",
-          "Modsen.Portal.Core.Context": "[1.0.0, )",
-          "Modsen.Portal.Core.Database": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "[9.0.4, )"
-        }
-      },
-      "modsen.portal.booking.requests": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[4.8.0, 4.8.0]",
-          "Modsen.Portal.Booking.Contract": "[1.0.0, )",
-          "Modsen.Portal.Booking.DataAccess.Npgsql": "[1.0.0, )",
-          "Modsen.Portal.Core": "[1.0.0, )",
-          "Modsen.Portal.Core.Communication": "[1.0.0, )",
-          "Modsen.Portal.Core.Context": "[1.0.0, )",
-          "Modsen.Portal.Core.Exceptions": "[1.0.0, )",
-          "Modsen.Portal.Core.HostBuilder": "[1.0.0, )",
-          "Modsen.Portal.Core.Services": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Modsen.Portal.Identity.Contract": "[1.0.0, )",
-          "Modsen.Portal.Notification.Contract": "[1.0.0, )"
-        }
-      },
-      "modsen.portal.certificate.controllers": {
-        "type": "Project",
-        "dependencies": {
-          "Modsen.Portal.Certificate.UseCases": "[1.0.0, )",
-          "Modsen.Portal.Core.Api": "[1.0.0, )"
-        }
-      },
-      "modsen.portal.certificate.usecases": {
-        "type": "Project",
-        "dependencies": {
-          "Modsen.Portal.Core.Context": "[1.0.0, )",
-          "Modsen.Portal.Core.OData": "[1.0.0, )",
-          "Modsen.Portal.Core.Services": "[1.0.0, )",
-          "Modsen.Portal.Core.UseCases": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Modsen.Portal.Identity.Contract": "[1.0.0, )",
-          "Modsen.Portal.ModsenApi.Contract": "[1.0.0, )",
-          "Modsen.Portal.TeamBoard.Contract": "[1.0.0, )"
-        }
-      },
       "modsen.portal.cloudstorage.awss3": {
         "type": "Project",
         "dependencies": {
@@ -1804,44 +1740,6 @@
           "Modsen.Portal.TimeTrack.UseCases": "[1.0.0, )"
         }
       },
-      "modsen.portal.cv.controllers": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[4.8.0, 4.8.0]",
-          "Modsen.Portal.Core.Api": "[1.0.0, )",
-          "Modsen.Portal.Core.Authentication": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Modsen.Portal.Cv.Requests": "[1.0.0, )"
-        }
-      },
-      "modsen.portal.cv.dataaccess.npgsql": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.CSharp": "[4.8.0, 4.8.0]",
-          "Microsoft.CodeAnalysis.Common": "[4.8.0, 4.8.0]",
-          "Modsen.Portal.Core": "[1.0.0, )",
-          "Modsen.Portal.Core.Database": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "[9.0.4, )"
-        }
-      },
-      "modsen.portal.cv.requests": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.CodeAnalysis.Common": "[4.8.0, 4.8.0]",
-          "Modsen.Portal.Core": "[1.0.0, )",
-          "Modsen.Portal.Core.Context": "[1.0.0, )",
-          "Modsen.Portal.Core.Exceptions": "[1.0.0, )",
-          "Modsen.Portal.Core.Export": "[1.0.0, )",
-          "Modsen.Portal.Core.OData": "[1.0.0, )",
-          "Modsen.Portal.Core.Services": "[1.0.0, )",
-          "Modsen.Portal.Core.UseCases": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Modsen.Portal.Cv.DataAccess.Npgsql": "[1.0.0, )",
-          "Modsen.Portal.Identity.Contract": "[1.0.0, )",
-          "Modsen.Portal.TimeTrack.Contract": "[1.0.0, )"
-        }
-      },
       "modsen.portal.equipment.contract": {
         "type": "Project"
       },
@@ -1967,7 +1865,6 @@
         "type": "Project",
         "dependencies": {
           "Modsen.Portal.Agent.Contract": "[1.0.0, )",
-          "Modsen.Portal.Booking.Contract": "[1.0.0, )",
           "Modsen.Portal.Core.Authentication": "[1.0.0, )",
           "Modsen.Portal.Core.Communication": "[1.0.0, )",
           "Modsen.Portal.Core.Exceptions": "[1.0.0, )",
@@ -2082,59 +1979,20 @@
           "Modsen.Portal.Storage.Contract": "[1.0.0, )"
         }
       },
-      "modsen.portal.merch.contract": {
-        "type": "Project",
-        "dependencies": {
-          "Modsen.Portal.Core": "[1.0.0, )"
-        }
-      },
-      "modsen.portal.merch.controllers": {
-        "type": "Project",
-        "dependencies": {
-          "Modsen.Portal.Core.Api": "[1.0.0, )",
-          "Modsen.Portal.Core.Authentication": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Modsen.Portal.Merch.Requests": "[1.0.0, )"
-        }
-      },
-      "modsen.portal.merch.dataaccess.npgsql": {
-        "type": "Project",
-        "dependencies": {
-          "Modsen.Portal.Core": "[1.0.0, )",
-          "Modsen.Portal.Core.Database": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "[9.0.4, )"
-        }
-      },
-      "modsen.portal.merch.requests": {
-        "type": "Project",
-        "dependencies": {
-          "Modsen.Portal.Core.OData": "[1.0.0, )",
-          "Modsen.Portal.Core.Services": "[1.0.0, )",
-          "Modsen.Portal.Core.UseCases": "[1.0.0, )",
-          "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Modsen.Portal.Identity.Contract": "[1.0.0, )",
-          "Modsen.Portal.Merch.Contract": "[1.0.0, )",
-          "Modsen.Portal.Merch.DataAccess.Npgsql": "[1.0.0, )"
-        }
-      },
       "modsen.portal.migrator": {
         "type": "Project",
         "dependencies": {
           "Microsoft.CodeAnalysis.Common": "[4.8.0, 4.8.0]",
           "Microsoft.Extensions.Hosting.Abstractions": "[9.0.18, )",
           "Modsen.Portal.Attendance.DataAccess.Npgsql": "[1.0.0, )",
-          "Modsen.Portal.Booking.DataAccess.Npgsql": "[1.0.0, )",
           "Modsen.Portal.Core.Database": "[1.0.0, )",
           "Modsen.Portal.Core.HostBuilder": "[1.0.0, )",
           "Modsen.Portal.Core.Utils": "[1.0.0, )",
-          "Modsen.Portal.Cv.DataAccess.Npgsql": "[1.0.0, )",
           "Modsen.Portal.Equipment.DataAccess.Npgsql": "[1.0.0, )",
           "Modsen.Portal.Finance.DataAccess.Npgsql": "[1.0.0, )",
           "Modsen.Portal.Identity.DataAccess.Npgsql": "[1.0.0, )",
           "Modsen.Portal.Inquiries.DataAccess.Npgsql": "[1.0.0, )",
           "Modsen.Portal.KnowledgeBase.DataAccess.Npgsql": "[1.0.0, )",
-          "Modsen.Portal.Merch.DataAccess.Npgsql": "[1.0.0, )",
           "Modsen.Portal.Migrator.DataAccess": "[1.0.0, )",
           "Modsen.Portal.Notification.DataAccess.Npgsql": "[1.0.0, )",
           "Modsen.Portal.Storage.DataAccess.Npgsql": "[1.0.0, )",
@@ -2315,22 +2173,6 @@
           "Modsen.Portal.TimeTrack.Contract": "[1.0.0, )"
         }
       },
-      "modsen.portal.teamwork.controllers": {
-        "type": "Project",
-        "dependencies": {
-          "Modsen.Portal.Core.Api": "[1.0.0, )",
-          "Modsen.Portal.Core.Authentication": "[1.0.0, )",
-          "Modsen.Portal.TeamWork.UseCases": "[1.0.0, )"
-        }
-      },
-      "modsen.portal.teamwork.usecases": {
-        "type": "Project",
-        "dependencies": {
-          "Modsen.Portal.Core.Exceptions": "[1.0.0, )",
-          "Modsen.Portal.Core.Services": "[1.0.0, )",
-          "Modsen.Portal.TimeTrack.Contract": "[1.0.0, )"
-        }
-      },
       "modsen.portal.timetrack.contract": {
         "type": "Project",
         "dependencies": {
@@ -2407,13 +2249,11 @@
           "DocumentFormat.OpenXml": "[3.5.1, )",
           "DocumentFormat.OpenXml.Framework": "[3.5.1, )",
           "Modsen.Portal.Agent.Contract": "[1.0.0, )",
-          "Modsen.Portal.Booking.Contract": "[1.0.0, )",
           "Modsen.Portal.Core.Api": "[1.0.0, )",
           "Modsen.Portal.Core.Authentication": "[1.0.0, )",
           "Modsen.Portal.Core.Utils": "[1.0.0, )",
           "Modsen.Portal.Equipment.Contract": "[1.0.0, )",
           "Modsen.Portal.Identity.Contract": "[1.0.0, )",
-          "Modsen.Portal.Merch.Contract": "[1.0.0, )",
           "Modsen.Portal.Storage.Contract": "[1.0.0, )",
           "Modsen.Portal.TeamBoard.Contract": "[1.0.0, )",
           "SixLabors.Fonts": "[2.1.3, )",

@@ -7,10 +7,6 @@ using Modsen.Portal.Attendance.Requests;
 using Modsen.Portal.Authentication.Microsoft;
 using Modsen.Portal.BackgroundJob.Hangfire;
 using Modsen.Portal.BcseApi.Adapter;
-using Modsen.Portal.Booking.Controllers;
-using Modsen.Portal.Booking.DataAccess.Npgsql;
-using Modsen.Portal.Booking.Requests;
-using Modsen.Portal.Certificate.UseCases.Requests;
 
 using Modsen.Portal.CloudStorage.AwsS3;
 using Modsen.Portal.Core.Authentication;
@@ -18,9 +14,6 @@ using Modsen.Portal.Core.Context;
 using Modsen.Portal.Core.HostBuilder.Jobs;
 using Modsen.Portal.Core.Utils.Modules;
 using Modsen.Portal.Csv;
-using Modsen.Portal.Cv.Controllers;
-using Modsen.Portal.Cv.DataAccess.Npgsql;
-using Modsen.Portal.Cv.Requests;
 using Modsen.Portal.Equipment.Controllers;
 using Modsen.Portal.Equipment.DataAccess.Npgsql;
 using Modsen.Portal.Equipment.Requests;
@@ -40,9 +33,6 @@ using Modsen.Portal.Jira;
 using Modsen.Portal.KnowledgeBase.Controllers;
 using Modsen.Portal.KnowledgeBase.DataAccess.Npgsql;
 using Modsen.Portal.KnowledgeBase.Requests;
-using Modsen.Portal.Merch.Controllers;
-using Modsen.Portal.Merch.DataAccess.Npgsql;
-using Modsen.Portal.Merch.Requests;
 using Modsen.Portal.Migrator;
 using Modsen.Portal.ModsenApi.Adapter;
 using Modsen.Portal.Notification.Contract;
@@ -58,7 +48,6 @@ using Modsen.Portal.Storage.Requests;
 using Modsen.Portal.TeamBoard.Controllers;
 using Modsen.Portal.TeamBoard.DataAccess.Npgsql;
 using Modsen.Portal.TeamBoard.Requests;
-using Modsen.Portal.TeamWork.UseCases;
 using Modsen.Portal.TimeTrack.Contract;
 using Modsen.Portal.TimeTrack.Controllers;
 using Modsen.Portal.TimeTrack.DataAccess.Npgsql;
@@ -83,26 +72,21 @@ namespace Modsen.Portal.Api.Modules
 
         public override void Load(IServiceCollection services)
         {
-            RegisterBookingModules();
             RegisterEquipmentModules();
             RegisterFinanceModule();
             RegisterIdentityModule();
             RegisterTimeTrackModule();
             RegisterApiModules();
             RegisterTeamBoardModule();
-            RegisterCertificatesModule();
             RegisterStorageModule();
             RegisterNotificationModule();
             RegisterContext(services);
-            RegisterTeamWorkModule();
             RegisterKnowledgeBaseModule();
             RegisterInquiriesModule();
-            RegisterMerchModule();            
             RegisterUtilitiesModule();
             RegisterChatGptModule();
             RegisterPowerAutomateModule();
             RegisterBackgroundJobs(services);
-            RegisterCvModule();
             RegisterInfrastructureModules();
             RegisterAttendanceModule();
             RegisterJiraModule();
@@ -126,12 +110,6 @@ namespace Modsen.Portal.Api.Modules
             AddModule(new AuthenticationModule(_rootModule));
         }
 
-        private void RegisterBookingModules()
-        {
-            AddModule<BookingDataAccessModule>();
-            AddModule<BookingUseCasesModule>();
-            AddModule<BookingControllersModule>();
-        }
 
         private void RegisterEquipmentModules()
         {
@@ -167,10 +145,6 @@ namespace Modsen.Portal.Api.Modules
             AddModule<UsersDbQueriesModule>();
         }
 
-        private void RegisterTeamWorkModule()
-        {
-            AddModule<TeamWorkUseCasesModule>();
-        }
 
         private void RegisterApiModules()
         {
@@ -186,10 +160,6 @@ namespace Modsen.Portal.Api.Modules
             AddModule<TeamBoardControllersModule>();
         }
 
-        private void RegisterCertificatesModule()
-        {
-            AddModule<CertificatesUseCasesModule>();
-        }
 
         private void RegisterStorageModule()
         {
@@ -222,12 +192,6 @@ namespace Modsen.Portal.Api.Modules
             AddModule<InquiryContractModule>();
         }
 
-        private void RegisterMerchModule()
-        {
-            AddModule<MerchDataAccessModule>();
-            AddModule<MerchRequestsModule>();
-            AddModule<MerchControllersModule>();
-        }
 
         private void RegisterUtilitiesModule()
         {
@@ -254,12 +218,6 @@ namespace Modsen.Portal.Api.Modules
             services.AddScoped<IRecurringJobScheduler, ClearCacheJobScheduler>();
         }
 
-        private void RegisterCvModule()
-        {
-            AddModule<CvRequestsModule>();
-            AddModule<CvDataAccessModule>();
-            AddModule<CvControllersModule>();
-        }
 
         private void RegisterAttendanceModule()
         {

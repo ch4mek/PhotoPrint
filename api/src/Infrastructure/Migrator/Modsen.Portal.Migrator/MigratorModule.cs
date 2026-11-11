@@ -21,7 +21,6 @@ public sealed class MigratorModule : RegistrationModule
                     pgOptions.MigrationsHistoryTable(HistoryRepository.DefaultTableName, MigratorDbContext.Schema));
         });
 
-        services.AddScoped<IMigrationTask, PublishExistingUsersToBookingMigrationTask>();
         services.AddScoped<IMigrationTask, PublishExistingUsersToEquipmentMigrationTask>();
         services.AddScoped<IMigrationTask, PublishExistingDepartmentsToTeamBoardMigrationTask>();
         services.AddScoped<IMigrationTask, PublishExistingResourceGroupsToTeamBoardMigrationTask>();
@@ -36,11 +35,7 @@ public sealed class MigratorModule : RegistrationModule
         services.AddScoped<IMigrationTask, PublishExistingProjectUsersToTeamBoardMigrationTask>();
         services.AddScoped<IMigrationTask, PublishExistingUsersToKnowledgeBaseMigrationTask>();
         services.AddScoped<IMigrationTask, PublishExistingUsersToInquiriesMigrationTask>();
-        services.AddScoped<IMigrationTask, PublishExistingUsersToMerchMigrationTask>();
-        services.AddScoped<IMigrationTask, PublishExistingUsersToCvMigrationTask>();
         services.AddScoped<IMigrationTask, PublishExistingUsersToAttendanceMigrationTask>();
-        services.AddScoped<IMigrationTask, PublishExistingClientsToCvMigrationTask>();
-        services.AddScoped<IMigrationTask, PublishExistingProjectsToCvMigrationTask>();
         services.AddScoped<IMigrationTask, PublishExistingClientsToTeamBoardMigrationTask>();
         services.AddScoped<IMigrationTask, PublishExistingUsersToNotificationMigrationTask>();
 

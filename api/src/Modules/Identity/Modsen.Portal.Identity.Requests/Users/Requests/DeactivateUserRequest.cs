@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modsen.Portal.Booking.Contract;
 using Modsen.Portal.Core;
 using Modsen.Portal.Core.Communication;
 using Modsen.Portal.Core.Context;
@@ -23,7 +22,6 @@ internal sealed class DeactivateUserRequest : ICommandHandler<DeactivateUserRequ
     private readonly IAuthenticatedUserContext _authenticatedUserContext;
     private readonly ITimeTrackContract _timeTrackContract;
     private readonly IEquipmentContract _equipmentContract;
-    private readonly IBookingContract _bookingContract;
     private readonly ICommunicationBus _communicationBus;
     private readonly IAuthenticationTokenContext _authenticationTokenContext;
     private readonly IInquiriesContract _inquiriesContract;
@@ -32,7 +30,6 @@ internal sealed class DeactivateUserRequest : ICommandHandler<DeactivateUserRequ
         IAuthenticatedUserContext authenticatedUserContext,
         ITimeTrackContract timeTrackContract,
         IEquipmentContract equipmentContract,
-        IBookingContract bookingContract,
         ICommunicationBus communicationBus,
         IIdentityDbContext identityDbContext,
         IUserLoader userLoader,
@@ -42,7 +39,6 @@ internal sealed class DeactivateUserRequest : ICommandHandler<DeactivateUserRequ
         _authenticatedUserContext = authenticatedUserContext;
         _timeTrackContract = timeTrackContract;
         _equipmentContract = equipmentContract;
-        _bookingContract = bookingContract;
         _communicationBus = communicationBus;
         _userLoader = userLoader;
         _identityDbContext = identityDbContext;
@@ -58,7 +54,6 @@ internal sealed class DeactivateUserRequest : ICommandHandler<DeactivateUserRequ
 
         await CheckUserIsNotAssignedToAnyProject(userToDeactivate.Id, cancellationToken);
         await CheckEquipmentUserCanBeDeactivated(userToDeactivate.Id, cancellationToken);
-        await CheckBookingUserCanBeDeactivated(userToDeactivate.Id, cancellationToken);
         await CheckUserIsAssignedToProjectAsPmAsync(userToDeactivate.Id, cancellationToken);
         await CheckUserIsInResourceGroup(userToDeactivate, cancellationToken);
         await CheckUserIsApproverOrSubstituteOfRequests(userToDeactivate.Id, cancellationToken);
@@ -130,14 +125,6 @@ internal sealed class DeactivateUserRequest : ICommandHandler<DeactivateUserRequ
         if (!await _equipmentContract.CanEquipmentUserBeDeactivated(userId, cancellationToken))
         {
             throw new ActionNotAllowedException(PortalMessages.UserStillHasAssignedEquipment);
-        }
-    }
-
-    private async Task CheckBookingUserCanBeDeactivated(int userId, CancellationToken cancellationToken)
-    {
-        if (!await _bookingContract.CanBookingUserBeDeactivated(userId, cancellationToken))
-        {
-            throw new ActionNotAllowedException(PortalMessages.UserStillHasScheduledDesk);
         }
     }
 
