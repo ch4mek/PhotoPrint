@@ -100,6 +100,27 @@ public class AccountController : ControllerBase
     }
 
     /// <summary>
+    /// Локальный вход по email и паролю (демо-режим без Azure AD).
+    /// Демо-пароль для всех сид-пользователей: demo1234.
+    /// </summary>
+    [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [HttpPost("localLogin")]
+    public async Task<IActionResult> LocalLogin([FromBody] LocalLoginDto loginModel)
+    {
+        ArgumentNullException.ThrowIfNull(loginModel);
+
+        var query = new LocalLoginRequest.Command(loginModel.Email, loginModel.Password);
+        var result = await _sender.Send(query, HttpContext.RequestAborted);
+
+        return !result.IsSucceeded
+            ? Unauthorized(result.Error)
+            : Ok(result.Token?.ToUrlEncodedString());
+    }
+
+    public sealed record LocalLoginDto(string Email, string Password);
+
+    /// <summary>
     ///Initiates the AzureAD login process.
     /// Allowed Roles: Anonymous
     /// </summary>

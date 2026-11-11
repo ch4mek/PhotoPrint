@@ -94,7 +94,7 @@ internal class TimesheetConfiguration : IEntityTypeConfiguration<Timesheet>
 
         builder
             .Property(x => x.OrderByDateUtc)
-            .HasComputedColumnSql("COALESCE(\"UpdatedAtUtc\", \"CreatedAtUtc\")", stored: true);
+            .HasComputedColumnSql("COALESCE(`UpdatedAtUtc`, `CreatedAtUtc`)", stored: true);
 
         builder.HasOne(x => x.CreatedByUser)
             .WithMany()

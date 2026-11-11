@@ -39,7 +39,7 @@ internal class EducationConfiguration : IEntityTypeConfiguration<UserEducationEn
             table =>
             {
                 table.HasCheckConstraint("CK_Educations_GraduationYear",
-                    "\"GraduationYear\" <= 9999 AND \"GraduationYear\" > 0");
+                    "`GraduationYear` <= 9999 AND `GraduationYear` > 0");
             });
 
         builder.HasKey(x => x.Id);

@@ -149,6 +149,10 @@ internal class UsersSeed : ISeedEntitiesProvider<IdentityModuleDbContext>
                 RegisteredLocationId = registeredLocationId
             };
 
+            // Хакатон: всем сид-пользователям задаём демо-пароль для локального входа (localLogin)
+            user.PasswordHash = new Microsoft.AspNetCore.Identity.PasswordHasher<User>()
+                .HashPassword(user, "demo1234");
+
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
 

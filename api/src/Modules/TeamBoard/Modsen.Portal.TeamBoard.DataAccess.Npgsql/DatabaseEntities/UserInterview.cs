@@ -65,11 +65,11 @@ internal class UserInterviewConfiguration : IEntityTypeConfiguration<UserIntervi
         builder.Property(x => x.JiraTask).IsRequired(false).HasMaxLength(1000);
         builder.Property(x => x.Status).IsRequired(false).HasConversion<string>();
         builder.Property(x => x.StatusOrderWeight).HasComputedColumnSql(
-            """CASE "Status" WHEN 'WaitingForInterview' THEN 100 WHEN 'WaitingForResult' THEN 200 WHEN 'Failed' THEN 300 WHEN 'Success' THEN 400 WHEN 'Started' THEN 500 WHEN 'NotStarted' THEN 600 WHEN 'Canceled' THEN 700 WHEN 'NoFeedback' THEN 800 WHEN 'NoNextStepScheduled' THEN 900 ELSE 1000 END""",
+            """CASE `Status` WHEN 'WaitingForInterview' THEN 100 WHEN 'WaitingForResult' THEN 200 WHEN 'Failed' THEN 300 WHEN 'Success' THEN 400 WHEN 'Started' THEN 500 WHEN 'NotStarted' THEN 600 WHEN 'Canceled' THEN 700 WHEN 'NoFeedback' THEN 800 WHEN 'NoNextStepScheduled' THEN 900 ELSE 1000 END""",
             stored: true);
         builder.Property(x => x.InterviewType).IsRequired(false).HasConversion<string>();
         builder.Property(x => x.InterviewTypeOrderWeight).HasComputedColumnSql(
-            """CASE "InterviewType" WHEN 'Prescreen' THEN 100 WHEN 'Tech' THEN 200 WHEN 'Final' THEN 300 WHEN 'Other' THEN 400 ELSE 500 END""",
+            """CASE `InterviewType` WHEN 'Prescreen' THEN 100 WHEN 'Tech' THEN 200 WHEN 'Final' THEN 300 WHEN 'Other' THEN 400 ELSE 500 END""",
             stored: true
             );
         builder.Property(x => x.ReasonForRefusal).IsRequired(false).HasMaxLength(250);

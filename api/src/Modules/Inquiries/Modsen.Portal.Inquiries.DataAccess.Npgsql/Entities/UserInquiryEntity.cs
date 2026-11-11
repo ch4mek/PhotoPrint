@@ -77,7 +77,7 @@ internal class UserInquiryConfiguration : IEntityTypeConfiguration<UserInquiryEn
 
         builder.Property(x => x.StatusOrderWeight)
             .HasComputedColumnSql(
-            "CASE \"Status\" WHEN 'Approved' THEN 0 WHEN 'Canceled' THEN 50 WHEN 'Rejected' THEN 100 WHEN 'Open' THEN 200 ELSE 200 END", true);
+            "CASE `Status` WHEN 'Approved' THEN 0 WHEN 'Canceled' THEN 50 WHEN 'Rejected' THEN 100 WHEN 'Open' THEN 200 ELSE 200 END", true);
 
         builder.Property(x => x.Notes).IsRequired(false);
 

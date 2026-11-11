@@ -69,7 +69,7 @@ internal class InquiryTemplateConfiguration : IEntityTypeConfiguration<InquiryTe
         builder.Property(x => x.InquiryTypeOrderWeight)
             .IsRequired()
             .HasComputedColumnSql(
-                """CASE "InquiryType" WHEN 'Vacation' THEN 100 WHEN 'SickDay' THEN 200 WHEN 'SickLeave' THEN 300 WHEN 'OwnExpense' THEN 400 WHEN 'HomeOffice' THEN 500 WHEN 'WeekendTransfer' THEN 600 WHEN 'MilitaryEnlistmentOffice' THEN 700 WHEN 'SocialVacation' THEN 800 WHEN 'Documents' THEN 900 WHEN 'OtherType' THEN 1000 WHEN 'Unknown' THEN 1100 ELSE 1100 END""",
+                """CASE `InquiryType` WHEN 'Vacation' THEN 100 WHEN 'SickDay' THEN 200 WHEN 'SickLeave' THEN 300 WHEN 'OwnExpense' THEN 400 WHEN 'HomeOffice' THEN 500 WHEN 'WeekendTransfer' THEN 600 WHEN 'MilitaryEnlistmentOffice' THEN 700 WHEN 'SocialVacation' THEN 800 WHEN 'Documents' THEN 900 WHEN 'OtherType' THEN 1000 WHEN 'Unknown' THEN 1100 ELSE 1100 END""",
                 stored: true);
 
         builder.Property(x => x.IsActive).IsRequired();

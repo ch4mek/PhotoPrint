@@ -47,7 +47,7 @@ internal class UserPerformanceReviewConfiguration : IEntityTypeConfiguration<Use
     {
         builder.ToTable("UserPerformanceReviews", table =>
         {
-            table.HasCheckConstraint("CK_UserPerformanceReview_InterviewDateTimeRange", "\"InterviewDateToUtc\" > \"InterviewDateFromUtc\"");
+            table.HasCheckConstraint("CK_UserPerformanceReview_InterviewDateTimeRange", "`InterviewDateToUtc` > `InterviewDateFromUtc`");
         });
 
         builder.HasKey(x => x.Id);

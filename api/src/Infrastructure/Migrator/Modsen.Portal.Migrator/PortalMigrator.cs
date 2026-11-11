@@ -180,8 +180,68 @@ public static class PortalMigrator
 
         try
         {
-            context.Database.EnsureCreated();
-            logger.LogInformation("Database associated with context {Name} has been migrated", contextName);
+            // EnsureCreated у EF — all-or-nothing на всю базу: после первой же таблицы
+            // остальные контексты бы молча пропускались. Поэтому выполняем DDL-скрипт
+            // контекста по инструкции, пропуская уже созданные таблицы (идемпотентно).
+            var script = context.Database.GenerateCreateScript();
+            var created = 0;
+            foreach (var raw in script.Split(';', StringSplitOptions.RemoveEmptyEntries))
+            {
+                var statement = raw.Trim();
+                if (statement.Length == 0) continue;
+                try
+                {
+                    context.Database.ExecuteSqlRaw(statement);
+                    created++;
+                }
+                catch (MySqlConnector.MySqlException ex) when (ex.ErrorCode == MySqlConnector.MySqlErrorCode.TableExists)
+                {
+                    // таблица уже создана ранее — норма при повторном старте
+                }
+                catch (MySqlConnector.MySqlException ex) when (ex.Message.Contains("Duplicate key name"))
+                {
+                    // индекс уже существует — норма при повторном старте
+                }
+                catch (MySqlConnector.MySqlException ex) when (ex.Message.Contains("Invalid default value"))
+                {
+                    var patched = statement
+                        .Replace("DEFAULT now()", "DEFAULT CURRENT_TIMESTAMP(6)", StringComparison.OrdinalIgnoreCase)
+                        .Replace("DEFAULT now(6)", "DEFAULT CURRENT_TIMESTAMP(6)", StringComparison.OrdinalIgnoreCase);
+                    patched = System.Text.RegularExpressions.Regex.Replace(
+                        patched,
+                        @"DEFAULT\s+'0{3}\d-\d\d-\d\d[^']*'",
+                        string.Empty,
+                        System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                    if (patched == statement)
+                    {
+                        logger.LogError("DDL не удалось починить ({Message}): {Statement}", ex.Message, statement[..Math.Min(400, statement.Length)]);
+                        throw;
+                    }
+                    try { context.Database.ExecuteSqlRaw(patched); created++; }
+                    catch (MySqlConnector.MySqlException ie) when (
+                        ie.ErrorCode == MySqlConnector.MySqlErrorCode.TableExists ||
+                        ie.Message.Contains("Duplicate key name")) { }
+                }
+                catch (MySqlConnector.MySqlException ex) when (ex.Message.Contains("Duplicate foreign key constraint name"))
+                {
+                    // В PostgreSQL имена FK были уникальны в пределах схемы; в MySQL — в пределах базы.
+                    // Префиксуем имена ограничений схемой контекста.
+                    var schema = context.Database.IsRelational() && context.Model.GetDefaultSchema() is { } s ? s : contextName.Replace("DbContext", "").Replace("Module", "").ToLowerInvariant();
+                    var patched = System.Text.RegularExpressions.Regex.Replace(
+                        statement,
+                        @"(CONSTRAINT\s+`)(FK_[^`]+)`",
+                        $"$1{schema}_$2`");
+                    if (patched == statement)
+                    {
+                        logger.LogError("FK-конфликт не удалось починить: {Statement}", statement[..Math.Min(300, statement.Length)]);
+                        throw;
+                    }
+                    context.Database.ExecuteSqlRaw(patched);
+                    created++;
+                }
+            }
+
+            logger.LogInformation("Database associated with context {Name} has been created ({Created} statements)", contextName, created);
         }
         finally
         {

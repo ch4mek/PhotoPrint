@@ -96,9 +96,6 @@ await ServiceHostBuilder
             "PublishExistingUsersCountriesToTeamBoard",
             "PublishExistingUsersRegisteredLocationsToTeamBoard",
             "PublishExistingProjectsToTeamBoard",
-            "PublishExistingProjectUsersToTeamBoard",
-            "PublishExistingClientsToCv",
-            "PublishExistingProjectsToCv",
             "PublishExistingClientsToTeamBoard",
         ]);
         serviceProvider.ApplyMigrationTasks([
@@ -106,8 +103,9 @@ await ServiceHostBuilder
         ]);
         serviceProvider.ApplyMigrationTasks([
             "PublishExistingProjectsToFinance",
-            "PublishExistingProjectUsersToFinance"
         ]);
+        // ProjectUsers-таски переносили легаси-связки Modsen (raw SQL по колонкам,
+        // которых нет в нашем демо-наборе) — для Фотопринта не нужны.
 
 
         serviceProvider.ExecuteAttendancesSeed();

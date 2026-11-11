@@ -22,14 +22,14 @@ internal sealed class PublishExistingProjectUsersToTeamBoardMigrationTask : IMig
     public void Execute()
     {
         _teamBoardDbContext.Database.ExecuteSql($"""
-                       INSERT INTO "teamboard"."ProjectUsers" ("Id", "UserId", "ProjectId", "UserOnProjectFrom", "UserOnProjectTo", 
-                                                             "UpdatedById", "UpdatedAtUtc", "IsTimeOnProjectBillable", "Fte",
-                                                             "UserOnProjectSeniorityLevelId")
-                           SELECT "Id", "UserId", "ProjectId", "UserOnProjectFrom", "UserOnProjectTo", 
-                                  "UpdatedById", "UpdatedAtUtc", "IsTimeOnProjectBillable", {s_defaultFte} as "Fte",
-                                   {s_defaultSeniorityLevelId} as "UserOnProjectSeniorityLevelId"
-                           FROM "timetrack"."ProjectUsers" pu_from
-                           WHERE pu_from."Id" NOT IN (SELECT pu_to."Id" FROM "teamboard"."ProjectUsers" pu_to)
+                       INSERT INTO `teamboard_ProjectUsers` (`Id`, `UserId`, `ProjectId`, `UserOnProjectFrom`, `UserOnProjectTo`,
+                                                             `UpdatedById`, `UpdatedAtUtc`, `IsTimeOnProjectBillable`, `Fte`,
+                                                             `UserOnProjectSeniorityLevelId`)
+                           SELECT `Id`, `UserId`, `ProjectId`, `UserOnProjectFrom`, `UserOnProjectTo`,
+                                  `UpdatedById`, `UpdatedAtUtc`, `IsTimeOnProjectBillable`, {s_defaultFte} as `Fte`,
+                                   {s_defaultSeniorityLevelId} as `UserOnProjectSeniorityLevelId`
+                           FROM `timetrack_ProjectUsers` pu_from
+                           WHERE pu_from.`Id` NOT IN (SELECT pu_to.`Id` FROM `teamboard_ProjectUsers` pu_to)
                        """);
     }
 }

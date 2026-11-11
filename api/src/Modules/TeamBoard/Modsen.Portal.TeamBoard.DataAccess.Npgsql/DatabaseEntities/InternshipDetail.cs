@@ -65,12 +65,12 @@ internal class UserInternshipConfiguration : IEntityTypeConfiguration<Internship
 
         builder.Property(x => x.Type).IsRequired(true).HasConversion<string>();
         builder.Property(x => x.TypeOrderWeight).HasComputedColumnSql(
-            """CASE "Type" WHEN 'Primary' THEN 100 WHEN 'Extended' THEN 200 WHEN 'NDA' THEN 300 ELSE 400 END""",
+            """CASE `Type` WHEN 'Primary' THEN 100 WHEN 'Extended' THEN 200 WHEN 'NDA' THEN 300 ELSE 400 END""",
             stored: true);
 
         builder.Property(x => x.FinalResult).IsRequired(false).HasConversion<string>();
         builder.Property(x => x.FinalResultOrderWeight).HasComputedColumnSql(
-            """CASE "FinalResult" WHEN 'Success' THEN 100 WHEN 'Fired' THEN 200 ELSE 300 END""",
+            """CASE `FinalResult` WHEN 'Success' THEN 100 WHEN 'Fired' THEN 200 ELSE 300 END""",
             stored: true);
 
         builder.HasOne(x => x.CreatedByUser)

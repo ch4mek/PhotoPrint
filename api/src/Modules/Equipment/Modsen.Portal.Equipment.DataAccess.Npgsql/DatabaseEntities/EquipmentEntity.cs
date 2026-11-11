@@ -80,7 +80,6 @@ internal class EquipmentConfiguration : IEntityTypeConfiguration<EquipmentEntity
         builder.Property(x => x.InventoryNumber)
             .HasMaxLength(250);
         builder.HasIndex(x => x.InventoryNumber)
-            .HasFilter(@"""InventoryNumber"" IS NOT NULL")
             .IsUnique();
 
         builder.Property(x => x.PurchasePrice)

@@ -17,7 +17,7 @@ internal class KpiColorConfiguration : IEntityTypeConfiguration<KpiColor>
     {
         builder.ToTable("KpiColors", table =>
             table.HasCheckConstraint("CK_KpiColors_RightIntervalBorder",
-                "\"RightIntervalBorder\" <= 9999 AND \"RightIntervalBorder\" > 0"));
+                "`RightIntervalBorder` <= 9999 AND `RightIntervalBorder` > 0"));
 
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
