@@ -1,0 +1,1 @@
+var r=1,a=3,e=6;export{r as ANIMATION_DURATION,e as DEFAULT_DOT_SIZE,a as NUMBER_OF_LOADER_DOTS};

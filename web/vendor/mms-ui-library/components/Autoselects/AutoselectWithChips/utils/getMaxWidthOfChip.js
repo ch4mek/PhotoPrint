@@ -1,0 +1,1 @@
+import{FULL_WIDTH as c,BUTTONS_WIDTH as t}from"../../constants.js";function o(o){if(!o||o<=0)return"calc(".concat(c,"% - ").concat(t,"px)");var n=Math.floor(c/o);return"calc(".concat(n,"% - ").concat(t,"px)")}export{o as getMaxWidthOfChip};

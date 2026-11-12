@@ -1,0 +1,1 @@
+var t=function(t,i){var n;if(!i)return"";var r=null===(n=null==i?void 0:i.getAttribute("style"))||void 0===n?void 0:n.split(";")[0].split(" ");return r[t]="0px","".concat(null==r?void 0:r.join(" ")," !important;")};export{t as removeColumnWidthFromGridTemplate};

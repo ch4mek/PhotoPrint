@@ -1,0 +1,1 @@
+import{YEAR_MIN_VALUE as r,YEAR_MAX_VALUE as t}from"../../../../constants/datePicker.js";import"../../../../tslib.es6-d5ZXaEjz.js";var e=function(e,o){return[e?e.year():r,o?o.year():t]};export{e as truncYear};

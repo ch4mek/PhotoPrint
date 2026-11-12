@@ -1,0 +1,1 @@
+import{useCallback as r}from"react";import{narrowOptions as t}from"../../utils/narrowOptions.js";import"../../../../tslib.es6-d5ZXaEjz.js";function i(i,o,n,e,p){return{applySelection:r((function(r){if(null===r)return i([]),e&&e(),void(p&&p(""));var s=Array.isArray(r)?r:[r];i(t(s,o,n)),e&&e(),p&&p("")}),[i,o,n,e,p])}}export{i as useSelectionService};

@@ -1,0 +1,11 @@
+export { WordIcon } from './WordIcon';
+export { XlsxIcon } from './XlsxIcon';
+export { PdfIcon } from './PdfIcon';
+export { CsvIcon } from './CsvIcon';
+export { JsonIcon } from './JsonIcon';
+export { PngIcon } from './PngIcon';
+export { PptIcon } from './PptIcon';
+export { TxtIcon } from './TxtIcon';
+export { MdIcon } from './MdIcon';
+export { VideoIcon } from './VideoIcon';
+export { ZipIcon } from './ZipIcon';

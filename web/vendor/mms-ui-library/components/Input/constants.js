@@ -1,0 +1,1 @@
+var t={large:"350px",medium:"200px",small:"171px",fullWidth:"100%"},e=["top","right","left","bottom","top-start","top-end","bottom-start","bottom-end","left-start","left-end","right-start","right-end"],l={s:-9,m:12,l:18,half:"50%",max:"120%"};export{e as INPUT_TOOLTIP_FALLBACK_PLACEMENTS,t as inputSizes,l as textPositions};

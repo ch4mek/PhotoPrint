@@ -1,0 +1,1 @@
+import e from"dayjs";export{default}from"dayjs";import r from"dayjs/plugin/isSameOrAfter";import o from"dayjs/plugin/isSameOrBefore";import a from"dayjs/plugin/updateLocale";import"dayjs/locale/en-gb";e.extend(r),e.extend(o),e.extend(a);

@@ -1,0 +1,1 @@
+import{h as n}from"../index-xI5BpPDd.js";import"../_commonjsHelpers-ecAX0csY.js";var t=function(t,r,e){return"linear-gradient(0deg, ".concat(n(r,e),", ").concat(n(r,e),"), \n\t\tlinear-gradient(0deg, ").concat(t,", ").concat(t,")")};export{t as createGradient};

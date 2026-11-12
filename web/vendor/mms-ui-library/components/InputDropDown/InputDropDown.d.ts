@@ -1,0 +1,2 @@
+import type { InputDropDownProps, OptionType } from './types';
+export declare function InputDropDown<T extends OptionType>({ options, value, onChange, dropTabPaddings, size, valueField, nameField, disabled, dataTestId, minItemHeight, closeOnSelect, className, paddingInsideItemStyle, stylesConfig, showToolTipIfCut, dropTabWidth, preventDropdownFlip, useAnchorWidth, label, error, errorText, isRequired, inputProps, ...optionProps }: InputDropDownProps<T>): import("react/jsx-runtime").JSX.Element;

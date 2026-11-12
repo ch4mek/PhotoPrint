@@ -1,0 +1,1 @@
+var a=function(a){var c=a.hasControls,s=a.hasPaddings,p=a.theme;return c?s?"".concat(p.spaces.l,"px ").concat(p.spaces.l,"px ").concat(p.spaces.m,"px"):"0 0 ".concat(p.spaces.m,"px"):s?p.spaces.l:""};export{a as getPopupPaddings};

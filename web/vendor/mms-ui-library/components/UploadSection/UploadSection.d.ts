@@ -1,0 +1,2 @@
+import { UploadSectionProps } from './types';
+export declare function UploadSection({ description, onClick, disabled, borderRadius, displayBorder, padding, dataTestId, className, browseLinkClassName, acceptedFormats, maxSizeBytes, maxFilesPerDrop, multiple, withDropzone, fileNamePattern, onFilesAccepted, onFileRejected, onChange, ...props }: UploadSectionProps): import("react/jsx-runtime").JSX.Element;

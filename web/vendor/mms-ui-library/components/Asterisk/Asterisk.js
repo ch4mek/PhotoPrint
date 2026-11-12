@@ -1,0 +1,1 @@
+import{_ as t}from"../../tslib.es6-d5ZXaEjz.js";import{jsx as o}from"react/jsx-runtime";import{AsteriskTypography as r}from"./styles.js";import"@emotion/react";import"@emotion/styled";import"../../index-xI5BpPDd.js";import"../../_commonjsHelpers-ecAX0csY.js";import"../../constants/opacities.js";function i(i){return o(r,t({},i,{children:" *"}))}export{i as Asterisk};

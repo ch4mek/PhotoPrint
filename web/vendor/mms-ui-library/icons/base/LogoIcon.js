@@ -1,0 +1,1 @@
+import{_ as t}from"../../tslib.es6-d5ZXaEjz.js";import{jsx as r}from"react/jsx-runtime";function e(e){return r("svg",t({width:"12",height:"12",viewBox:"0 0 15 13"},e,{children:r("path",{d:"M4.61603 11.4952L1.73205 6.5L4.61603 1.50481H10.384L13.2679 6.5L10.384 11.4952H4.61603Z",stroke:"#F17900",strokeWidth:"3",fill:"none"})}))}export{e as LogoIcon};

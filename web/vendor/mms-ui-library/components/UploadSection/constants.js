@@ -1,0 +1,1 @@
+var r=6,o=24,e=24,a="Drag and Drop file or",i="Browse",p="Description";export{r as DEFAULT_BORDER_RADIUS,i as DEFAULT_BROWSE_TEXT,p as DEFAULT_DESCRIPTION_TEXT,e as DEFAULT_ICON_SIZE,o as DEFAULT_PADDING,a as DEFAULT_TEXT};

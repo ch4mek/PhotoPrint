@@ -1,0 +1,1 @@
+import{_ as o}from"../../tslib.es6-d5ZXaEjz.js";import r from"@emotion/styled";var e=r("a")((function(r){var e=r.theme;return o(o({textDecoration:"underline",cursor:"pointer",border:"none",background:"none"},e.typography.body["l-400"]),{color:e.palette["text-black"]})}));export{e as LinkComponent};

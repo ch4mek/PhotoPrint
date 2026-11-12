@@ -1,0 +1,1 @@
+var r=function(r,n,t){return t-(n-r)%t},n=function(){for(var n=[],t=0;t<arguments.length;t++)n[t]=arguments[t];return n[1]+r.apply(void 0,n)},t=function(r){return Array.from(r.values()).filter((function(r){return!0===r})).length};export{n as getAnimationStopTime,t as getLoadingCount};

@@ -1,0 +1,11 @@
+import { ReactNode } from 'react';
+export declare const DEFAULT_CHILDREN_PER_SLIDE = 3;
+export declare const DEFAULT_SLIDER_WIDTH = 978;
+export declare const DEFAULT_SLIDER_HEIGHT = 479;
+export declare const MOBILE_CHILDREN_PER_SLIDE = 1;
+export declare const MOBILE_SLIDER_WIDTH = 370;
+export declare const MOBILE_SLIDER_HEIGHT = 445;
+export declare const INITIAL_SLIDE_INDEX = 0;
+export declare const ARROW_TOP_SPACING = 153;
+export declare const SLIDE_GAP = 14;
+export declare const mockedSliderChildrenArray: ReactNode;

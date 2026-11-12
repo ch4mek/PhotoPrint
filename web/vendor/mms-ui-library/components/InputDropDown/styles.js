@@ -1,0 +1,1 @@
+import{_ as o}from"../../tslib.es6-d5ZXaEjz.js";import r from"@emotion/styled";var i=r.div({position:"relative"}),t=r.div((function(r){var i,t=r.stylesConfig;return o({backgroundColor:null!==(i=null==t?void 0:t.backgroundColor)&&void 0!==i?i:"transparent"},t)}));export{i as Container,t as Main};

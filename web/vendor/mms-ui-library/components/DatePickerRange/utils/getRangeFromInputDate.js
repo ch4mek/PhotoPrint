@@ -1,0 +1,1 @@
+import r from"dayjs";var n=function(n){return n.map((function(n){var a=n[0],t=n[1],e=n[2],p=parseInt(a,10),u=parseInt(t,10),i=parseInt(e,10),o=r(new Date(i,u-1,p));return o.isValid()?o.valueOf():null}))};export{n as getRangeFromInputDate};

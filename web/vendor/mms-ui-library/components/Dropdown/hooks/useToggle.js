@@ -1,0 +1,1 @@
+import{useState as r,useCallback as t}from"react";var n=function(n){void 0===n&&(n=!1);var o=r(n),e=o[0],i=o[1];return{isActive:e,toggle:t((function(){return i((function(r){return!r}))}),[]),close:t((function(){return i(!1)}),[])}};export{n as useToggle};

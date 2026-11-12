@@ -1,0 +1,1 @@
+export{Note}from"./Note.js";import"react/jsx-runtime";import"@emotion/react";import"react";import"../../constants/dataTestIds.js";import"../../tslib.es6-d5ZXaEjz.js";import"../../icons/base/WarningAccentIcon.js";import"../../theme.js";import"./styles.js";import"@emotion/styled";import"../../constants/borderRadius.js";

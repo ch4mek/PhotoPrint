@@ -1,0 +1,1 @@
+import{formatDateFragment as r}from"./formatDateFragment.js";var t=function(t,n,e,a,f,i){if("NaN"===t)return r(i,a);if(t===f)return f;if(e<+t)return r(n,a);var u=t.substring(t.length-a,t.length);return r(+u<n?e:+u,a)};export{t as formatDateOnArrow};

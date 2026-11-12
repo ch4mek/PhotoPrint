@@ -1,0 +1,1 @@
+import t from"@emotion/styled";var e=t("div")((function(t){return{width:"100%",height:"100%",display:"flex",alignItems:"center",justifyContent:"center",color:t.theme.palette["graphics-primary-2"]}}));export{e as IconWrapper};

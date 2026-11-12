@@ -1,0 +1,1 @@
+import t from"dayjs";import{DEFAULT_INPUT_DATE as r}from"../../../constants/datePicker.js";import"../../../tslib.es6-d5ZXaEjz.js";var o=function(o){if(!o)return r;var a=t(o);return[a.date().toString().padStart(2,"0"),(a.month()+1).toString().padStart(2,"0"),a.year().toString()]};export{o as getInputDateFromTimestamp};

@@ -1,0 +1,1 @@
+var a="I am Hint Header",e="I am Hint Text",t=350,r=4,H=9;export{r as DEFAULT_DISTANCE_TO_ANCHOR_ELEMENT,H as DEFAULT_HINT_ARROW_SIZE,a as HEADER_TEST_TEXT,e as SMALL_TEST_TEXT,t as WRAPPER_MAX_WIDTH};

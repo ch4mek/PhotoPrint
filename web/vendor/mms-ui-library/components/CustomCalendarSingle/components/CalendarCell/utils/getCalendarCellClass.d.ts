@@ -1,0 +1,38 @@
+import { Dayjs } from 'dayjs';
+import { DateRange } from '@/components/CustomCalendarSingle/types';
+interface GetCalendarCellClassParams {
+    isRangeAndStatic: boolean;
+    isHoliday: boolean;
+    isOtherMonth: boolean;
+    disableHighlightToday?: boolean;
+    isToday: boolean;
+    isSelected: boolean | null;
+    isWeekendVisible: boolean;
+    isHolidayVisible: boolean;
+    isStart: boolean;
+    isTempStart: boolean;
+    isEnd: boolean;
+    isTempEnd: boolean;
+    isInner: boolean;
+    isTempInner: boolean;
+    isInnerLast: boolean;
+    isTempRangeLast: boolean;
+    isInRange: boolean;
+    isStartWithoutInner: boolean;
+    isTempStartWithoutInner: boolean;
+    isRangeCalendar: boolean;
+    selectedRange?: DateRange | null;
+    date: Dayjs;
+    isRangeStartRowEnd: boolean;
+    isRangeEndRowStart: boolean;
+    isInRangeRowStart: boolean;
+    isInRangeRowEnd: boolean;
+    isTempStartRowEnd: boolean;
+    isTempEndRowStart: boolean;
+    isInTempRangeRowStart: boolean;
+    isInTempRangeRowEnd: boolean;
+    shouldRender: boolean;
+    hoverDate?: Dayjs | null;
+}
+export declare const getCalendarCellClass: ({ isRangeAndStatic, isHoliday, isOtherMonth, disableHighlightToday, isToday, isSelected, isWeekendVisible, isHolidayVisible, isStart, isTempStart, isEnd, isTempEnd, isInner, isTempInner, isInnerLast, isTempRangeLast, isInRange, isStartWithoutInner, isTempStartWithoutInner, isRangeCalendar, selectedRange, date, isRangeStartRowEnd, isRangeEndRowStart, isInRangeRowStart, isInRangeRowEnd, isTempStartRowEnd, isTempEndRowStart, isInTempRangeRowStart, isInTempRangeRowEnd, shouldRender, hoverDate, }: GetCalendarCellClassParams) => string;
+export {};

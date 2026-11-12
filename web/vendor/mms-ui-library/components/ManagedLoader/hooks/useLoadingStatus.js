@@ -1,0 +1,1 @@
+import{useLayoutEffect as r}from"react";import{useLoaderContext as t}from"../context/LoaderProvider.js";import"react/jsx-runtime";import"../util.js";var o=function(o,i){var n=t(),a=n.startLoading,e=n.stopLoading;r((function(){i?null==a||a(o):null==e||e(o)}),[o,i])};export{o as useLoadingStatus};

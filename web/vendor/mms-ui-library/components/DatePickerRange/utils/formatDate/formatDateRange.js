@@ -1,0 +1,1 @@
+import{getInputValueFromInputDate as t}from"../getInputValueFromInputDate.js";import"../../../../constants/datePicker.js";import"../../../../tslib.es6-d5ZXaEjz.js";var o=function(o){return"".concat(t(o[0])," - ").concat(t(o[1]))};export{o as formatDateRange};

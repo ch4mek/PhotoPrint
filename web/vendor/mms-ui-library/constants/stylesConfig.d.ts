@@ -1,0 +1,10 @@
+import { Placement } from '@floating-ui/react';
+import { DropTabTypography } from '@/components/DropTab/types';
+import { InputTypography } from '@/components/Input/types';
+export declare const DEFAULT_TYPOGRAPHY = "m-400";
+export declare const defaultInputTypography: Required<InputTypography>;
+export declare const defaultDroptabTypography: Required<DropTabTypography>;
+export declare const DEFAULT_INPUT_COMPONENT_HEIGHT = "40px";
+export declare const DEFAULT_ICON_BUTTON_SIZE = 24;
+export declare const getDefaultButtonStyles: (disabled?: boolean) => import("@emotion/react").SerializedStyles;
+export declare const tooltipFallbackPlacements: Array<Placement>;

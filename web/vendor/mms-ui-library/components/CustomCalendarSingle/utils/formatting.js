@@ -1,0 +1,1 @@
+import r from"dayjs";import{DAYS_IN_WEEK as o,BASE_WEEK_START_DATE as t}from"../constants/calendar.js";function a(r){return r.format("MMMM")}function n(a){for(var n,d=[],f=0;f<o;f+=1){var m=(f+a)%o;d.push((n=m,r(t).add(n,"day").format("ddd")))}return d}export{n as getDayHeaders,a as getMonthName};

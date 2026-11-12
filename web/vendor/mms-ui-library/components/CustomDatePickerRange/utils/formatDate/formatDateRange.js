@@ -1,0 +1,1 @@
+import{DATE_SEPARATOR as t}from"../../../../constants/datePicker.js";import"../../../../tslib.es6-d5ZXaEjz.js";var o=function(o){return"".concat(o[0].join(t)," - ").concat(o[1].join(t))};export{o as formatDateRange};

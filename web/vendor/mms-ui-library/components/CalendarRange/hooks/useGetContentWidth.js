@@ -1,0 +1,1 @@
+import{useState as r,useLayoutEffect as t}from"react";var n=function(n){var i=r(void 0),o=i[0],e=i[1];return t((function(){var r;e(null===(r=n.current)||void 0===r?void 0:r.getBoundingClientRect().width)}),[]),o};export{n as useContentWidth};

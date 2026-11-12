@@ -1,0 +1,9 @@
+export declare const DEFAULT_GRID_ROW_HEIGHT = 26;
+export declare const DEFAULT_GRID_HEADER_ROW_HEIGHT = 28;
+export declare const DEFAULT_GRID_PAGINATION_HEIGHT = 52;
+export declare const DEFAULT_GRID_MINIMAL_ROWS_COUNT = 5;
+export declare const DEFAUTL_OVERSCAN_VALUE = 5;
+export declare const DATA_GRID_WRAPPER_CLASS_NAME = "data-grid-wrapper";
+export declare const SORTABLE_HEADER_CELL_CLASS_NAME = "header-sortable";
+export declare const ROW_EVEN_CLASS_NAME = "row-even";
+export declare const ROW_ODD_CLASS_NAME = "row-odd";

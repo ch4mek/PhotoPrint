@@ -16,7 +16,7 @@ import { getDesignTokens, ThemeMode } from '@/theme';
 import { ColorModeContextValues } from './types';
 
 const ThemeModeContext = createContext({
-	mode: ThemeMode.LIGHT,
+	mode: ThemeMode.DARK,
 } as ColorModeContextValues);
 
 const globalStyles = css`
@@ -38,8 +38,8 @@ export function ColorSchemeProvider({ children }: PropsWithChildren) {
 	const [selectedMode, setMode] = useState<ThemeMode>(() => {
 		const currentTheme = localStorage.getItem(THEME_SCHEME_STORAGE_KEY);
 		const initialValue = currentTheme
-			? JSON.parse(currentTheme)
-			: ThemeMode.LIGHT;
+				? JSON.parse(currentTheme)
+				: ThemeMode.DARK;
 
 		return initialValue;
 	});

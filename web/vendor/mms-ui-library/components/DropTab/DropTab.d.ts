@@ -1,0 +1,2 @@
+import type { DropTabProps } from './types';
+export declare function DropTab<T>({ onChange, options, value, groupByField, valueField, subValueField, nameField, multipleChoice, allowEmpty, iconField, dataTestId, width, maxHeight, minItemHeight, paddings, paddingInsideItemStyle, noOptionsText, checkIfChipDisabled, checkIfOptionEqualToValue, getKey, handleChangeEndPage, handleChangeStartPage, typography, dropTabItemSpacing, renderCreateRow, subValueLinesCount, }: DropTabProps<T>): import("react/jsx-runtime").JSX.Element;

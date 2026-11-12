@@ -1,0 +1,1 @@
+import t from"dayjs";import{DEFAULT_INPUT_DATE as r}from"../../../constants/datePicker.js";import"../../../tslib.es6-d5ZXaEjz.js";var a=function(a){var n=a[0],o=a[1],c=a[2];if(!n||!o||!c||n===r[0]||o===r[1]||c===r[2])return null;var i=t("".concat(c,"-").concat(o.padStart(2,"0"),"-").concat(n.padStart(2,"0")));return i.isValid()?i:null};export{a as getDateFromInputDate};

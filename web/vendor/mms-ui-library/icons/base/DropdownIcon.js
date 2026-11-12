@@ -1,0 +1,1 @@
+import{_ as r}from"../../tslib.es6-d5ZXaEjz.js";import{jsx as t}from"react/jsx-runtime";function o(o){return t("svg",r({width:"24",height:"24",viewBox:"0 0 24 24",fill:"none",xmlns:"http://www.w3.org/2000/svg"},o,{children:t("path",{d:"M1 1L5 5L9 1",strokeWidth:"1.5",strokeLinecap:"round",fill:"currentColor"})}))}export{o as DropdownIcon};

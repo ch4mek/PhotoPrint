@@ -1,0 +1,1 @@
+var o=700,r=void 0,v=32,a=.6;export{v as CHIP_HEIGHT,a as DISABLED_CHIP_OPACITY,r as DISABLED_TOOLTIP_DELAY_IN_MS,o as SHOW_DELAY_IN_MS};

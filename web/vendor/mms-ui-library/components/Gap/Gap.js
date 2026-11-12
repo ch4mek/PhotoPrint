@@ -1,0 +1,1 @@
+import{jsx as t}from"react/jsx-runtime";import{GapWrapper as e}from"./styles.js";import"@emotion/styled";import"./helpers/getGapSize.js";function i(i){var r=i.size,s=i.direction,a=void 0===s?"vertical":s,o=i.tag,d=void 0===o?"div":o,m=i.className,c=i.dataTestId;return t(e,{"data-testid":c,className:m,as:d,size:r,direction:a})}export{i as Gap};

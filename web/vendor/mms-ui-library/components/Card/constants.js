@@ -1,0 +1,1 @@
+var e="laptop",t=[{title:"Equipment name:",value:'Laptop Apple MacBook Air 13" M1 A2337 256GB (gray) + Power adapter Electraline 70034'},{title:"Serial number:",value:"23817129231921-29821837101"},{title:"Issue date:",value:"24.04.2023"},{title:"Return date:"}],a=290,l=244;export{a as DEFAULT_CARD_WIDTH,l as DEFAULT_MIN_CARD_WIDTH,t as mockCardItems,e as mockHeaderTitle};

@@ -1,0 +1,1 @@
+var n=function(n){var t=n.replace("#","");return 3===t.length&&(t="".concat(t[0]).concat(t[0]).concat(t[1]).concat(t[1]).concat(t[2]).concat(t[2])),{r:parseInt(t.substring(0,2),16),g:parseInt(t.substring(2,4),16),b:parseInt(t.substring(4,6),16)}};export{n as convertHexToRGBObject};

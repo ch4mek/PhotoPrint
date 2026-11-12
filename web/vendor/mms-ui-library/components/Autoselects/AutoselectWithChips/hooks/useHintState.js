@@ -1,0 +1,1 @@
+import{useState as n,useRef as t,useCallback as r}from"react";var e=function(){var e=n(!1),i=e[0],o=e[1],a=t(null),c=r((function(n){n.stopPropagation(),o(!i)}),[i,o]),p=r((function(n){a.current=n}),[]);return{isHintOpen:i,setIsHintOpen:o,indicatorRef:a,toggleHintOpen:c,handleIndicatorRef:p}};export{e as useHintState};

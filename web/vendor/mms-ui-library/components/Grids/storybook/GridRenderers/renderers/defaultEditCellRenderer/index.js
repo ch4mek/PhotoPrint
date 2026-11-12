@@ -1,0 +1,1 @@
+import{jsx as r}from"react/jsx-runtime";import{PenIcon as o}from"../../../../../../icons/base/PenIcon.js";import{IconWrapper as t}from"./styles.js";import"../../../../../../tslib.es6-d5ZXaEjz.js";import"@emotion/styled";var e=function(){return r(t,{children:r(o,{})})};export{e as defaultEditCellRenderer};

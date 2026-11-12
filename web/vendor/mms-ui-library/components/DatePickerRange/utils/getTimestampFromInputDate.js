@@ -1,0 +1,1 @@
+import a from"dayjs";var r=function(r){var n=r[0],e=r[1],t=r[2];if(Number.isNaN(+n)||Number.isNaN(+e)||Number.isNaN(+t))return null;var u=a(new Date("".concat(t,"-").concat(e,"-").concat(n)));return u.isValid()?u.valueOf():null};export{r as getTimestampFromInputDate};

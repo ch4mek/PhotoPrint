@@ -1,0 +1,1 @@
+import e from"@emotion/styled";var t=e("div")((function(e){return{display:"flex",justifyContent:"left",gap:e.theme.spaces.s,position:"relative",alignItems:"center"}})),i=e("div")((function(){return{display:"flex",alignItems:"center"}}));export{t as HeaderCellContentWrapper,i as SortIconWrapper};

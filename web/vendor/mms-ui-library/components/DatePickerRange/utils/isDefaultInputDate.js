@@ -1,0 +1,1 @@
+import{DEFAULT_INPUT_DATE as r}from"../../../constants/datePicker.js";import"../../../tslib.es6-d5ZXaEjz.js";var t=function(t){return t.every((function(t){return t.every((function(t,e){return t===r[e]}))}))};export{t as isDefaultInputDate};

@@ -1,0 +1,1 @@
+function t(t){var a=Math.floor(t/1e3),r=Math.floor(a/3600),o=Math.floor(a%3600/60),n=a%60,c=String(r>0?r:0).padStart(2,"0"),S=String(o>0?o:0).padStart(2,"0"),f=String(n>0?n:0).padStart(2,"0");return"".concat(c,":").concat(S,":").concat(f)}export{t as getFormattedTimeFromTimestamp};

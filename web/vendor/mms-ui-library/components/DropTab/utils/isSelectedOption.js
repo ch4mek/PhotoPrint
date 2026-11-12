@@ -1,0 +1,1 @@
+import{isSameValues as r}from"./isSameValues.js";import"./getItemValue.js";var e=function(e,t,o,a){return!!t&&(Array.isArray(t)?t.some((function(t){return a?a(e,t):r(e,t,o)})):a?a(e,t):r(e,t,o))};export{e as isSelectedOption};

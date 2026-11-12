@@ -1,0 +1,1 @@
+import{useRef as r,useCallback as o}from"react";import{useOnClickOutside as e}from"../../../hooks/useOnClickOutside.js";var n=function(n){var t=r(null),i=r(null),u=o(n,[n]);return e([t,i],u),{mainRef:t,popoverRef:i}};export{n as useRefsWithOutsideClick};

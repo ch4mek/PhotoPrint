@@ -1,0 +1,1 @@
+import{jsx as r}from"react/jsx-runtime";import{useContext as t}from"react";import{STACKING_ORDER as o}from"./constants.js";import{StackingContext as e}from"./context.js";function i(i){var m=i.children,n=i.value,a=void 0===n?o.DEFAULT:n,c=t(e),f=Math.max(a,c),p=f+1;return r(e.Provider,{value:p,children:m(f)})}export{i as Stack};

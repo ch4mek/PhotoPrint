@@ -1,0 +1,1 @@
+import e from"@emotion/styled";import{getGapSize as i}from"./helpers/getGapSize.js";var t=e.div((function(e){var t=e.theme,r=e.size,o=e.direction;return{display:"flex",height:"vertical"===o?i(t,r):0,width:"horizontal"===o?i(t,r):0}}));export{t as GapWrapper};

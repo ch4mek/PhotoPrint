@@ -1,0 +1,1 @@
+import r from"dayjs";var A={WEEK:7,MONTH:1,YEAR:1},o={SUNDAY:0,SATURDAY:6},E=7,Y=r("2024-01-07"),a=r("1900-01-01"),m=r("2200-12-31");export{Y as BASE_WEEK_START_DATE,E as DAYS_IN_WEEK,m as MAX_DATE,a as MIN_DATE,A as NAVIGATION_STEP,o as WEEKEND_DAYS};

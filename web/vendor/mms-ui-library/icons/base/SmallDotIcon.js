@@ -1,0 +1,1 @@
+import{_ as r}from"../../tslib.es6-d5ZXaEjz.js";import{jsx as t}from"react/jsx-runtime";function i(i){return t("svg",r({width:"2",height:"2",viewBox:"0 0 2 2",fill:"none",xmlns:"http://www.w3.org/2000/svg"},i,{children:t("circle",{cx:"1",cy:"1",r:"1",fill:"currentColor"})}))}export{i as SmallDotIcon};

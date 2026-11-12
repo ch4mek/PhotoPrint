@@ -350,6 +350,9 @@ export const getUserUpcomingEvents = (userId: string | number) =>
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
+// Локальный вход по email+паролю (демо-режим хакатона, замена Azure AD)
+export const LOCAL_LOGIN_ENDPOINT = `${API_URL}${API_BASE_PREFIX}/account/localLogin`;
+
 export const getFileUri = (fileId: string) => `${GET_FILE}/${fileId}`;
 export const getPayslipFileUri = (fileId: string) =>
 	`${getFileUri(fileId)}/payslip`;

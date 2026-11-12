@@ -1,0 +1,1 @@
+import{_ as r}from"../../tslib.es6-d5ZXaEjz.js";import{jsx as t}from"react/jsx-runtime";function o(o){return t("svg",r({width:"12",height:"2",viewBox:"0 0 12 2",fill:"none",xmlns:"http://www.w3.org/2000/svg"},o,{children:t("path",{d:"M1.5 1H10.3647",stroke:"currentColor",strokeWidth:"1.5",strokeLinecap:"round"})}))}export{o as MinusIcon};

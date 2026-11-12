@@ -1,0 +1,1 @@
+import{MIN_DATE as r,MAX_DATE as a}from"../../../../../../constants/calendar.js";import"dayjs";var n=function(n,t){var e=n?n.year():r.year(),o=t?t.year():a.year();return Array.from({length:o-e+1},(function(r,a){return e+a}))};export{n as generateYears};

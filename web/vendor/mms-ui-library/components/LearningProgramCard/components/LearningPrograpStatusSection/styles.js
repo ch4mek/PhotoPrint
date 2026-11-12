@@ -1,0 +1,1 @@
+import e from"@emotion/styled";var t=e.div((function(e){var t=e.theme;return{display:"flex",flexDirection:"row",alignItems:"center",justifyContent:"space-between",gap:t.spaces.m,color:t.palette["text-gray"]}})),n=e.div((function(){return{flex:1,minWidth:100}}));export{n as ProgressWrapper,t as StatusSection};

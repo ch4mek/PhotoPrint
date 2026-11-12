@@ -1,0 +1,1 @@
+import{HORIZONTAL_TEXT_CUT_EPSILON as t}from"./constants.js";var e=function(e,n,i){if("vertical"===i)return e.clientHeight<e.scrollHeight-n;try{var r=document.createRange();return r.selectNodeContents(e),r.getBoundingClientRect().width-e.getBoundingClientRect().width>t}catch(n){return e.scrollWidth-e.clientWidth>t}};export{e as checkIsTextCut};

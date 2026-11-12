@@ -1,0 +1,1 @@
+import{MONTH_MIN_VALUE as r,MONTH_MAX_VALUE as t}from"../../../../constants/datePicker.js";import"../../../../tslib.es6-d5ZXaEjz.js";var n=function(n,o,e){var i=function(t,n){return n&&n.year()===+t?n.month()+1:r}(n,o),a=function(r,n){return n&&n.year()===+r?n.month()+1:t}(n,e);return[i,a]};export{n as truncMonth};

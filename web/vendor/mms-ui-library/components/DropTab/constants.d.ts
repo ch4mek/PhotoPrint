@@ -1,0 +1,12 @@
+export declare const WIDTH = "200px";
+export declare const MAX_HEIGHT = 290;
+export declare const DROP_TAB_PADDINGS = 18;
+export declare const ITEM_HEIGHT = 34;
+export declare const DROPDOWN_SCROLLBAR_ID = "dropdown-scrollbar";
+export declare const ARROW_DOWN_EVENT_KEY = "ArrowDown";
+export declare const ARROW_UP_EVENT_KEY = "ArrowUp";
+export declare const ENTER_EVENT_KEY = "Enter";
+export declare const SCROLL_PAGINATION_OFFSET = 75;
+export declare const TOOLTIP_DELAY = 700;
+export declare const DARK_SHADOW_OPACITY = 0.8;
+export declare const dropTabEventKeys: string[];

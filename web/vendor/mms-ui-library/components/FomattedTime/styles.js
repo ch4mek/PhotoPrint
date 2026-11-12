@@ -1,0 +1,1 @@
+import{_ as t}from"../../tslib.es6-d5ZXaEjz.js";import o from"@emotion/styled";var r=o("div")((function(o){var r=o.theme;return t({color:r.palette["text-black"],textAlign:"start"},r.typography.body["m-400"])})),e=o("span")();export{e as Label,r as Wrapper};

@@ -1,0 +1,1 @@
+import m from"dayjs";var s=m(),r=6,o={s:236,m:280},a={s:188,m:256},p={s:28,m:32},t={s:30,m:47};export{r as FIXED_WEEK_NUMBER,t as calendarBoxShadowBlur,p as calendarItemSize,a as calendarMinHeights,o as calendarWidths,s as currentDate};

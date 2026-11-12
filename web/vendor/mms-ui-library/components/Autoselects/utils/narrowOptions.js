@@ -1,0 +1,1 @@
+import{b as t}from"../../../tslib.es6-d5ZXaEjz.js";var r=function(r,n,o){return 0!==r.length&&"string"!=typeof r[0]&&n&&o?r.map((function(r){var n=r,e=o;return n[e],t(n,["symbol"==typeof e?e:e+""])})):r};export{r as narrowOptions};

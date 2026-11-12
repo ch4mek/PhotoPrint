@@ -1,0 +1,1 @@
+import{jsx as r}from"react/jsx-runtime";import{createContext as e,useState as t}from"react";var i=e(null);function l(e){var l=e.children,n=t(""),o=n[0],a=n[1];return r(i,{value:{filterId:o,setFilterId:a},children:l})}export{i as FilterContext,l as FilterContextProvider};

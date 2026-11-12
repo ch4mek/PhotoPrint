@@ -1,0 +1,1 @@
+import{useContext as t}from"react";import{FilterContext as r}from"../contexts/FilterContext.js";import"react/jsx-runtime";var o=function(){var o=t(r);if(!o)throw new Error('You can use "useFilterIndex" hook only within a <FilterIndexContext> component.');return o};export{o as useFilterContext};

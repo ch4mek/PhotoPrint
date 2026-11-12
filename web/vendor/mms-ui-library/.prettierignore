@@ -1,0 +1,5 @@
+CHANGELOG.md
+
+# Generated theme bundles (postcss-cli + cssnano) — Prettier corrupts minified CSS
+dist/
+.storybook/public/themes/

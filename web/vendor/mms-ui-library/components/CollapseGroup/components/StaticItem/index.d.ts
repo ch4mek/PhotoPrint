@@ -1,0 +1,3 @@
+import { StaticItemProps } from '@/components/CollapseGroup/components/StaticItem/types';
+import { Option } from '@/components/CollapseGroup/types';
+export declare function StaticItem<U extends Option>({ renderStaticItem, onClick, staticItemWrapper, item, disabled, }: StaticItemProps<U>): string | number | bigint | boolean | import("react/jsx-runtime").JSX.Element | Iterable<import("react").ReactNode> | Promise<string | number | bigint | boolean | import("react").ReactPortal | import("react").ReactElement<unknown, string | import("react").JSXElementConstructor<any>> | Iterable<import("react").ReactNode> | null | undefined> | null | undefined;

@@ -1,0 +1,1 @@
+import r from"@emotion/styled";var e=r.div((function(r){var e=r.theme,o=r.isFullWidth;return{borderRadius:6,borderWidth:1,borderStyle:"solid",borderColor:e.palette["graphics-divider-1"],overflow:"hidden",width:o?"100%":"fit-content"}}));export{e as Wrapper};

@@ -1,0 +1,1 @@
+var t="Management System",e={laptop:{width:336,height:76},mobile:{width:264,height:59}},i={laptop:{fontSize:30,lineHeight:36,fontWeight:500},mobile:{fontSize:23}};export{t as HEADING_TITLE,e as LOGO_SIZE,i as LOGO_TITLE};

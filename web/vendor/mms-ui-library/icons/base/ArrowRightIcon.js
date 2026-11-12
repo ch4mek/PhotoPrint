@@ -1,0 +1,1 @@
+import{_ as r}from"../../tslib.es6-d5ZXaEjz.js";import{jsx as t}from"react/jsx-runtime";function o(o){return t("svg",r({width:"24",height:"26",viewBox:"0 0 24 26",fill:"none",xmlns:"http://www.w3.org/2000/svg"},o,{children:t("path",{d:"M7 24L18 13L7 2",stroke:"currentColor",strokeWidth:"3",strokeLinecap:"round"})}))}export{o as ArrowRightIcon};

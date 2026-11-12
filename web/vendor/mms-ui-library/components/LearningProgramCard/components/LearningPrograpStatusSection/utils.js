@@ -1,0 +1,1 @@
+import{LearningProgramStatus as e}from"./types.js";var t=function(t,a){var r,s;return null!==(s=((r={})[e.Passed]=a.palette["feedback-success"],r[e.Failed]=a.palette["feedback-danger"],r)[t])&&void 0!==s?s:a.palette["text-gray"]};export{t as getStatusColor};

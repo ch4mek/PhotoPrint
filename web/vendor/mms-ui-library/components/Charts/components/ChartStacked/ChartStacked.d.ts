@@ -1,0 +1,2 @@
+import type { ChartStackedProps } from './types';
+export declare function ChartStacked<T, U, V extends string | number>({ data, keyWithNameAndColorMap, transformedData, calculatedYAxisTicks, xAxisDataKey, yAxisDataKey, xAxisHeight, xAxisWidth, yAxisWidth, xAxisTick, yAxisTick, shouldUseDataAsXAxisValues, shouldUseDataAsYAxisValues, heightOfChart, barChartMargins, CustomizedTooltipComponent, lastStackedItemKey, }: ChartStackedProps<T, U, V>): import("react/jsx-runtime").JSX.Element;

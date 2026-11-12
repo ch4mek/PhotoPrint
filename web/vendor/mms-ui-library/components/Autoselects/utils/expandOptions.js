@@ -1,0 +1,1 @@
+import{_ as r}from"../../../tslib.es6-d5ZXaEjz.js";var t=function(t,n){return 0!==t.length&&"string"!=typeof t[0]&&n?t.map((function(t){var e=n(t);return r(r({},t),e)})):t};export{t as expandOptions};

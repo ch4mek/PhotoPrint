@@ -1,0 +1,1 @@
+function e(e,r,t){void 0===t&&(t="name");var n=e.trim();if(!n)return!1;var o=n.toLowerCase();return!r.some((function(e){return(e[t]||"").toLowerCase()===o}))||!r.some((function(e){return(e[t]||"").length===n.length&&(e[t]||"").toLowerCase()===o}))}export{e as defaultCreatePredicate};

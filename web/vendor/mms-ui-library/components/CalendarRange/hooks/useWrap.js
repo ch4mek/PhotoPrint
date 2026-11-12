@@ -1,0 +1,1 @@
+import{useContentWidth as t}from"./useGetContentWidth.js";import{useWindowWidth as r}from"./useWindowWidth.js";import"react";var o=function(o){var e=t(o),i=r(300);return!!e&&e>i};export{o as useWrap};

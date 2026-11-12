@@ -1,0 +1,1 @@
+import{getDayjsFromInputDate as t}from"./getDayjsFromInputDate.js";import"dayjs";import"../../../constants/datePicker.js";import"../../../tslib.es6-d5ZXaEjz.js";var r=function(r){return[t(r[0]),t(r[1])]};export{r as getRangeFromInputDate};

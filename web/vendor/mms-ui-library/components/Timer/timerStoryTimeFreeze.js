@@ -1,0 +1,1 @@
+import{jsx as r}from"react/jsx-runtime";import{useEffect as t}from"react";var n=17e11,o=function(o){return t((function(){var r=Date.now;return Date.now=function(){return n},function(){Date.now=r}}),[]),r(o,{})};export{n as TIMER_STORY_FIXED_NOW_MS,o as freezeTimerStoryTimeDecorator};

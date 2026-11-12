@@ -1,0 +1,1 @@
+var t="button[data-switcher-option]",e="--slider-left",i="--slider-width",r="px",d=0;export{d as DEFAULT_ACTIVE_INDEX,r as PX_UNIT,e as SLIDER_LEFT_PROPERTY_NAME,i as SLIDER_WIDTH_PROPERTY_NAME,t as SWITCHER_BUTTON_SELECTOR};
